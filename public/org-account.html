@@ -2,45 +2,121 @@
 <html lang="en">
 
 <head>
-  <title>Org</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+    <title>Org</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda&display=swap" rel="stylesheet">
+
+    <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/org-logout">
-        Logout
-      </a>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome</h2>
-        <ul style="list-style-type:none;">
-          <li class="org-name"></li>
-          <li class="org-email"></li>
-          <li class="org-address"></li>
-          <li class="org-bio"></li>
-        </ul>
-        <h2 class="projectList">Projecs Lists:</h2>
-        <!-- <ul style="list-style-type:none;">
-          <li class="user-name"></li>
-          <li class="user-email"></li>
-          <li class="user-bio"></li>
-        </ul> -->
-      </div>
-    </div>
-  </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/org-logout">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Welcome</h2>
+                <ul style="list-style-type:none;">
+                    <li class="org-name"></li>
+                    <li class="org-email"></li>
+                    <li class="org-address"></li>
+                    <li class="org-bio"></li>
+                </ul>
+                <button class="createProject" data-toggle="modal" data-target="#exampleModalCenter">Request a
+                    project!!!</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Request Your Project</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title:</label>
+                                    <input type="name" class="form-control" id="title-input" placeholder="title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Description:</label>
+                                    <textarea type="email" class="form-control" id="description-input"
+                                        placeholder="Descript your project"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Price:</label>
+                                    <input type="password" class="form-control" id="price-input"
+                                        placeholder="Enter your budget">
+                                </div>
+                                <div style="display: none" id="user-alert" class="alert alert-danger" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span> <span class="msg"></span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="createProject btn btn-primary" id="submitProject"
+                                    data-dismiss="modal">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="projectList">Projecs Lists:</h2>
+                <!-- <ul style="list-style-type:none;">
+                    <li class="user-name">fdd</li>
+                    <li class="user-email">fff</li>
+                    <li class="user-bio">fff</li>
+                    <button data-toggle="modal" data-target="#pickCandidate">Finished</button>
+                </ul> -->
+                <!-- Modal -->
+                <div class="modal fade" id="pickCandidate" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Pick Your Candidate</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group" id="candidateList">
+                                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{this.id}}. {{this.burger_name}}
+                                        <button class="status-btn btn btn-danger btn-sm" data-id="{{this.id}}" data-status="{{this.devoured}}">
+                                            {{#if this.devoured}} Vomit!!! {{else}} Devour!!! {{/if}}
+                                        </button>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/org-account.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/org-account.js"></script>
 
 </body>
 

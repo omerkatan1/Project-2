@@ -43,4 +43,10 @@ module.exports = function (app) {
             res.json(req.user);
         }
     });
+
+    app.get("/api/users",function(req,res){
+        db.User.findAll({}).then(function(data){
+            res.json(data);
+        });
+    });
 }

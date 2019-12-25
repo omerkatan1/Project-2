@@ -30,6 +30,7 @@ app.set("view engine", "handlebars");
 require("./routes/user-html-routes")(app);
 require("./routes/users-route")(app);
 require("./routes/orgs-route")(app);
+require("./routes/projects-route")(app);
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
