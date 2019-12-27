@@ -35,7 +35,7 @@ $(document).ready(function() {
     function signUpOrg(userData) {
       $.post("/api/org-signup", userData)
         .then(function(data) {
-          window.location.replace("/org-account");
+          window.location.replace("/org-login");
           // If there's an error, handle it by throwing up a bootstrap alert
         })
         .catch(handleLoginErr);

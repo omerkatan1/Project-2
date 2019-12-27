@@ -1,8 +1,8 @@
 var db = require("../models");
-var passport = require("../config/org-passport");
+var passportOrg = require("../config/user-passport");
 
 module.exports = function (app) {
-    app.post("/api/org-login", passport.authenticate("local"), function (req, res) {
+    app.post("/api/org-login", passportOrg.authenticate("local"), function (req, res) {
         res.json(req.user);
     });
 
@@ -18,7 +18,8 @@ module.exports = function (app) {
             intro: req.body.intro,
         })
             .then(function () {
-                res.redirect(307, "/api/org-login");
+                res.status(200).end();
+                //res.redirect(307, "/api/org-login");
             })
             .catch(function (err) {
                 res.status(401).json(err);

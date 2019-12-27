@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         address: {
-            type: DataTypes.STRING,            
+            type: DataTypes.STRING,
         },
 
         intro: {
@@ -46,15 +46,11 @@ module.exports = function (sequelize, DataTypes) {
     });
 
 
-    // User.associate = function (models) {
-    //     // We're saying that a Post should belong to an Author
-    //     // A Post can't be created without an Author due to the foreign key constraint
-    //     User.belongsTo(models.Author, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+    Org.associate = function (models) {
+        Org.hasMany(models.Project, {
+            onDelete: "cascade"
+        });
+    };
 
     return Org;
 };

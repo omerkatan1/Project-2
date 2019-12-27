@@ -26,25 +26,26 @@ module.exports = function (sequelize, DataTypes) {
         },
 
         status: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Hiring",
         },
 
-        organization_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
+        // // organization_id: {
+        // //     type: DataTypes.INTEGER,
+        // //     allowNull: false,
+        // },
 
         developers_list: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "",
-            get() {
-                return this.getDataValue('developers_list').split(';')
-            },
-            set(val) {
-                this.setDataValue('developers_list', val.join(';'));
-            },
+            // get() {
+            //     return this.getDataValue('developers_list').split(';')
+            // },
+            // set(val) {
+            //     this.setDataValue('developers_list', val.join(';'));
+            // },
         },
 
         final_developer: {
@@ -53,5 +54,25 @@ module.exports = function (sequelize, DataTypes) {
         },
 
     });
+    Project.associate = function (models) {
+        Project.belongsTo(models.Org, {
+            foreignKey: {
+                allowNull: false,
+            }
+        });
+        // Project.belongsTo(models.User, {
+        //     foreignKey: {
+        //         allowNull: true,
+        //     }
+        // });
+
+    };
+
+    // Project.associate = function(models) {
+    //     Project.belongsTo(models.User, {
+    //         foreignKey: 'user_id',
+    //         allowNull: true,
+    //       });
+    // };
     return Project;
 };

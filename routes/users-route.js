@@ -1,15 +1,12 @@
 var db = require("../models");
-var passport = require("../config/passport");
+var passport = require("../config/user-passport");
 
 module.exports = function (app) {
+
     app.post("/api/user-login", passport.authenticate("local"), function (req, res) {
-    //console.log(req.user);
         res.json(req.user);
     });
 
-    // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-    // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-    // otherwise send back an error
     app.post("/api/user-signup", function (req, res) {
         db.User.create({
             first_name: req.body.first_name,
@@ -19,7 +16,8 @@ module.exports = function (app) {
             intro: req.body.intro,
         })
             .then(function () {
-                res.redirect(307, "/api/user-login");
+                res.status(200).end();
+                //res.redirect(307, "/api/user-login");
             })
             .catch(function (err) {
                 res.status(401).json(err);
@@ -38,15 +36,81 @@ module.exports = function (app) {
             // The user is not logged in, send back an empty object
             res.json({});
         } else {
+            db.User.findOne({
+                where:{
+                    id: req.user.id
+                }
+            }).then(function(data){
+                res.json(data);
+            });
             // Otherwise send back the user's email and id
             // Sending back a password, even a hashed password, isn't a good idea
-            res.json(req.user);
         }
     });
 
-    app.get("/api/users",function(req,res){
-        db.User.findAll({}).then(function(data){
+    app.get("/api/users", function (req, res) {
+        db.User.findAll({}).then(function (data) {
             res.json(data);
         });
     });
-}
+
+
+    app.put("/user/:id/:status", function (req, res) {
+        var userId = req.params.id;
+        var updateStatus = req.params.status == 1 ? false : true;
+        console.log(updateStatus);
+        db.User.update({
+            status: updateStatus
+        }, {
+            where: {
+                id: userId
+            }
+        }).then(function (data2) {
+            res.status(200).end();
+        })
+    });
+
+
+    app.put("/recovers/:pid/:uid", function (req, res) {
+        var projId = req.params.pid;
+        var userId = req.params.uid;
+        db.Project.findOne({
+            where: {
+                id: projId
+            }
+        }).then(function (data) {
+            var developerList = data.developers_list.split(";");
+            console.log(developerList);
+            var delIndex = developerList.indexOf(userId);
+            developerList.splice(delIndex, 1);
+            console.log(developerList);
+            forLoop();
+            async function forLoop() {
+                for (var i = 0; i < developerList.length; i++) {
+                    var currId = parseInt(developerList[i]);
+                    var result = await updateStatus(currId);
+                    console.log(result);
+                }
+                res.status(200).end();
+            }
+        });
+    });
+
+    function updateStatus(currId) {
+        return new Promise(resolve => {
+            setTimeout(function () {
+                db.User.update({
+                    status: false
+                }, {
+                    where: {
+                        id: currId
+                    }
+                }).then(function () {
+                    resolve("back to available!!!");
+                })
+            },2000);
+        });
+    }
+
+
+};
