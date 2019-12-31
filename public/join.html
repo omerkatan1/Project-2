@@ -8,26 +8,80 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Quicksand&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="css/join.css">
     <title>Sqwash</title>
 </head>
 
 <body>
-    
 
-    <h1>Side Hustle</h1>
-
-
-    <div class="container-fluid about">
+    <div class="container-fluid">
         <div class="row">
-            
+
+            <form class="join">
+                <div class="form-group row">
+                    <label for="name-input" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                        <input type="name" class="form-control" id="name-input" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="user-input" class="col-sm-4 col-form-label">Username</label>
+                    <div class="col-sm-8">
+                        <input type="user" class="form-control" id="user-input" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pass-input" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="pass" class="form-control" id="pass-input" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="sod" class="col-sm-4">Start Up or Developer</label>
+                    <select class="form-control col-sm-8" id="sod">
+                        <option>Start Up</option>
+                        <option>Developer</option>
+                    </select>
+                </div>
+
+                <fieldset class="form-group">
+                    <div class="row">
+                        <label class="col-form-label col-sm-4 pt-0">Languages</label>
+                        <div class="col-sm-8">
+                            <div class="form-check">
+                                <ul class="ks-cboxtags">
+                                    <li><input type="checkbox" id="checkboxOne" value="html"><label
+                                            for="checkboxOne">HTML</label></li>
+                                    <li><input type="checkbox" id="checkboxTwo" value="css" checked><label
+                                            for="checkboxTwo">CSS</label></li>
+                                    <li><input type="checkbox" id="checkboxThree" value="jquery" checked><label
+                                            for="checkboxThree">Jquery</label></li>
+                                    <li><input type="checkbox" id="checkboxFour" value="javascript"><label
+                                            for="checkboxFour">Javascript</label></li>
+                                    <li><input type="checkbox" id="checkboxFive" value="nodejs"><label
+                                            for="checkboxFive">NodeJS</label></li>
+                                    <li><input type="checkbox" id="checkboxSix" value="sql" checked><label
+                                            for="checkboxSix">SQL</label></li>
+                                    <li><input type="checkbox" id="checkboxSeven" value="express"><label
+                                            for="checkboxSeven">Express</label></li>
+                                    <li><input type="checkbox" id="checkboxEight" value="sequelize"><label
+                                            for="checkboxEight">Sequelize</label></li>
+                                </ul>
+                            </div>
+                        </div>
+                </fieldset>
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn-grad">Join</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
-
-    <div class="row" id="footer">
-        <p>Copyright ©</p>
-    </div>
-
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

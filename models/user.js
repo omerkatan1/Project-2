@@ -5,21 +5,14 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-        first_name: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        last_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        email: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {

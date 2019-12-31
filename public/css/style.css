@@ -9,6 +9,21 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
+.ml16 {
+    color: white;
+    padding: 40px 0;
+    font-weight: 800;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    overflow: hidden;
+}
+  
+.ml16 .letter {
+    display: inline-block;
+    line-height: 1em;
+}
+
 .navbar.scrolled {
     background-color: #7F7F7F !important; 
     transition: background-color 200ms linear;
@@ -22,6 +37,7 @@ h1 {
 .about {
     margin-top: 40%;
 }
+
 
 /* Footer */
 #footer {
@@ -55,13 +71,35 @@ h1 {
 }
 
 .modal-footer {
-    padding: 0;
+    padding: 0 0 20px 0;
 }
 
-.close, .btn{
+/* Buttons */
+.btn-grad {
     color: white;
+    margin: auto;
+    padding: 10px 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.5s;
+    background-size: 200% auto;
+    border: 0px solid black;
+    border-radius: 40px;
+    display: block;
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%)
 }
 
-button:hover {
+.btn-grad:hover { 
+    background-position: right center; 
+}
+
+.close {
     color: white;
+    border: 0 solid black;
+}
+
+.close:hover {
+    color: #F09819;
+    border: 0 solid black;
 }
