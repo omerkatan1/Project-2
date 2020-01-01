@@ -41,7 +41,7 @@ $(document).ready(function () {
             if (userId !== -1) {
                 $.ajax({
                     method: "PUT",
-                    url: `/user/${userId}/1`,
+                    url: `/update/user/${userId}/1`,
                 }).then(function () {
                     location.reload();
                 })
@@ -81,7 +81,17 @@ $(document).ready(function () {
             url: `/proccess/${projId}/${userId}`,
             method: "PUT",
         }).then(function () {
-            location.reload();
+            $.ajax({
+                method: "PUT",
+                url: `/update/user/${userId}/0`,
+            }).then(function () {
+                $.ajax({
+                    method: "PUT",
+                    url: `/recovers/${projId}/${userId}`
+                }).then(function(){
+                    location.reload();
+                })
+            })
         })
     });
 

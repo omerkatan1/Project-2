@@ -37,10 +37,10 @@ module.exports = function (app) {
             res.json({});
         } else {
             db.User.findOne({
-                where:{
+                where: {
                     id: req.user.id
                 }
-            }).then(function(data){
+            }).then(function (data) {
                 res.json(data);
             });
             // Otherwise send back the user's email and id
@@ -54,20 +54,74 @@ module.exports = function (app) {
         });
     });
 
-
-    app.put("/user/:id/:status", function (req, res) {
-        var userId = req.params.id;
-        var updateStatus = req.params.status == 1 ? false : true;
-        console.log(updateStatus);
-        db.User.update({
-            status: updateStatus
-        }, {
+    app.put("/user/bidded/:pid/:uid", function (req, res) {
+        var projId = req.params.pid;
+        var userId = req.params.uid;
+        db.User.findOne({
             where: {
                 id: userId
             }
-        }).then(function (data2) {
-            res.status(200).end();
+        }).then(function (data) {
+            var currBidArray = data.biddedProject.split(";");
+            var index = currBidArray.indexOf((projId - '0'));
+            currBidArray.splice(index, 1);
+            var updateBid = currBidArray.join(";");
+            db.User.update({
+                biddedProject: updateBid
+            }, {
+                where: {
+                    id: userId
+                }
+            }).then(function () {
+                res.status(200).end();
+            });
+        });
+    });
+
+
+    app.put("/user/:uid/:pid", function (req, res) {
+        var userId = req.params.uid;
+        var projId = req.params.pid;
+        db.User.findOne({
+            where: {
+                id: userId
+            }
+        }).then(function (user) {
+            var currList = user.biddedProject;
+            var newList = currList;
+            if (currList.length > 1) {
+                var currArray = currList.split(";");
+                if (!currArray.includes(projId)) {
+                    currArray.push(projId);
+                    newList = currArray.join(";");
+                }
+            } else if (currList.length === 1) {
+                if (currList !== projId) newList += `;${projId}`;
+            } else newList += `${projId}`;
+            db.User.update({
+                biddedProject: newList
+            }, {
+                where: {
+                    id: userId
+                }
+            }).then(function (data2) {
+                res.status(200).end();
+            })
         })
+    });
+
+    app.put("/update/user/:uid/:statusNum",function(req, res){
+        var updateStatus = req.params.statusNum == 0? true:false;
+        var userId = req.params.uid;
+        db.User.update({
+            status: updateStatus
+        },{
+            where: {
+                id: userId
+            }
+        }).then(function(data){
+            res.status(200).end();
+        });
     });
 
 
@@ -108,7 +162,7 @@ module.exports = function (app) {
                 }).then(function () {
                     resolve("back to available!!!");
                 })
-            },2000);
+            }, 2000);
         });
     }
 
