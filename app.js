@@ -18,7 +18,6 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-<<<<<<< HEAD:server.js
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(userPassport.initialize());
@@ -32,11 +31,6 @@ require("./routes/user-html-routes")(app);
 require("./routes/users-route")(app);
 require("./routes/orgs-route")(app);
 require("./routes/projects-route")(app);
-=======
-// require("./routes/Users.js")(app);
-// require("./routes/author-api-routes.js")(app);
-// require("./routes/post-api-routes.js")(app);
->>>>>>> master:app.js
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
