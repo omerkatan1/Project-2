@@ -11,11 +11,15 @@ body {
 
 .ml16 {
     color: white;
+    /* background: -webkit-linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
     padding: 40px 0;
     font-weight: 800;
-    font-size: 2em;
+    font-size: 5em;
     text-transform: uppercase;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.2em;
     overflow: hidden;
 }
   
@@ -31,7 +35,9 @@ body {
 
 h1 {
     margin-top: 20%;
-    font-family: 'Julius Sans One', sans-serif;
+    /* font-family: 'Julius Sans One', sans-serif; */
+    font-family: 'Permanent Marker', cursive;
+    font-size: 200%;
 }
 
 .about {
