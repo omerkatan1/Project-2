@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "fly1172160901",
+    "username": "newuser",
+    "password": "password",
     "database": "sqwash",
     "host": "127.0.0.1",
     "port": 3306,
