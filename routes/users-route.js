@@ -20,7 +20,7 @@ module.exports = function (app) {
                 //res.redirect(307, "/api/user-login");
             })
             .catch(function (err) {
-                res.status(401).json(err);
+                res.status(500).json(err);
             });
     });
 
