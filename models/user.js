@@ -46,6 +46,12 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "",
+        },
+
+        techniques: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue:"",
         }
     });
 

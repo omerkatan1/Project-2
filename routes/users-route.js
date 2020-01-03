@@ -14,6 +14,7 @@ module.exports = function (app) {
             email: req.body.email,
             password: req.body.password,
             intro: req.body.intro,
+            techniques: req.body.techniques,
         })
             .then(function () {
                 res.status(200).end();
