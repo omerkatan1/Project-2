@@ -1,0 +1,113 @@
+body {
+    background-image: url("../img/background.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.5);
+    background-blend-mode: multiply;
+    color: white;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.title {
+    margin: auto;
+    margin-top: 10%;
+}
+
+.jobs {
+    margin: auto;
+    margin-top: 5%;
+}
+
+h1 {
+    margin-top: 3%;
+}
+
+h2 {
+    margin: auto;
+}
+
+.post1 {
+    background-color: rgba(0,0,0,0.5);
+    padding: 2%;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+#footer {
+    padding: 20px 0px 0px 0px;
+    width: 100%;
+    bottom: 0;
+}
+
+#footer p {
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    color: white;
+    width: 100%;
+    margin: 0px;
+}
+
+.carousel-inner {
+    width: 80%;
+    padding: 0 40px;
+    margin: auto;
+}
+
+/* Buttons */
+.btn-grad {
+    color: white;
+    margin: auto;
+    padding: 10px 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.5s;
+    background-size: 200% auto;
+    border: 0px solid black;
+    border-radius: 40px;
+    display: block;
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%)
+}
+
+.btn-grad:hover { 
+    background-position: right center; 
+}
+
+.close {
+    color: white;
+    border: 0 solid black;
+}
+
+.close:hover {
+    color: #F09819;
+    border: 0 solid black;
+}
+
+.description {
+    height: 100px;
+    width: 70%;
+    overflow: auto;
+    margin: auto;
+}
+
+.row {
+    text-align: center;
+}
+
+#html, #css, #jquery, #javascript, #nodejs, #sql, #express, #sequelize {
+    font-size: 0.7em; 
+    padding: 5px; 
+}
+
+#html { color: #FF0099; }
+#css { color: #FF6600; }
+#jquery { color: #FFFF00; }
+#javascript { color: #00FF00; }
+#nodejs { color: #00FFFF; }
+#sql { color: #099FFF; }
+#express { color: #CC00FF; }
+#sequelize { color: #9900FF; }
