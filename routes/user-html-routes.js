@@ -11,8 +11,9 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/user-account");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
+
 
   app.get("/user-login", function(req, res) {
     // If the user already has an account send them to the members page
