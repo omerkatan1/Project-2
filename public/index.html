@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Permanent+Marker|Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Permanent+Marker|Quicksand&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Sqwash</title>
 </head>
@@ -60,6 +61,14 @@
                             <input type="password" id="pass-input" class="form-control validate">
                             <label data-error="wrong" data-success="right" for="pass-input">Password</label>
                         </div>
+                        <div class="form-group row">
+                            <label for="sod" class="col-sm-4">Start Up or Developer</label>
+                            <select class="form-control col-sm-8" id="sod">
+                                <option>Start Up</option>
+                                <option>Developer</option>
+                            </select>
+                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
@@ -145,4 +154,5 @@
     <script src="js/login.js"></script>
 
 </body>
+
 </html>
