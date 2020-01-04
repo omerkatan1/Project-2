@@ -117,3 +117,8 @@ h2 {
 .profile {
     text-align: left;
 }
+
+.name h1, p{
+    display: inline-block;
+    padding: 10px;
+}
