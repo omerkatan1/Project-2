@@ -1,0 +1,8 @@
+<div class="container-fluid">
+    {{#if developer}}
+      {{> developer}}
+    {{/if}}
+    {{#unless developer}}
+      {{> startup}}
+    {{/unless}}
+</div>

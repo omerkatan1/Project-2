@@ -11,10 +11,10 @@ module.exports = function (sequelize, DataTypes) {
                 len:[100,1000]
             }
         },
-        bid_price: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        }
+        // bid_price: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        // }
     });
     UserBid.associate = function (models) {
         UserBid.belongsTo(models.User, {
