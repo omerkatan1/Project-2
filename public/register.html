@@ -5,85 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="css/register.css">
-    <title>Sqwash</title>
+    <title>Sqwash Register</title>
 </head>
 
 <body>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="col-sm-6 box">
 
-            <h1 class="ml16">Register</h1>
+            <h1 class="ml16 col-sm-12">Register</h1>
 
 
             <form class="join">
+
+                <div class="register-switch row col-sm-10">
+                    <input type="radio" name="user" value="dev" id="user-dev" class="register-switch-input" checked>
+                    <label for="user-dev" class="register-switch-label">Developer</label>
+                    <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                    <label for="user-start" class="register-switch-label">Start-up</label>
+                </div>
+
                 <div class="form-group row">
-                    <label for="firstName-input" class="col-sm-4 col-form-label">Name</label>
-                    <div class="col-sm-8">
-                        <input type="name" class="form-control" id="firstName-input" placeholder="Name">
+                    <div class="col-sm-10 input-icons">
+                        <i class="fas fa-user icon"></i>
+                        <input type="name" class="form-control input-field" id="firstName-input" placeholder="Name">
+
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email-input" class="col-sm-4 col-form-label">Email</label>
-                    <div class="col-sm-8">
-                        <input type="email" class="form-control" id="email-input" placeholder="Email">
+                    <div class="col-sm-10 input-icons">
+                        <i class="fas fa-at icon"></i>
+                        <input type="email" class="form-control input-field" id="email-input" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="password-input" class="col-sm-4 col-form-label">Password</label>
-                    <div class="col-sm-8">
-                        <input type="password" class="form-control" id="password-input" placeholder="Password">
+                    <div class="col-sm-10 input-icons">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" class="form-control input-field" id="password-input"
+                            placeholder="Password">
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group row">
+                    <div class="col-sm-10 input-icons">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" class="form-control input-field" id="confirm-password-input"
+                            placeholder="Confirm Password">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="intro-input" class="col-sm-4">Bio</label>
-                    <textarea type="intro" class="form-control col-sm-8" id="intro-input"
-                        placeholder="Briefly Introduce Yourself"></textarea>
+                    <div class="col-sm-10">
+                        <textarea type="intro" class="form-control" id="intro-input"
+                            placeholder="Briefly Introduce Yourself"></textarea>
+                    </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="sod" class="col-sm-3">Start Up or Developer</label>
-                    <select class="form-control col-sm-8" id="sod">
+                <!-- <div class="form-group">
+                    <label for="sod" class="col-sm-6">Start Up or Developer</label>
+                    <select class="form-control col-sm-6" id="sod">
                         <option>Start Up</option>
                         <option>Developer</option>
                     </select>
-                </div>
+                </div> -->
 
                 <fieldset class="form-group">
-                    <div class="row">
-                        <label class="col-form-label col-sm-4 pt-0">Technologies</label>
-                        <div class="col-sm-8">
+                    <div class="">
+                        <label class="col-form-label col pt-0">TECHNOLOGIES</label>
+                        <div class="col-sm-10">
                             <div class="form-check">
                                 <ul class="ks-cboxtags">
                                     <li><input class="techcheckbox" type="checkbox" id="checkboxOne" value="html"><label
                                             for="checkboxOne">HTML</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxTwo" value="css" checked><label
-                                            for="checkboxTwo">CSS</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxThree" value="jquery" checked><label
-                                            for="checkboxThree">Jquery</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxFour" value="javascript"><label
-                                            for="checkboxFour">Javascript</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxFive" value="nodejs"><label
-                                            for="checkboxFive">NodeJS</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxSix" value="sql" checked><label
-                                            for="checkboxSix">SQL</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxSeven" value="express"><label
-                                            for="checkboxSeven">Express</label></li>
-                                    <li><input class="techcheckbox" type="checkbox" id="checkboxEight" value="sequelize"><label
-                                            for="checkboxEight">Sequelize</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxTwo" value="css"
+                                            checked><label for="checkboxTwo">CSS</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxThree" value="jquery"
+                                            checked><label for="checkboxThree">Jquery</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxFour"
+                                            value="javascript"><label for="checkboxFour">Javascript</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxFive"
+                                            value="nodejs"><label for="checkboxFive">NodeJS</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxSix" value="sql"
+                                            checked><label for="checkboxSix">SQL</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxSeven"
+                                            value="express"><label for="checkboxSeven">Express</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxEight"
+                                            value="sequelize"><label for="checkboxEight">Sequelize</label></li>
                                 </ul>
                             </div>
                         </div>
                 </fieldset>
 
                 <div class="form-group row">
-                    <div class="col-sm-10">
+                    <div class="col">
                         <button type="submit" class="btn-grad">Register</button>
                     </div>
                 </div>
@@ -92,6 +114,7 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
