@@ -1,12 +1,18 @@
 body {
     background-image: url("../img/background.jpg");
-    background-size: contain; 
+    background-size: contain;
     background-repeat: no-repeat;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
     color: white;
     text-align: center;
     font-family: 'Quicksand', sans-serif;
+}
+
+.register {
+    color: #EDDE5D !important;
+    padding: .5rem;
+    border: 1px solid #EDDE5D;
 }
 
 .ml16 {
@@ -22,26 +28,27 @@ body {
     letter-spacing: 0.2em;
     overflow: hidden;
 }
-  
+
 .ml16 .letter {
     display: inline-block;
     line-height: 1em;
 }
 
 .navbar.scrolled {
-    background-color: #7F7F7F !important; 
+    background-color: #7F7F7F !important;
     transition: background-color 200ms linear;
 }
 
 h1 {
     margin-top: 20%;
-    /* font-family: 'Julius Sans One', sans-serif; */
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Julius Sans One', sans-serif;
+    /* font-family: 'Permanent Marker', cursive; */
     font-size: 200%;
 }
 
+
 .about {
-    margin-top: 40%;
+    margin-top: 20.3%;
 }
 
 
@@ -72,7 +79,8 @@ h1 {
     opacity: 90%;
 }
 
-.modal-header, .modal-footer {
+.modal-header,
+.modal-footer {
     border: none;
 }
 
@@ -96,8 +104,8 @@ h1 {
     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%)
 }
 
-.btn-grad:hover { 
-    background-position: right center; 
+.btn-grad:hover {
+    background-position: right center;
 }
 
 .close {
@@ -108,4 +116,29 @@ h1 {
 .close:hover {
     color: #F09819;
     border: 0 solid black;
+}
+
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    background: #f1f1f1;
+    margin-bottom: 2rem;
+}
+
+.card h3 {
+    margin-bottom: 2rem;
+}
+
+.card img {
+    height: 400px;
+}
+
+.card>div {
+    padding: 2rem;
+}
+
+.card:nth-child(even) img {
+    order: 2;
 }

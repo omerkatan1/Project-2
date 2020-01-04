@@ -9,6 +9,8 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Permanent+Marker|Quicksand&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <link rel="stylesheet" href="css/style.css">
     <title>Sqwash</title>
 </head>
@@ -30,7 +32,7 @@
                         <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
                     </li>
                     <li class="nav-item pr-4">
-                        <a class="nav-link" href="register.html">Register</a>
+                        <a class="nav-link register" href="register.html">Register</a>
                     </li>
                 </ul>
             </div>
@@ -85,60 +87,35 @@
     <div class="container-fluid about">
         <div class="row">
             <section id="about">
-                <div id="indicator" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at hendrerit metus.
-                                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                Cras
-                                non nulla dapibus, dignissim metus id, interdum libero. Suspendisse sed ex vitae nisi
-                                varius
-                                egestas a at quam. Pellentesque lectus augue, gravida et enim at, varius tristique
-                                justo.
-                                Mauris congue porttitor nisi, vitae molestie ante rutrum et. Phasellus interdum, augue
-                                at
-                                vestibulum interdum, sapien dolor tristique nibh, in commodo arcu metus in lacus.
-                                Phasellus
-                                faucibus tincidunt nisl, sodales porttitor mi aliquam vel. Nunc eleifend felis nulla, et
-                                tristique lorem commodo vel. Mauris eget velit dui. Quisque tincidunt nulla a velit
-                                dictum,
-                                vitae venenatis ex finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Morbi
-                                ultrices turpis massa, vel convallis velit accumsan vestibulum. Maecenas suscipit enim
-                                sed
-                                risus ornare dapibus. Morbi id justo ut mi tempor vestibulum quis sit amet nisi.
-                            </p>
-                        </div>
-                        <div class="carousel-item">
-                            <p>
-                                Proin rhoncus, nisi accumsan consequat sodales, neque neque elementum lacus, non
-                                convallis
-                                purus est sit amet justo. Aenean vulputate nisi nunc, vitae aliquam ante euismod
-                                euismod.
-                                Praesent bibendum cursus est, malesuada consequat neque dapibus vel. Nullam neque elit,
-                                consequat vitae gravida placerat, convallis porta dui. Aliquam scelerisque libero non
-                                ornare
-                                laoreet. Ut pretium condimentum dictum. Nulla consequat nunc eget nisl dapibus volutpat.
-                                Vivamus ut elit ex. Duis in mattis justo. Nunc tincidunt ac mi a suscipit. Praesent
-                                aliquam
-                                condimentum quam vehicula auctor. Sed suscipit, sapien at scelerisque ornare, est metus
-                                dictum lorem, vel eleifend libero arcu et felis. Etiam a mi condimentum, vestibulum
-                                massa a,
-                                ultrices erat. Nulla facilisi. Vestibulum luctus faucibus arcu. Nam convallis suscipit
-                                massa, rutrum pretium eros posuere vitae.
-                            </p>
-                        </div>
+
+                <section class="card" data-aos="fade-left">
+                    <img src="https://i.ibb.co/5LkJFRP/paint-4.png" alt="" />
+                    <div>
+                        <h3>Acrylic Painting Four</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error
+                            enim laudantium, animi veniam libero eveniet culpa unde perferendis
+                            illo fugit corporis, voluptatibus totam dolorum, maiores magnam
+                            officia. Ab, delectus.
+                        </p>
+                        <a href="#" class="btn">Buy Now</a>
                     </div>
-                    <a class="carousel-control-prev" href="#indicator" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#indicator" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                </section>
+
+                <section class="card" data-aos="fade-right">
+                    <img src="https://i.ibb.co/61R8Q2y/paint-5.png" alt="" />
+                    <div>
+                        <h3>Acrylic Painting Five</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error
+                            enim laudantium, animi veniam libero eveniet culpa unde perferendis
+                            illo fugit corporis, voluptatibus totam dolorum, maiores magnam
+                            officia. Ab, delectus.
+                        </p>
+                        <a href="#" class="btn">Buy Now</a>
+                    </div>
+                </section>
+
             </section>
         </div>
     </div>
@@ -152,6 +129,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/login.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 400, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 1000 // values from 0 to 3000, with step 50ms
+        });
+    </script>
 
 </body>
 

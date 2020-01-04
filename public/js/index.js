@@ -12,10 +12,10 @@ textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='let
 anime.timeline({ loop: false })
   .add({
     targets: '.ml16 .letter',
-    translateY: [-100, 0],
+    translateY: [-200, 0],
     easing: "easeOutExpo",
-    duration: 1400,
-    delay: (el, i) => 30 * i
+    duration: 4000,
+    delay: (el, i) => 50 * i
   })
   // .add({
   //   targets: '.ml16',
