@@ -5,6 +5,11 @@ $(function () {
   });
 });
 
+$(window).scroll(function(){
+  $(".arrow").css("opacity", 1 - $(window).scrollTop() / 250); 
+//250 is fade pixels
+});
+
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml16');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -14,7 +19,7 @@ anime.timeline({ loop: false })
     targets: '.ml16 .letter',
     translateY: [-200, 0],
     easing: "easeOutExpo",
-    duration: 4000,
+    duration: 3400,
     delay: (el, i) => 50 * i
   })
   // .add({

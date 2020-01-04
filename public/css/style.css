@@ -5,7 +5,7 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
     color: white;
-    text-align: center;
+    /* text-align: center; */
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -46,6 +46,11 @@ h1 {
     font-size: 200%;
 }
 
+.register {
+    color: #ffbb00 !important;
+    border: 1px solid #ffbb00;
+    padding: 0.5rem;
+}
 
 .about {
     margin-top: 20.3%;
@@ -75,8 +80,7 @@ h1 {
 
 /* Modal */
 .modal-content {
-    background-color: rgb(61, 61, 61);
-    opacity: 90%;
+    background: rgba(0,0,0,0.7);
 }
 
 .modal-header,
@@ -85,7 +89,7 @@ h1 {
 }
 
 .modal-footer {
-    padding: 0 0 20px 0;
+    padding: 20px 0;
 }
 
 /* Buttons */
@@ -111,6 +115,7 @@ h1 {
 .close {
     color: white;
     border: 0 solid black;
+    text-shadow: none;
 }
 
 .close:hover {
@@ -141,4 +146,82 @@ h1 {
 
 .card:nth-child(even) img {
     order: 2;
+}
+
+.down {
+    font-size: 2em;
+}
+
+.col-1 {
+    margin: auto;
+}
+
+
+@-moz-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      -moz-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -moz-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -moz-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+}
+
+@-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -webkit-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -webkit-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    40% {
+      -moz-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+      -webkit-transform: translateY(-30px);
+      transform: translateY(-30px);
+    }
+    60% {
+      -moz-transform: translateY(-15px);
+      -ms-transform: translateY(-15px);
+      -webkit-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+}
+
+.arrow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    color: #F09819;
+    margin-left: -20px;
+    width: 40px;
+    height: 60px; /*change with size of arrow to make sit on bottom */
+  /*   background-image: url(); */
+  /*   background-size: contain; */
+}
+  
+.bounce {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
 }
