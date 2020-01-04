@@ -27,8 +27,8 @@ $(document).ready(function () {
         <li class="description">${data[i].description}</li>
         <li class="price">${data[i].price}</li>`;
           if (!currStatus && currBidArray.length < 5)
-            currProject += `<button data-id="${data[i].id}" class="bidProject">Bid it!!!</button>`;
-          else currProject += `<button data-id="${data[i].id}" class="bidProject" disabled>Bid it!!!</button>`;
+            currProject += `<button data-id="${data[i].id}" data-toggle="modal" data-target="#bidProject" class="loadProjInfo">Bid it!!!</button>`;
+          else currProject += `<button data-id="${data[i].id}" disabled>Bid it!!!</button>`;
           $(".projectList").append(currProject);
         }
         if (data[i].status === "Finished" && data[i].final_developer === currId) {
@@ -52,7 +52,7 @@ $(document).ready(function () {
         <li class="title">${data[i].title}</li>
         <li class="description">${data[i].description}</li>
         <li class="price">${data[i].price}</li>`;
-            currProject += `<button data-id="${data[i].id}" class="bidProject" disabled>Ongoing!!!</button>`;
+            currProject += `<button data-id="${data[i].id}" disabled>Ongoing!!!</button>`;
             $(".biddedprojectList").append(currProject);
           }
         } else {
@@ -67,7 +67,7 @@ $(document).ready(function () {
         <li class="title">${data[i].title}</li>
         <li class="description">${data[i].description}</li>
         <li class="price">${data[i].price}</li>`;
-            currProject += `<button data-id="${data[i].id}" class="bidProject" disabled>Bidded!!!</button> <button data-id="${data[i].id}" class="quitProject">Quit!!!</button>`;
+            currProject += `<button data-id="${data[i].id}" disabled>Bidded!!!</button> <button data-id="${data[i].id}" class="quitProject">Quit!!!</button>`;
             $(".biddedprojectList").append(currProject);
           }
         }
@@ -75,8 +75,28 @@ $(document).ready(function () {
     });
   }
 
+
+  $(document).on("click",".loadProjInfo",function(data){
+    var projId = $(this).data("id");
+    $(".bidProject").attr("data-id",projId);
+    $.get(`/pick/${projId}`,function(proj){
+      console.log(proj);
+      $(".project-title").text(proj.title);
+      $(".project-content").text(proj.description);
+      $(".project-price").text(proj.price);
+    });
+  })
+
   $(document).on("click", ".bidProject", function (data) {
     var projId = $(this).data("id");
+    var bidContent = $("#user-bid-input").val().trim();
+    var bidPrice = $("#user-bid-price").val().trim();
+    var bidAppData = {
+      project_id: projId,
+      bid_content: bidContent,
+      bid_price: parseInt(bidPrice),
+      UserId: currId,
+    };
     $.ajax({
       method: "PUT",
       url: `/user/${currId}/${projId}`,
@@ -85,7 +105,10 @@ $(document).ready(function () {
         method: "GET",
         url: `/project/${projId}/${currId}`,
       }).then(function () {
-        location.reload(); //attention here
+        $.post(`/bid/application`,bidAppData)
+        .then(function(){
+          location.reload();
+        })
       })
     });
   });
