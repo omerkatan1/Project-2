@@ -125,3 +125,14 @@ h2 {
 #sql { color: #099FFF; }
 #express { color: #CC00FF; }
 #sequelize { color: #9900FF; }
+
+
+/* Top Profile Bar */
+.profile {
+    text-align: left;
+}
+
+.name h1, p{
+    display: inline-block;
+    padding: 10px;
+}
