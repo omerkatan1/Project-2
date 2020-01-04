@@ -6,8 +6,12 @@ $(document).ready(function () {
     var passwordInput = $("input#password-input");
     var introInput = $("#intro-input");
 
-    var userType;
-
+    var userType = "Developer";
+    $("#user-dev").on("change", function () {
+        if (userType === "Developer") userType = "Start-up";
+        else userType = "Developer";
+        console.log(userType);
+    });
 
     // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function (event) {
@@ -15,18 +19,17 @@ $(document).ready(function () {
         var name = nameInput.val().trim();
         var firstName = name.split(" ")[0];
         var lastName = name.split(" ")[1];
-        var technologyList = document.getElementsByClassName("techcheckbox");
-        var checkedtechlist = "";
-        for (var i = 0; i < technologyList.length; i++) {
-            if (technologyList[i].checked) {
-                if (checkedtechlist.length === 0) checkedtechlist += technologyList[i].value;
-                else checkedtechlist += `;${technologyList[i].value}`;
-            }
-        }
-        console.log(checkedtechlist);
-        userType = $("#sod").val();
         console.log(userType);
         if (userType === "Developer") {
+            var technologyList = document.getElementsByClassName("techcheckbox");
+            var checkedtechlist = "";
+            for (var i = 0; i < technologyList.length; i++) {
+                if (technologyList[i].checked) {
+                    if (checkedtechlist.length === 0) checkedtechlist += technologyList[i].value;
+                    else checkedtechlist += `;${technologyList[i].value}`;
+                }
+            }
+            console.log(checkedtechlist);
             var userData = {
                 first_name: firstName,
                 last_name: lastName,
