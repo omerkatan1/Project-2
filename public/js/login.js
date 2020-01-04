@@ -3,6 +3,15 @@ $(document).ready(function () {
   var loginForm = $("form.login");
   var userInput = $("input#user-input");
   var passInput = $("input#pass-input");
+  var userType = $("input[value='dev']").is(':checked')? "Developer":"Start-up";
+  $("input[name$='user']").change(function () {
+    if ($("input[value='dev']").is(':checked')) {
+        userType = "Developer";
+    }
+    else {
+        userType = "Start-up"
+    }
+});
 
   // When the form is submitted, we validate there's an username and password entered
   loginForm.on("submit", function (event) {
@@ -11,15 +20,12 @@ $(document).ready(function () {
       email: userInput.val().trim(),
       password: passInput.val().trim()
     };
-    var userType = $("#sod").val();
     console.log(userData);
     console.log(userType);
-
     if (!userData.email || !userData.password) {
       console.log("test");
       return;
     }
-
     // If we have an username and password we run the loginUser function and clear the form
     if (userType==="Developer") loginUser(userData.email, userData.password);
     else loginOrg(userData.email, userData.password);
