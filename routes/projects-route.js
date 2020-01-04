@@ -131,4 +131,12 @@ module.exports = function (app) {
     });
 
 
+    app.post("/bid/application", function(req,res){
+        db.UserBid.create(req.body)
+        .then(function(){
+            res.status(200).end();
+        })
+    })
+
+
 };
