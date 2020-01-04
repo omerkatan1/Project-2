@@ -18,7 +18,8 @@ module.exports = function (app) {
         })
             .then(function () {
                 res.status(200).end();
-                //res.redirect(307, "/api/user-login");
+                // res.redirect(307, "/api/user-login");
+                console.log(first_name);
             })
             .catch(function (err) {
                 res.status(500).json(err);
