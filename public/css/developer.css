@@ -113,6 +113,7 @@ h2 {
 #sequelize { color: #9900FF; }
 
 
+<<<<<<< HEAD
 
 /* norman section */
 
@@ -155,3 +156,14 @@ h1 {
 
 
 
+=======
+/* Top Profile Bar */
+.profile {
+    text-align: left;
+}
+
+.name h1, p{
+    display: inline-block;
+    padding: 10px;
+}
+>>>>>>> 602aba620700bce54af5f1c2f191dfd5e5a2a9f8
