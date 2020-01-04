@@ -8,6 +8,15 @@ $(document).ready(function () {
 
     var userType;
 
+    $("input[name$='user']").change(function() {
+        if ($("input[value='dev']").is(':checked')) {
+            $(".tech").show();
+          }
+          else {
+            $(".tech").hide();
+          }
+    });
+
 
     // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function (event) {
