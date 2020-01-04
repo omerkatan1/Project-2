@@ -11,7 +11,14 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1]
             }
         },
-        username: {
+        last_name: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            // validate: {
+            //     len: [1]
+            // }
+        },
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -39,8 +46,20 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "",
+        },
+
+        techniques: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue:"",
         }
     });
+
+    User.associate = function (models) {
+        User.hasMany(models.UserBid, {
+            onDelete: "cascade"
+        });
+    };
 
     // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
     User.prototype.validPassword = function (password) {

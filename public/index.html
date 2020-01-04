@@ -7,7 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Permanent+Marker|Quicksand&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Sqwash</title>
 </head>
@@ -16,25 +21,52 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
         <div class="container navcont">
-            <a class="navbar-brand p-0" href="index.html" id="logo">
-                <!-- <img src="Assets/images/pinknavbar.png" alt="" id="logo"> -->
+            <a class="navbar-brand p-0" href="/" id="logo">
                 SQWASH
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item pr-4">
                         <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item pr-4">
-                        <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
                     </li>
                     <li class="nav-item pr-4">
-                        <a class="nav-link" href="register.html">Register</a>
+                        <a class="nav-link register" href="/allusers-signup">Register</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </nav> -->
 
     <!-- Modal Login Form -->
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -49,87 +81,99 @@
                 </div>
                 <div class="modal-body mx-3">
                     <form class="login">
-                        <div class="md-form mb-2">
+
+                        <div class="register-switch row col-sm-10">
+                            <input type="radio" name="user" value="dev" id="user-dev" class="register-switch-input" checked>
+                            <label for="user-dev" class="register-switch-label">Developer</label>
+                            <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                            <label for="user-start" class="register-switch-label">Start-up</label>
+                        </div>
+                        
+                        <!-- <div class="md-form mb-2">
                             <i class="fas fa-envelope prefix grey-text"></i>
                             <input type="user" id="user-input" class="form-control validate">
-                            <label data-error="wrong" data-success="right" for="user-input">Username</label>
-                        </div>
+                            <label data-error="wrong" data-success="right" for="user-input">Email</label>
+                        </div> -->
 
                         <div class="md-form mb-2">
+                            <div class="col-sm-10 input-icons p-0">
+                                <i class="fas fa-at icon"></i>
+                                <input type="user" class="form-control input-field validate" id="user-input"
+                                    placeholder="Email">
+                            </div>
+                        </div>
+
+                        <!-- <div class="md-form mb-2">
                             <i class="fas fa-lock prefix grey-text"></i>
                             <input type="password" id="pass-input" class="form-control validate">
                             <label data-error="wrong" data-success="right" for="pass-input">Password</label>
+                        </div> -->
+
+                        <div class="md-form mb-2">
+                            <div class="col-sm-10 input-icons p-0">
+                                <i class="fas fa-key icon"></i>
+                                <input type="password" class="form-control input-field validate" id="pass-input"
+                                    placeholder="Password">
+                            </div>
                         </div>
+
+                        <!-- <div class="form-group row">
+                            <label for="sod" class="col-sm-4">Start Up or Developer</label>
+                            <select class="form-control col-sm-8" id="sod">
+                                <option>Start Up</option>
+                                <option>Developer</option>
+                            </select>
+                        </div> -->
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="submit" class="btn-grad">Login</button>
+                        </div>
+
                     </form>
                 </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="submit" class="btn-grad">Login</button>
-                </div>
+
             </div>
         </div>
     </div>
 
 
-    <h1 class="ml16">Side Hustle</h1>
+    <h1 class="ml16">SQWASH</h1>
 
+    <div class="row col-1 arrow bounce">
+        <i class="fas fa-chevron-down down"></i>
+    </div>
 
     <div class="container-fluid about">
         <div class="row">
             <section id="about">
-                <div id="indicator" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at hendrerit metus.
-                                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                Cras
-                                non nulla dapibus, dignissim metus id, interdum libero. Suspendisse sed ex vitae nisi
-                                varius
-                                egestas a at quam. Pellentesque lectus augue, gravida et enim at, varius tristique
-                                justo.
-                                Mauris congue porttitor nisi, vitae molestie ante rutrum et. Phasellus interdum, augue
-                                at
-                                vestibulum interdum, sapien dolor tristique nibh, in commodo arcu metus in lacus.
-                                Phasellus
-                                faucibus tincidunt nisl, sodales porttitor mi aliquam vel. Nunc eleifend felis nulla, et
-                                tristique lorem commodo vel. Mauris eget velit dui. Quisque tincidunt nulla a velit
-                                dictum,
-                                vitae venenatis ex finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Morbi
-                                ultrices turpis massa, vel convallis velit accumsan vestibulum. Maecenas suscipit enim
-                                sed
-                                risus ornare dapibus. Morbi id justo ut mi tempor vestibulum quis sit amet nisi.
-                            </p>
-                        </div>
-                        <div class="carousel-item">
-                            <p>
-                                Proin rhoncus, nisi accumsan consequat sodales, neque neque elementum lacus, non
-                                convallis
-                                purus est sit amet justo. Aenean vulputate nisi nunc, vitae aliquam ante euismod
-                                euismod.
-                                Praesent bibendum cursus est, malesuada consequat neque dapibus vel. Nullam neque elit,
-                                consequat vitae gravida placerat, convallis porta dui. Aliquam scelerisque libero non
-                                ornare
-                                laoreet. Ut pretium condimentum dictum. Nulla consequat nunc eget nisl dapibus volutpat.
-                                Vivamus ut elit ex. Duis in mattis justo. Nunc tincidunt ac mi a suscipit. Praesent
-                                aliquam
-                                condimentum quam vehicula auctor. Sed suscipit, sapien at scelerisque ornare, est metus
-                                dictum lorem, vel eleifend libero arcu et felis. Etiam a mi condimentum, vestibulum
-                                massa a,
-                                ultrices erat. Nulla facilisi. Vestibulum luctus faucibus arcu. Nam convallis suscipit
-                                massa, rutrum pretium eros posuere vitae.
-                            </p>
-                        </div>
+
+                <section class="card" data-aos="fade-left">
+                    <img src="https://i.ibb.co/5LkJFRP/paint-4.png" alt="" />
+                    <div>
+                        <h3>Acrylic Painting Four</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error
+                            enim laudantium, animi veniam libero eveniet culpa unde perferendis
+                            illo fugit corporis, voluptatibus totam dolorum, maiores magnam
+                            officia. Ab, delectus.
+                        </p>
+                        <a href="#" class="btn">Buy Now</a>
                     </div>
-                    <a class="carousel-control-prev" href="#indicator" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#indicator" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                </section>
+
+                <section class="card" data-aos="fade-right">
+                    <img src="https://i.ibb.co/61R8Q2y/paint-5.png" alt="" />
+                    <div>
+                        <h3>Acrylic Painting Five</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error
+                            enim laudantium, animi veniam libero eveniet culpa unde perferendis
+                            illo fugit corporis, voluptatibus totam dolorum, maiores magnam
+                            officia. Ab, delectus.
+                        </p>
+                        <a href="#" class="btn">Buy Now</a>
+                    </div>
+                </section>
+
             </section>
         </div>
     </div>
@@ -143,6 +187,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/login.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 400, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 1000 // values from 0 to 3000, with step 50ms
+        });
+    </script>
 
 </body>
+
 </html>
