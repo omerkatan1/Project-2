@@ -4,8 +4,8 @@
   "description": "This is an application that lets start ups and new developers collaborate. This will allow startups to find inexpensive solutions for their development problems and allow young developers to gain experience and find some quick monetary gain.",
   "main": "server.js",
   "scripts": {
-    "test": "start",
-    "start": "node server.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,17 @@
   },
   "homepage": "https://github.com/omerkatan1/Project-2#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
     "mysql": "^2.17.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "sequelize": "^5.21.3"
   }
 }
