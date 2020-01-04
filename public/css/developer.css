@@ -73,6 +73,20 @@ h2 {
     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%)
 }
 
+.btn-proj {
+    color: white;
+    margin: auto;
+    padding: 10px 50px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.5s;
+    background-size: 200% auto;
+    border: 0px solid black;
+    display: block;
+    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%)
+}
+
 .btn-grad:hover { 
     background-position: right center; 
 }
