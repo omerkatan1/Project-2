@@ -196,3 +196,11 @@ h1 {
 .validate {
     padding: 0;
 }
+
+.col-sm-10 {
+    padding: 0;
+}
+
+label {
+    margin: 0.2rem 0 0.2rem 0;
+}
