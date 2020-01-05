@@ -1,6 +1,7 @@
 var express = require("express");
 var session = require("express-session");
 var exphbs = require("express-handlebars");
+var path = require("path");
 
 var userPassport = require("./config/user-passport");
 
@@ -24,6 +25,7 @@ app.use(userPassport.initialize());
 app.use(userPassport.session());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set('views', path.join(__dirname, 'views'))
 app.set("view engine", "handlebars");
 
 // Requiring our routes
