@@ -34,25 +34,25 @@
         <div class="col-sm-12" id="projView">
           <ul id="findList">
             {{#each project}}
-            <li class="project" data-id="{{project.id}}">
-              <hi> {{project.title}} </hi>
-              <p> {{project.price}} </p>
+            <li class="project" data-id="{{id}}">
+              <hi> {{title}} </hi>
+              <p>  $ {{price}} </p>
             </li>
             {{/each}}
           </ul>
           <ul id="activeList" style="display: none">
             {{#each activeProject}}
-            <li class="project" data-id="{{activeProject.id}}">
-              <hi> {{activeProject.title}} </hi>
-              <p> {{activeProject.price}} </p>
+            <li class="project" data-id="{{id}}">
+              <hi> {{title}} </hi>
+              <p> {{price}} </p>
             </li>
             {{/each}}
           </ul>
           <ul id="completeList" style="display: none">
             {{#each completeProject}}
-            <li class="project" data-id="{{completeProject.id}}">
-              <hi> {{completeProject.title}} </hi>
-              <p> {{completeProject.price}} </p>
+            <li class="project" data-id="{{id}}">
+              <hi> {{title}} </hi>
+              <p>  {{price}} </p>
             </li>
             {{/each}}
           </ul>
@@ -61,12 +61,15 @@
       </div>
     </div>
     <div class="p-0 col-sm-9 box" id="project-display-section">
-      
+      <div class="partialDiv">
+        {{!-- {{> project/projectDisplay}} --}}
       </div>
+    </div>
 
       <script>
         $("#active").on("click", function (event) {
           event.preventDefault();
+          console.log("test");
           $("#findList").hide;
           $("#completeList").hide;
           $("#activeList").show;
@@ -86,12 +89,13 @@
 
         $(".project").on("click", function(event) {
           event.preventDefault();
+          console.log("here");
           var projId = $(this).data("id");
           var projView = $("#project-display-section");
           projView.empty();
 
           $.get("/pick/" + projId).then(function(project) {
-            var partialDiv = `{{> projectDisplay ${project}}}`;
+            var partialDiv = `{{> project/projectDisplay project}}`;
             projView.append(partialDiv);
             location.reload();
           })
