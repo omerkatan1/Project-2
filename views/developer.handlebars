@@ -1,8 +1,102 @@
 <div class="container-fluid">
-    {{#if developer}}
-      {{> developer}}
-    {{/if}}
-    {{#unless developer}}
-      {{> startup}}
-    {{/unless}}
-</div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col profile">
+            <div class="name">
+              <h1>Hello.</h1>
+              <p>{{developer_name}}
+              </p>
+            </div>
+            <br>
+            <p>{{devloper_email}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container-fluid title"> -->
+  <!-- <h1 class="ml16">Available Jobs</h1> -->
+  <div class="row">
+    <!-- cj's working section -->
+    <!-- contained the info so navbar could be added -->
+    <div class="col-sm-3">
+
+      <div class="container-fluid projDisp">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn-proj btn-secondary" id="find">Find</button>
+          <button type="button" class="btn-proj btn-secondary" id="active">Active</button>
+          <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
+        </div>
+        <div class="col-sm-12" id="projView">
+          <ul id="findList">
+            {{#each project}}
+            <li class="project" data-id="{{project.id}}">
+              <hi> {{project.title}} </hi>
+              <p> {{project.price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+          <ul id="activeList" style="display: none">
+            {{#each activeProject}}
+            <li class="project" data-id="{{activeProject.id}}">
+              <hi> {{activeProject.title}} </hi>
+              <p> {{activeProject.price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+          <ul id="completeList" style="display: none">
+            {{#each completeProject}}
+            <li class="project" data-id="{{completeProject.id}}">
+              <hi> {{completeProject.title}} </hi>
+              <p> {{completeProject.price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="p-0 col-sm-9 box" id="project-display-section">
+      
+      </div>
+
+      <script>
+        $("#active").on("click", function (event) {
+          event.preventDefault();
+          $("#findList").hide;
+          $("#completeList").hide;
+          $("#activeList").show;
+        })
+        $("#find").on("click", function (event) {
+          event.preventDefault();
+          $("#findList").show;
+          $("#completeList").hide;
+          $("#activeList").hide;
+        })
+        $("#complete").on("click", function (event) {
+          event.preventDefault();
+          $("#findList").hide;
+          $("#completeList").show;
+          $("#activeList").hide;
+        })
+
+        $(".project").on("click", function(event) {
+          event.preventDefault();
+          var projId = $(this).data("id");
+          var projView = $("#project-display-section");
+          projView.empty();
+
+          $.get("/pick/" + projId).then(function(project) {
+            var partialDiv = `{{> projectDisplay ${project}}}`;
+            projView.append(partialDiv);
+            location.reload();
+          })
+
+
+        })
+
+      </script>
