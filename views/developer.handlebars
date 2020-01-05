@@ -95,12 +95,8 @@
           projView.empty();
 
           $.get("/pick/" + projId).then(function(project) {
-<<<<<<< HEAD
-            var partialDiv = `{{> projectDisplay project}}`;
-=======
-            var partialDiv = `{{> project/projectDisplay project}}`;
+            var partialDiv = {{> }};
             projView.append(partialDiv);
->>>>>>> 9d2ae72a718d343ea2fd5d94dfb011648efc2547
             location.reload();
           })
 
