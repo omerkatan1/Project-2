@@ -36,7 +36,7 @@
             {{#each project}}
             <li class="project" data-id="{{id}}">
               <hi> {{title}} </hi>
-              <p>  $ {{price}} </p>
+              <p> $ {{price}} </p>
             </li>
             {{/each}}
           </ul>
@@ -52,7 +52,7 @@
             {{#each completeProject}}
             <li class="project" data-id="{{id}}">
               <hi> {{title}} </hi>
-              <p>  {{price}} </p>
+              <p> {{price}} </p>
             </li>
             {{/each}}
           </ul>
@@ -61,46 +61,9 @@
       </div>
     </div>
     <div class="p-0 col-sm-9 box" id="project-display-section">
-      <div class="partialDiv">
-        {{!-- {{> project/projectDisplay}} --}}
-      </div>
+
     </div>
-
-      <script>
-        $("#active").on("click", function (event) {
-          event.preventDefault();
-          console.log("test");
-          $("#findList").hide;
-          $("#completeList").hide;
-          $("#activeList").show;
-        })
-        $("#find").on("click", function (event) {
-          event.preventDefault();
-          $("#findList").show;
-          $("#completeList").hide;
-          $("#activeList").hide;
-        })
-        $("#complete").on("click", function (event) {
-          event.preventDefault();
-          $("#findList").hide;
-          $("#completeList").show;
-          $("#activeList").hide;
-        })
-
-        $(".project").on("click", function(event) {
-          event.preventDefault();
-          console.log("here");
-          var projId = $(this).data("id");
-          var projView = $("#project-display-section");
-          projView.empty();
-
-          $.get("/pick/" + projId).then(function(project) {
-            var partialDiv = `{{> project/projectDisplay project}}`;
-            projView.append(partialDiv);
-            location.reload();
-          })
-
-
-        })
-
-      </script>
+  </div>
+</div>
+<script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+<script src="/js/developer.js"></script>
