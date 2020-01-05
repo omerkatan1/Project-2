@@ -1,59 +1,102 @@
 <div class="container-fluid">
+
   <div class="row">
-    <div class="col profile">
-      <div class="name">
-        <h1>Hello.</h1>
-        <p>{{name}}</p>
+    <div class="col-sm-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col profile">
+            <div class="name">
+              <h1>Hello.</h1>
+              <p>{{developer_name}}
+              </p>
+            </div>
+            <br>
+            <p>{{devloper_email}}</p>
+          </div>
+        </div>
       </div>
-      <br>
-      <p>{{email}}</p>
     </div>
   </div>
 
   <!-- <div class="container-fluid title"> -->
   <!-- <h1 class="ml16">Available Jobs</h1> -->
   <div class="row">
+    <!-- cj's working section -->
+    <!-- contained the info so navbar could be added -->
     <div class="col-sm-3">
-      PROJECT LIST
+
+      <div class="container-fluid projDisp">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn-proj btn-secondary" id="find">Find</button>
+          <button type="button" class="btn-proj btn-secondary" id="active">Active</button>
+          <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
+        </div>
+        <div class="col-sm-12" id="projView">
+          <ul id="findList">
+            {{#each project}}
+            <li class="project" data-id="{{project.id}}">
+              <hi> {{project.title}} </hi>
+              <p> {{project.price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+          <ul id="activeList" style="display: none">
+            {{#each activeProject}}
+            <li class="project" data-id="{{activeProject.id}}">
+              <hi> {{activeProject.title}} </hi>
+              <p> {{activeProject.price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+          <ul id="completeList" style="display: none">
+            {{#each completeProject}}
+            <li class="project" data-id="{{completeProject.id}}">
+              <hi> {{completeProject.title}} </hi>
+              <p> {{completeProject.price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+
+      </div>
     </div>
     <div class="p-0 col-sm-9 box" id="project-display-section">
-      <div class="sticky-top" style="background: white;">
-        <h6 class="ml16 col-sm-12 my-0 p-1" style="color: black;">Project: Bootstrap</h6>
-        <h6 class="ml16 col-sm-12 my-0 p-1" style="color: black;">Start-up: UW</h6>
-        <button type="submit" class="btn-grad">Bid it!!!</button>
-      </div>
-      <div class="project-content mt-3">
-        <div class="project-title">
-          <h6 class="ml16 col-sm-12 my-0 p-1">Project Title:</h6>
-          <h6 class="ml16 col-sm-12 my-0 p-1">Bootstrap</h6>
-        </div>
-        <div class="project-description">
-          <h6 class="ml16 col-sm-12 my-0 p-1">Project Description:</h6>
-          <p class="ml16 col-sm-12 my-0 p-1">red violet (NASDAQ: RDVT) is a software and services company
-            specializing in big data analysis, providing cloud-based, mission critical analytics and
-            information solutions to enterprises in a variety of industries. We believe that time is
-            your most valuable asset. Through powerful analytics, we transform data into intelligence,
-            in a fast and efficient manner, so that our clients can spend their time on what matters
-            most – running their organizations with confidence. Our corporate headquarters is located in
-            Boca Raton, Florida and our brands include IDI and FOREWARN, www.redviolet.com.</p>
-        </div>
-        <div class="project-price">
-          <h6 class="ml16 col-sm-12 my-0 p-1">Project Budget:</h6>
-          <p>$100</p>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">why you are fit:</label>
-          <textarea type="text" class="form-control" id="user-bid-input"
-            placeholder="why you are the right candidate?"></textarea>
-        </div>
-
-        <button type="submit" class="btn-grad">Bid it!!!</button>
-
+      
       </div>
 
+      <script>
+        $("#active").on("click", function (event) {
+          event.preventDefault();
+          $("#findList").hide;
+          $("#completeList").hide;
+          $("#activeList").show;
+        })
+        $("#find").on("click", function (event) {
+          event.preventDefault();
+          $("#findList").show;
+          $("#completeList").hide;
+          $("#activeList").hide;
+        })
+        $("#complete").on("click", function (event) {
+          event.preventDefault();
+          $("#findList").hide;
+          $("#completeList").show;
+          $("#activeList").hide;
+        })
+
+        $(".project").on("click", function(event) {
+          event.preventDefault();
+          var projId = $(this).data("id");
+          var projView = $("#project-display-section");
+          projView.empty();
+
+          $.get("/pick/" + projId).then(function(project) {
+            var partialDiv = `{{> projectDisplay ${project}}}`;
+            projView.append(partialDiv);
+            location.reload();
+          })
 
 
-    </div>
-  </div>
+        })
 
-</div>
+      </script>
