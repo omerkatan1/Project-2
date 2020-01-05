@@ -61,6 +61,7 @@
       </div>
     </div>
     <div class="p-0 col-sm-9 box" id="project-display-section">
+   
       
       </div>
 
@@ -91,8 +92,7 @@
           projView.empty();
 
           $.get("/pick/" + projId).then(function(project) {
-            var partialDiv = `{{> projectDisplay ${project}}}`;
-            projView.append(partialDiv);
+            var partialDiv = `{{> projectDisplay project}}`;
             location.reload();
           })
 
