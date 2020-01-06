@@ -56,6 +56,16 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/pick/user/:id", function (req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (data) {
+            res.json(data);
+        });
+    });
+
     app.put("/user/bidded/:pid/:uid", function (req, res) {
         var projId = req.params.pid;
         var userId = req.params.uid;
@@ -91,7 +101,7 @@ module.exports = function (app) {
         }).then(function (user) {
             var currList = user.biddedProject;
             var newList = currList;
-            if (currList.length > 1) {
+            if (currList.length > 1 && currList.length<9) {
                 var currArray = currList.split(";");
                 if (!currArray.includes(projId)) {
                     currArray.push(projId);
@@ -99,7 +109,8 @@ module.exports = function (app) {
                 }
             } else if (currList.length === 1) {
                 if (currList !== projId) newList += `;${projId}`;
-            } else newList += `${projId}`;
+            } else if (currList.length ===0) newList += `${projId}`;
+            else return res.status(500).send({error:"You can only bid up to 5 projects!!!"});
             db.User.update({
                 biddedProject: newList
             }, {
@@ -127,46 +138,46 @@ module.exports = function (app) {
     });
 
 
-    app.put("/recovers/:pid/:uid", function (req, res) {
-        var projId = req.params.pid;
-        var userId = req.params.uid;
-        db.Project.findOne({
-            where: {
-                id: projId
-            }
-        }).then(function (data) {
-            var developerList = data.developers_list.split(";");
-            console.log(developerList);
-            var delIndex = developerList.indexOf(userId);
-            developerList.splice(delIndex, 1);
-            console.log(developerList);
-            forLoop();
-            async function forLoop() {
-                for (var i = 0; i < developerList.length; i++) {
-                    var currId = parseInt(developerList[i]);
-                    var result = await updateStatus(currId);
-                    console.log(result);
-                }
-                res.status(200).end();
-            }
-        });
-    });
+    // app.put("/recovers/:pid/:uid", function (req, res) {
+    //     var projId = req.params.pid;
+    //     var userId = req.params.uid;
+    //     db.Project.findOne({
+    //         where: {
+    //             id: projId
+    //         }
+    //     }).then(function (data) {
+    //         var developerList = data.developers_list.split(";");
+    //         console.log(developerList);
+    //         var delIndex = developerList.indexOf(userId);
+    //         developerList.splice(delIndex, 1);
+    //         console.log(developerList);
+    //         forLoop();
+    //         async function forLoop() {
+    //             for (var i = 0; i < developerList.length; i++) {
+    //                 var currId = parseInt(developerList[i]);
+    //                 var result = await updateStatus(currId);
+    //                 console.log(result);
+    //             }
+    //             res.status(200).end();
+    //         }
+    //     });
+    // });
 
-    function updateStatus(currId) {
-        return new Promise(resolve => {
-            setTimeout(function () {
-                db.User.update({
-                    status: false
-                }, {
-                    where: {
-                        id: currId
-                    }
-                }).then(function () {
-                    resolve("back to available!!!");
-                })
-            }, 2000);
-        });
-    }
+    // function updateStatus(currId) {
+    //     return new Promise(resolve => {
+    //         setTimeout(function () {
+    //             db.User.update({
+    //                 status: false
+    //             }, {
+    //                 where: {
+    //                     id: currId
+    //                 }
+    //             }).then(function () {
+    //                 resolve("back to available!!!");
+    //             })
+    //         }, 2000);
+    //     });
+    // }
 
 
 };
