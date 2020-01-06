@@ -29,6 +29,7 @@ $(document).ready(function () {
             var name = nameInput.val().trim();
             var firstName = name.split(" ")[0];
             var lastName = name.split(" ")[1];
+            lastName = lastName===null?"":lastName;
             console.log(userType);
             if (userType === "Developer") {
                 var technologyList = document.getElementsByClassName("techcheckbox");

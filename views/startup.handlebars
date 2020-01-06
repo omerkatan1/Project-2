@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col profile">
+                        <div class="name">
+                            <h1>Hello.</h1>
+                            <p>{{startup_name}}
+                            </p>
+                        </div>
+                        <br>
+                        <p>{{startup_email}}</p>
+                    </div>
+                    <a class="navbar-brand" href="/org-logout">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+
+            <div class="container-fluid projDisp">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn-proj btn-secondary" id="find">Active</button>
+                    <button type="button" class="btn-proj btn-secondary" id="active">Proccess</button>
+                    <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
+                </div>
+                <div class="col-sm-12" id="projView">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="p-0 col-sm-9 box" id="project-display-section">
+
+        </div>
+    </div>
+</div>
+<script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+<script src="/js/startup.js"></script>
