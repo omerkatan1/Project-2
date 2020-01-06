@@ -90,11 +90,9 @@ $(document).ready(function () {
   $(document).on("click", ".bidProject", function (data) {
     var projId = $(this).data("id");
     var bidContent = $("#user-bid-input").val().trim();
-    // var bidPrice = $("#user-bid-price").val().trim();
     var bidAppData = {
       project_id: projId,
       bid_content: bidContent,
-      // bid_price: parseInt(bidPrice),
       UserId: currId,
     };
     $.ajax({

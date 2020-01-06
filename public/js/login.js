@@ -20,12 +20,10 @@ $(document).ready(function () {
       email: userInput.val().trim(),
       password: passInput.val().trim()
     };
-    console.log(userData);
-    console.log(userType);
     if (!userData.email || !userData.password) {
-      console.log("test");
       return;
     }
+    console.log(userType);
     // If we have an username and password we run the loginUser function and clear the form
     if (userType==="Developer") loginUser(userData.email, userData.password);
     else loginOrg(userData.email, userData.password);
@@ -41,8 +39,9 @@ $(document).ready(function () {
       password: password,
     })
       .then(function () {
-        window.location.replace("/user-account");
+        window.location.replace("/developer-account");
         // If there's an error, log the error
+        //loadUserNProject();
       })
       .catch(function (err) {
         console.log(err);
@@ -56,11 +55,13 @@ $(document).ready(function () {
       password: password,
     })
       .then(function() {
-        window.location.replace("/org-account");
+        window.location.replace("/startup-account");
         // If there's an error, log the error
+        //loadOrgNProject();
       })
       .catch(function(err) {
         console.log(err);
       });
   }
+  
 });
