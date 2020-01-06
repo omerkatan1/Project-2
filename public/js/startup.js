@@ -187,7 +187,7 @@ $(document).ready(function () {
                             </div>
                             <div>
                             <button data-id='{{id}}' data-uid="{{final_developer}}" class="viewFinalCandidate"> View Final Candidate</button>
-                            <ul class="list-group" class="finalCandidateList">
+                            <ul class="list-group finalCandidateList">
 
                             </ul>
                             </div>
@@ -258,7 +258,7 @@ $(document).ready(function () {
                             </div>
                             <div>
                             <button data-id='{{id}}' data-uid="{{final_developer}}" class="viewFinalCandidate"> View Final Candidate</button>
-                            <ul class="list-group" class ="finalCandidateList">
+                            <ul class="list-group finalCandidateList">
                             </ul>
                             </div>`;
 
