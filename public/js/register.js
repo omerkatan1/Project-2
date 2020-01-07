@@ -7,11 +7,11 @@ $(document).ready(function () {
     var confirmPasswordInput = $("input#confirm-password-input");
     var introInput = $("#intro-input");
 
-    var userType = $("input[value='dev']").is(':checked')? "Developer":"Start-up";
+    var userType = $("input[value='regDev']").is(':checked')? "Developer":"Start-up";
    
 
-    $("input[name$='user']").change(function () {
-        if ($("input[value='dev']").is(':checked')) {
+    $("input[name$='regUser']").change(function () {
+        if ($("input[value='regDev']").is(':checked')) {
             userType = "Developer";
             $(".tech").show();
         }
