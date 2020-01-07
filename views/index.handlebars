@@ -1,121 +1,197 @@
 <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
-        <div class="container navcont">
-            <a class="navbar-brand p-0" href="/" id="logo">
-                SQWASH
-            </a>
-            <div class="collapse navbar-collapse" id="navbarToggler">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item pr-4">
-                        <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
-                    </li>
-                    <li class="nav-item pr-4">
-                        <a class="nav-link register" href="/allusers-signup">Register</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-        <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top mx-auto">
+    <div class="container navcont">
+        <a class="navbar-brand p-0" href="/" id="logo">
+            SQWASH
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item pr-4">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item pr-4">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+                </li>
+                <li class="nav-item pr-4">
+                    <a href="#" class="nav-link register" data-toggle="modal" data-target="#modalRegisterForm">Register</a>
+                </li>
+            </ul>
         </div>
-      </nav> -->
+    </div>
+</nav>
 
-    <!-- Modal Login Form -->
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body mx-3">
-                    <form class="login">
 
-                        <div class="register-switch row col-sm-10">
-                            <input type="radio" name="user" value="dev" id="user-dev" class="register-switch-input" checked>
-                            <label for="user-dev" class="register-switch-label">Developer</label>
-                            <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
-                            <label for="user-start" class="register-switch-label">Start-up</label>
+<!-- Modal Login Form -->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form class="login">
+
+                    <div class="register-switch row col-sm-10">
+                        <input type="radio" name="user" value="dev" id="user-dev" class="register-switch-input" checked>
+                        <label for="user-dev" class="register-switch-label">Developer</label>
+                        <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                        <label for="user-start" class="register-switch-label">Start-up</label>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-at icon"></i>
+                            <input type="user" class="form-control input-field validate" id="user-input"
+                                placeholder="Email">
                         </div>
+                    </div>
 
-                        <div class="md-form mb-2">
-                            <div class="col-sm-10 input-icons p-0">
-                                <i class="fas fa-at icon"></i>
-                                <input type="user" class="form-control input-field validate" id="user-input"
-                                    placeholder="Email">
-                            </div>
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-key icon"></i>
+                            <input type="password" class="form-control input-field validate" id="pass-input"
+                                placeholder="Password">
                         </div>
+                    </div>
 
-                        <div class="md-form mb-2">
-                            <div class="col-sm-10 input-icons p-0">
-                                <i class="fas fa-key icon"></i>
-                                <input type="password" class="form-control input-field validate" id="pass-input"
-                                    placeholder="Password">
-                            </div>
-                        </div>
-
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="submit" class="btn-grad">Login</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn-grad">Login</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
-    <h1 class="ml16" id="big">SQWASH</h1>
+<!-- Modal Register Form -->
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Register</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form class="join">
 
-    <div class="row col-1 arrow bounce">
-        <i class="fas fa-chevron-down down"></i>
-    </div>
-
-    <div class="container-fluid about">
-        <div class="row">
-            <section id="about">
-
-                <section class="card" data-aos="fade-left">
-                    <img src="https://i.ibb.co/5LkJFRP/paint-4.png" alt="" />
-                    <div>
-                        <h3>Acrylic Painting Four</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error
-                            enim laudantium, animi veniam libero eveniet culpa unde perferendis
-                            illo fugit corporis, voluptatibus totam dolorum, maiores magnam
-                            officia. Ab, delectus.
-                        </p>
-                        <a href="#" class="btn">Buy Now</a>
+                    <div class="register-switch row col-sm-10">
+                        <input type="radio" name="user" value="dev" id="user-dev" class="register-switch-input" checked>
+                        <label for="user-dev" class="register-switch-label">Developer</label>
+                        <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                        <label for="user-start" class="register-switch-label">Start-up</label>
                     </div>
-                </section>
 
-                <section class="card" data-aos="fade-right">
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-user icon"></i>
+                        <input type="name" class="form-control input-field" id="firstName-input" placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-at icon"></i>
+                            <input type="user" class="form-control input-field validate" id="user-input"
+                                placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-key icon"></i>
+                            <input type="password" class="form-control input-field validate" id="pass-input"
+                                placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-key icon"></i>
+                            <input type="password" class="form-control input-field" id="confirm-password-input"
+                            placeholder="Confirm Password">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                           <textarea type="intro" class="form-control" id="intro-input"
+                            placeholder="Briefly Introduce Yourself"></textarea>
+                        </div>
+                    </div>
+
+                    <fieldset class="form-group">
+                    <div class="tech">
+                        <label class="col-form-label col pt-0">TECHNOLOGIES</label>
+                        <div class="col-sm-10 p-0">
+                            <div class="form-check">
+                                <ul class="ks-cboxtags">
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxOne" value="html"><label
+                                            for="checkboxOne">HTML</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxTwo" value="css"
+                                            checked><label for="checkboxTwo">CSS</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxThree" value="jquery"
+                                            checked><label for="checkboxThree">Jquery</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxFour"
+                                            value="javascript"><label for="checkboxFour">Javascript</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxFive"
+                                            value="nodejs"><label for="checkboxFive">NodeJS</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxSix" value="sql"
+                                            checked><label for="checkboxSix">SQL</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxSeven"
+                                            value="express"><label for="checkboxSeven">Express</label></li>
+                                    <li><input class="techcheckbox" type="checkbox" id="checkboxEight"
+                                            value="sequelize"><label for="checkboxEight">Sequelize</label></li>
+                                </ul>
+                            </div>
+                        </div>
+                </fieldset>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn-grad">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="ml16" id="big">SQWASH</h1>
+
+<div class="row col-1 arrow bounce">
+    <i class="fas fa-chevron-down down"></i>
+</div>
+
+<div class="container-fluid about">
+    <div class="row">
+        <section id="about">
+
+            <section class="card" data-aos="fade-left">
+                <img src="https://i.ibb.co/5LkJFRP/paint-4.png" alt="" />
+                <div>
+                    <h3>Acrylic Painting Four</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod error
+                        enim laudantium, animi veniam libero eveniet culpa unde perferendis
+                        illo fugit corporis, voluptatibus totam dolorum, maiores magnam
+                        officia. Ab, delectus.
+                    </p>
+                    <a href="#" class="btn">Buy Now</a>
+                </div>
+            </section>
+
+            {{!-- <section class="card" data-aos="fade-right">
                     <img src="https://i.ibb.co/61R8Q2y/paint-5.png" alt="" />
                     <div>
                         <h3>Acrylic Painting Five</h3>
@@ -127,26 +203,27 @@
                         </p>
                         <a href="#" class="btn">Buy Now</a>
                     </div>
-                </section>
+                </section> --}}
 
-            </section>
-        </div>
+        </section>
     </div>
+</div>
 
-    <div class="row" id="footer">
-        <p>Copyright ©</p>
-    </div>
+<div class="row" id="footer">
+    <p>Copyright ©</p>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/login.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            offset: 400, // offset (in px) from the original trigger point
-            delay: 0, // values from 0 to 3000, with step 50ms
-            duration: 1000 // values from 0 to 3000, with step 50ms
-        });
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/login.js"></script>
+<script src="js/register.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        offset: 400, // offset (in px) from the original trigger point
+        delay: 0, // values from 0 to 3000, with step 50ms
+        duration: 1000 // values from 0 to 3000, with step 50ms
+    });
+</script>
