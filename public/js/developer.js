@@ -28,26 +28,21 @@ $(document).ready(function () {
         projView.empty();
 
         $.get("/pick/" + projId).then(function (project) {
-            var source = `<div class='sticky-top' style='background: white;'>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
-                            <button type='submit' class='bidProject btn-grad' data-id='{{id}}'>Bid it!!!</button>
-                        </div>
-                        <div class='project-content mt-3'>
+            var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
                             </div>
                             <div class='project-description'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                                <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
                                 <p>{{price}}</p>
                             </div>
                             <div class='form-group'>
-                                <label for='exampleInputEmail1'>why you are fit:</label>
+                                <label for='exampleInputEmail1'>Why are you qualified?:</label>
                                 <textarea type='text' class='form-control' id='user-bid-input'
                                     placeholder='why you are the right candidate?'></textarea>
                             </div>
@@ -68,22 +63,17 @@ $(document).ready(function () {
         $.get("/pick/" + projId).then(function (project) {
             if (project.status === "Hiring") {
                 project.start = true;
-                var source = `<div class='sticky-top' style='background: white;'>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
-                            <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>
-                        </div>
-                        <div class='project-content mt-3'>
+                var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
                             </div>
                             <div class='project-description'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                                <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
                                 <p>{{price}}</p>
                             </div>
                             <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
@@ -109,12 +99,77 @@ $(document).ready(function () {
                     <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
                     <p>{{price}}</p>
                 </div>
-                
+                <div class="row">
+                <div id="msglog">
+                </div>
+                <textarea name="message" id="messageInput"></textarea>
+                <br />
+                Press Enter to Send!
+                </div>
                 <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
-
+                var template = Handlebars.compile(source);
+                projView.html(template(project));
+                loadSocket(projId);
             }
         });
     });
+
+   
+    function loadSocket(projId) {
+        var socket = io();
+        //var socket = io();
+        // join
+        socket.on('connect', function () {
+            socket.emit('join', currId, projId, currDevName);
+        });
+        // send
+        socket.on('msg', function (userName, msg, time) {
+            var message = '' +
+                '<div class="message">' +
+                '  <span class="user">' + userName + ': </span>' +
+                '  <span class="msg">' + msg + '</span>' +
+                '</div>' +
+                '<div class="sysMsg">' + time + '</div>';
+            $('#msglog').append(message);
+            $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+        });
+
+        //load previous history
+
+        socket.on('history', function (history) {
+            console.log(history);
+            for (var i = 0; i < history.length; i++) {
+                var message = '' +
+                    '<div class="message">' +
+                    '  <span class="user">' + history[i].userName + ': </span>' +
+                    '  <span class="msg">' + history[i].message + '</span>' +
+                    '</div>' +
+                    '<div class="sysMsg">' + history[i].time + '</div>';
+                $('#msglog').append(message);
+                $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+            }
+        })
+
+        // listen
+        socket.on('sys', function (sysMsg) {
+            var message = '<div class="sysMsg">' + sysMsg + '</div>';
+            $('#msglog').append(message);
+
+        });
+
+        // message
+        $('#messageInput').keydown(function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var msg = $(this).val();
+                $(this).val('');
+
+                socket.send(msg);
+            }
+        });
+    }
+
+
 
 
     $(document).on("click", ".completeproject", function (event) {
@@ -124,24 +179,20 @@ $(document).ready(function () {
         projView.empty();
 
         $.get("/pick/" + projId).then(function (project) {
-            var source = `<div class='sticky-top' style='background: white;'>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
-                            <button type='submit' class='btn-grad' data-id='{{id}}'>Done!!!</button>
-                        </div>
-                        <div class='project-content mt-3'>
+            var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
                             </div>
                             <div class='project-description'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                                <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
                                 <p>{{price}}</p>
-                            </div>`;
+                            </div>
+                            <button type='submit' class='btn-grad' data-id='{{id}}'>Done!!!</button>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
         });
@@ -150,6 +201,7 @@ $(document).ready(function () {
     loadUserNProject();
     var currStatus;
     var currId;
+    var currDevName;
     function loadUserNProject() {
         var bigData = {
             developer_name: "",
@@ -162,6 +214,7 @@ $(document).ready(function () {
             // $(".user-name").text(data.first_name + " " + data.last_name === null ? "" : data.last_name);
             // $(".user-email").text(data.email);
             // $(".user-bio").text(data.intro);
+            currDevName = data.first_name;
             bigData.developer_name = data.first_name;
             bigData.developer_email = data.email;
             currStatus = data.status;
@@ -198,64 +251,59 @@ $(document).ready(function () {
                     }
                 }
                 var source = `<div class="row">
-                                    <div class="col-sm-12">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                        <div class="col profile">
-                                            <div class="name">
-                                            <h1>Hello.</h1>
-                                            <p>{{developer_name}}
-                                            </p>
-                                            </div>
-                                            <br>
-                                            <p>{{developer_email}}</p>
-                                        </div>
-                                        <a class="navbar-brand" href="/user-logout">Logout</a>
-                                        </div>
+                                <div class="col profile" id="profileView">
+                                    <div class="name">
+                                        <h1>Hello, {{developer_name}}</h1>
                                     </div>
-                                    </div>
+                                    <p>User Email: {{developer_email}}</p>
+                                    <p>Bio: {{developer_intro}}</p>
                                 </div>
-                                
-                                <div class="row">
-                                    <div class="col-sm-3">
+                            </div>
+                            <div class="row" id="startupWindows">
+                                <div class="col-sm-3" id="projDisp">
                                     <div class="container-fluid projDisp">
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn-proj btn-secondary" id="find">Find</button>
-                                        <button type="button" class="btn-proj btn-secondary" id="active">Active</button>
-                                        <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
+                                            <button type="button" class="btn-proj btn-secondary" id="find">Find</button>
+                                            <button type="button" class="btn-proj btn-secondary" id="active">Active</button>
+                                            <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
                                         </div>
                                         <div class="col-sm-12" id="projView">
-                                        <ul id="findList">
-                                            {{#each project}}
-                                            <li class="project" data-id="{{id}}">
-                                            <hi> {{title}} </hi>
-                                            <p> $ {{price}} </p>
-                                            </li>
-                                            {{/each}}
-                                        </ul>
-                                        <ul id="activeList" style="display: none">
-                                            {{#each activeProject}}
-                                            <li class="activeproject" data-id="{{id}}">
-                                            <hi> {{title}} </hi>
-                                            <p> {{price}} </p>
-                                            </li>
-                                            {{/each}}
-                                        </ul>
-                                        <ul id="completeList" style="display: none">
-                                            {{#each completeProject}}
-                                            <li class="completeproject" data-id="{{id}}">
-                                            <hi> {{title}} </hi>
-                                            <p> {{price}} </p>
-                                            </li>
-                                            {{/each}}
-                                        </ul>
+                                            <ul id="findList">
+                                                {{#each project}}
+                                                <li class="project" data-id="{{id}}">
+                                                    <hi> {{title}} </hi>
+                                                    <p> $ {{price}} </p>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                            <ul id="activeList" style="display: none">
+                                                {{#each activeProject}}
+                                                <li class="activeproject" data-id="{{id}}">
+                                                    <hi> {{title}} </hi>
+                                                    <p> {{price}} </p>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
+                                            <ul id="completeList" style="display: none">
+                                                {{#each completeProject}}
+                                                <li class="completeproject" data-id="{{id}}">
+                                                    <hi> {{title}} </hi>
+                                                    <p> {{price}} </p>
+                                                </li>
+                                                {{/each}}
+                                            </ul>
                                         </div>
                                 
                                     </div>
-                                    </div>
-                                    <div class="p-0 col-sm-9 box" id="project-display-section">
-                                    </div>
-                                </div>`;
+                                </div>
+                            
+                                <div class="p-0 col-sm-9" id="project-display-section">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="startupFooter">
+                                <p>© Sqwash 2020</p>
+                        </div>`;
                 var template = Handlebars.compile(source);
                 $(".container-fluid").html(template(bigData));
 

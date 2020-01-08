@@ -3,12 +3,7 @@ var session = require("express-session");
 var exphbs = require("express-handlebars");
 var path = require("path");
 var IO = require("socket.io");
-var server = require('http').Server(app);
-
-var socketIO = IO(server);
-var roomInfo = [];
-var history = [];
-
+var router = express.Router();
 
 var userPassport = require("./config/user-passport");
 
@@ -35,14 +30,58 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set('views', path.join(__dirname, 'views'))
 app.set("view engine", "handlebars");
 
-// Requiring our routes
-require("./routes/user-html-routes")(app);
-require("./routes/users-route")(app);
-require("./routes/orgs-route")(app);
-require("./routes/projects-route")(app);
+var server = require('http').Server(app);
 
-db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
+var socketIO = IO(server);
+var roomInfo = [];
+var history = {};
+
+socketIO.on('connection', function (socket) {
+  var userId;
+  var projId;
+  var roomID;
+  var userNameG;
+
+  socket.on('join', function (devId, projectId, userName) {
+    userId = devId;
+    projId = projectId;
+    roomID = `${projId}|${userId}`;
+    userNameG = userName;
+
+    if (!roomInfo.includes(roomID)) {
+      roomInfo.push(roomID);
+      history.roomID = [];
+    }
+    //push out all the previous chat history belonged to this roomID
+    socket.join(roomID);
+    socketIO.to(roomID).emit('history', history.roomID);
+    socketIO.to(roomID).emit('sys', userName + ' is online now!');
+    console.log(userId + ' join ' + roomID);
+  });
+
+  socket.on('message', function (msg) {
+    var msgObj = {
+      id: userId,
+      userName: userNameG,
+      message: msg,
+      time: new Date()
+    };
+    history.roomID.push(msgObj);
+    socketIO.to(roomID).emit('msg', userNameG, msg, new Date());
+  });
+
+});
+
+app.use('/',router);
+// Requiring our routes
+require("./routes/user-html-routes")(router);
+require("./routes/users-route")(router);
+require("./routes/orgs-route")(router);
+require("./routes/projects-route")(router);
+
+db.sequelize.sync({force:true}).then(function () {
+  server.listen(PORT, function () {
+    //server.listen(PORT);
     console.log("App listening on PORT " + PORT);
   });
 });
