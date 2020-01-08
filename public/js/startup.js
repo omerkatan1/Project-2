@@ -293,8 +293,7 @@ $(document).ready(function () {
                                     </div>
                                     <p>User Email: {{startup_email}}</p>
                                     <p>Company Bio: {{startup_intro}}</p>
-                                    <button type="button" class="btn-proj btn-secondary" id="requestProject"
-                                        data-toggle= "modal" data-target= "#reqProj" >Request</button>
+                                    <button type="button" class="btn-proj btn-secondary" id="requestProject">Request</button>
                                 </div>
                             </div>
                                 <div class="row" id="startupWindows">
