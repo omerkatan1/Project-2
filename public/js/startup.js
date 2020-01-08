@@ -25,38 +25,28 @@ $(document).ready(function () {
         event.preventDefault();
         var projView = $("#project-display-section");
         projView.empty();
-        var source = `<div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Request Your Project</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Title:</label>
-                                    <input type="name" class="form-control" id="title-input" placeholder="title">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Description:</label>
-                                    <textarea type="email" class="form-control" id="description-input"
-                                        placeholder="Descript your project"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Price:</label>
-                                    <input type="price" class="form-control" id="price-input"
-                                        placeholder="Enter your budget">
-                                </div>
-                                <div style="display: none" id="user-alert" class="alert alert-danger" role="alert">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                    <span class="sr-only">Error:</span> <span class="msg"></span>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="createProject btn btn-primary" id="submitProject">Submit</button>
-                            </div>
-                        </div>`;
+        var source = `<div class="container-fluid">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label"><h5>Project Request Form</h5></label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputEmail1">Title:</label>
+                            <input type="name" class="form-control input-mysize" id="title-input" placeholder="title">
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputEmail1">Description:</label>
+                            <textarea type="email" class="form-control input-mysize" id="description-input"
+                                placeholder="Please describe your project..."></textarea>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputPassword1">Price:</label>
+                            <input type="price" class="form-control input-mysize" id="price-input"
+                                placeholder="What is your budget?">
+                        </div>
+                        <div class="form-group row">
+                            <button type="button" class="createProject btn btn-primary" id="submitProject">Submit</button>
+                        </div>
+                    </div>`;
         var template = Handlebars.compile(source);
         projView.html(template({}));
     });
@@ -297,66 +287,59 @@ $(document).ready(function () {
                 }
                 console.log(bigData);
                 var source = `<div class="row">
-                                    <div class="col-sm-12">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                        <div class="col profile">
-                                            <div class="name">
-                                            <h1>Hello.</h1>
-                                            <p>{{startup_name}}
-                                            </p>
+                                <div class="col profile" id="profileView">
+                                    <div class="name">
+                                        <h1>Hello, {{startup_name}}</h1>
+                                    </div>
+                                    <p>User Email: {{startup_email}}</p>
+                                    <p>Company Bio: {{startup_intro}}</p>
+                                    <button type="button" class="btn-proj btn-secondary" id="requestProject"
+                                        data-toggle= "modal" data-target= "#reqProj" >Request</button>
+                                </div>
+                            </div>
+                                <div class="row" id="startupWindows">
+                                    <div class="col-sm-3" id="projDisp">
+                                        <div class="container-fluid projDisp">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn-proj btn-secondary" id="find">Active</button>
+                                                <button type="button" class="btn-proj btn-secondary" id="active">Proccess</button>
+                                                <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
                                             </div>
-                                            <br>
-                                            <p>{{startup_email}}</p>
-                                            <br>
-                                            <p>{{startup_intro}}</p>
-                                        </div>
-                                        <a class="navbar-brand" href="/org-logout">Logout</a>
+                                            <div class="col-sm-12" id="projView">
+                                                <ul id="findList">
+                                                    {{#each project}}
+                                                    <li class="project" data-id="{{id}}">
+                                                        <hi> {{title}} </hi>
+                                                        <p> $ {{price}} </p>
+                                                    </li>
+                                                    {{/each}}
+                                                </ul>
+                                                <ul id="activeList" style="display: none">
+                                                    {{#each activeProject}}
+                                                    <li class="activeproject" data-id="{{id}}">
+                                                        <hi> {{title}} </hi>
+                                                        <p> {{price}} </p>
+                                                    </li>
+                                                    {{/each}}
+                                                </ul>
+                                                <ul id="completeList" style="display: none">
+                                                    {{#each completeProject}}
+                                                    <li class="completeproject" data-id="{{id}}">
+                                                        <hi> {{title}} </hi>
+                                                        <p> {{price}} </p>
+                                                    </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-9" id="project-display-section">
                                     </div>
                                 </div>
-                                
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                    <div class="container-fluid projDisp">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn-proj btn-secondary" id="find">Active</button>
-                                        <button type="button" class="btn-proj btn-secondary" id="active">Proccess</button>
-                                        <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
-                                        </div>
-                                        <div class="col-sm-12" id="projView">
-                                        <button type="button" class="btn-proj btn-secondary" id="requestProject">Request</button>
-                                        <ul id="findList">
-                                            {{#each project}}
-                                            <li class="project" data-id="{{id}}">
-                                            <hi> {{title}} </hi>
-                                            <p> $ {{price}} </p>
-                                            </li>
-                                            {{/each}}
-                                        </ul>
-                                        <ul id="activeList" style="display: none">
-                                            {{#each activeProject}}
-                                            <li class="activeproject" data-id="{{id}}">
-                                            <hi> {{title}} </hi>
-                                            <p> {{price}} </p>
-                                            </li>
-                                            {{/each}}
-                                        </ul>
-                                        <ul id="completeList" style="display: none">
-                                            {{#each completeProject}}
-                                            <li class="completeproject" data-id="{{id}}">
-                                            <hi> {{title}} </hi>
-                                            <p> {{price}} </p>
-                                            </li>
-                                            {{/each}}
-                                        </ul>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="p-0 col-sm-9 box" id="project-display-section">
-                                    </div>
-                                </div>`;
+                            </div>
+                            <div class="startupFooter">
+                                <p>© Sqwash 2020</p>
+                            </div>`;
                 var template = Handlebars.compile(source);
                 $(".container-fluid").html(template(bigData));
             });
