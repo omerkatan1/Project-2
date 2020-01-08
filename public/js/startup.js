@@ -21,35 +21,34 @@ $(document).ready(function () {
         $("#activeList").hide();
     })
 
-    $(document).on("click", "#requestProject", function (event) {
-        event.preventDefault();
-        var projView = $("#project-display-section");
-        projView.empty();
-        var source = `<div class="container-fluid">
-                        <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-4 col-form-label"><h5>Project Request Form</h5></label>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1">Title:</label>
-                            <input type="name" class="form-control input-mysize" id="title-input" placeholder="title">
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1">Description:</label>
-                            <textarea type="email" class="form-control input-mysize" id="description-input"
-                                placeholder="Please describe your project..."></textarea>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputPassword1">Price:</label>
-                            <input type="price" class="form-control input-mysize" id="price-input"
-                                placeholder="What is your budget?">
-                        </div>
-                        <div class="form-group row">
-                            <button type="button" class="createProject btn btn-primary" id="submitProject">Submit</button>
-                        </div>
-                    </div>`;
-        var template = Handlebars.compile(source);
-        projView.html(template({}));
-    });
+    // $(document).on("click", "#requestProject", function (event) {
+    //     event.preventDefault();
+    //     var projView = $("#project-display-section");
+    //     projView.empty();
+    //     var source = `<div class="container-fluid">
+    //                     <div class="form-group row">
+    //                         <label for="staticEmail" class="col-sm-4 col-form-label"><h5>Project Request Form</h5></label>
+    //                     </div>
+    //                     <div class="form-group input-icons">
+    //                     <i class="fas fa-user icon"></i>
+    //                         <input type="name" class="form-control input-field" id="title-input" placeholder="Title">
+    //                     </div>
+    //                     <div class="form-group input-icons">
+    //                     <i class="fas fa-dollar-sign icon"></i>
+    //                         <input type="price" class="form-control input-field" id="price-input"
+    //                             placeholder="What is your budget?">
+    //                     </div>
+    //                     <div class="form-group">
+    //                         <textarea type="email" class="form-control" id="description-input"
+    //                             placeholder="Please describe your project..."></textarea>
+    //                     </div>
+    //                     <div class="form-group justify-content-center">
+    //                         <button type="button" class="btn-grad" id="submitProject">Submit</button>
+    //                     </div>
+    //                 </div>`;
+    //     var template = Handlebars.compile(source);
+    //     projView.html(template({}));
+    // });
 
     $(document).on("click", "#submitProject", function (event) {
         event.preventDefault();
@@ -82,19 +81,19 @@ $(document).ready(function () {
             console.log(project);
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Title:</h3>
+                                <p class='col-sm-12 my-0 p-1'>{{title}}</p>
                             </div>
                             <div class='project-description'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Description:</h3>
                                 <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
-                                <p>{{price}}</p>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Budget:</h3>
+                                <p class='col-sm-12 my-0 p-1'>$ {{price}}</p>
                             </div>
                             <div>
-                            <button data-id='{{id}}' class="pickCandidate">Load Candidate</button>
+                            <button data-id='{{id}}' class="btn-grad m-1 justify-content-left">Load Candidates</button>
                             <ul class="list-group" id="candidateList">
                             </ul>
                             </div>
@@ -294,16 +293,15 @@ $(document).ready(function () {
                                     </div>
                                     <p><i class="fas fa-at icon"></i>{{startup_email}}</p>
                                     <p>{{startup_intro}}</p>
-                                    <button type="button" class="btn-grad mb-3" id="requestProject"
-                                        data-toggle= "modal" data-target= "#reqProj">Post Project</button>
+                                    
                                 </div>
                             </div>
                                 <div class="row" id="startupWindows">
                                     <div class="col-sm-3" id="projDisp">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn-proj" id="find"><i class="fas fa-file-alt icon"></i></button>
-                                                <button type="button" class="btn-proj btn-secondary" id="active">Proccess</button>
-                                                <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
+                                            <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn-proj" id="find" data-toggle="tooltip" data-placement="top" title="Available Projects"><i class="fas fa-file-alt iconB"></i></button>
+                                                <button type="button" class="btn-proj" id="active" data-toggle="tooltip" data-placement="top" title="Projects in Progress"><i class="fas fa-spinner iconB"></i></button>
+                                                <button type="button" class="btn-proj" id="complete" data-toggle="tooltip" data-placement="top" title="Completed Projects"><i class="fas fa-check iconB"></i></button>
                                             </div>
                                             <div class="col-sm-12" id="projView">
                                                 <ul id="findList">

@@ -1,18 +1,75 @@
- <nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
-        <div class="container navcont">
-            <a class="navbar-brand p-0" href="/" id="logo">
-                SQWASH
-            </a>
-            <div class="collapse navbar-collapse" id="navbarStartup">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4">
-                        <a class="nav-link" href="/org-logout">Logout</a>
-                    </li>
-                </ul>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top mx-auto">
+    <div class="container navcont">
+        <a class="navbar-brand p-0" href="/" id="logo">
+            SQWASH
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item pr-4">
+                    <a href="#" class="nav-link register" data-toggle="modal" data-target="#modalProjectForm">Register
+                        Project</a>
+                </li>
+                <li class="nav-item pr-4">
+                    <a class="nav-link" href="/org-logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Modal Login Form -->
+<div class="modal fade" id="modalProjectForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Post a New Project</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form class="registerProject">
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-pen icon"></i>
+                            <input type="name" class="form-control input-field" id="title-input" placeholder="Title">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-dollar-sign icon"></i>
+                            <input type="price" class="form-control input-field" id="price-input"
+                                placeholder="What is your budget?">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <textarea type="email" class="form-control" id="description-input"
+                                placeholder="Please describe your project..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn-grad" id="submitProject">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </nav>
-    <div id="projectRequest"></div>
+    </div>
+</div>
+
+
+
 <div class="container-fluid" id="startupContainerMain">
     <div class="row">
         <div class="col-sm-12">
@@ -23,9 +80,9 @@
                             <h1>Hello, {{startup_name}}</h1>
                         </div>
                         <p>User Email: {{startup_email}}</p>
-                    <a class="navbar-brand" href="/org-logout">
-                        Logout
-                    </a>
+                        <a class="navbar-brand" href="/org-logout">
+                            Logout
+                        </a>
                     </div>
                 </div>
             </div>
@@ -52,5 +109,9 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
 <script src="/js/startup.js"></script>

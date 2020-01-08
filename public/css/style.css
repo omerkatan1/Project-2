@@ -180,12 +180,12 @@ body {
 #projDisp {
     /* margin-left: 40%; */
     /* text-align: center; */
-    border: outset 0px rgb(182, 171, 171);
+    border-right: 3px dashed #F09819;
     background: rgba(0,0,0,0.6);
 }
 
 #project-display-section {
-    text-align: center;
+    /* text-align: center; */
     height: 400px;
     padding: 20px;
     border: outset 0px rgb(182, 171, 171);
@@ -385,8 +385,16 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 .icon { 
     padding: 12px; 
     color: #ffbb00; 
-    min-width: 50px; 
+    /* min-width: 50px;  */
     text-align: left; 
+} 
+
+.iconB { 
+    padding: 12px; 
+    font-size: 20px;
+    color: #ffbb00; 
+    /* min-width: 50px;  */
+    text-align: center; 
 } 
   
 .input-field { 
@@ -468,9 +476,9 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     /* width: auto; */
 }
 
-.col-form-label {
+/* .col-form-label {
     text-align: center !important;
-}
+} */
 
 .start {
     margin-top: 5%;
@@ -479,3 +487,20 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 .profile {
     text-align: center;
 }
+
+li.project {
+    list-style-type: none;
+    position: relative;
+    padding-left: 15px;
+  }
+  
+  li.project:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0a9";
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    /* top: 50%; */
+    color: #ffbb00; 
+    left: -10px;
+  }
