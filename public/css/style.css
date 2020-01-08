@@ -488,13 +488,13 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     text-align: center;
 }
 
-li.project {
+li.project, li.activeproject, li.completeList {
     list-style-type: none;
     position: relative;
     padding-left: 15px;
   }
   
-  li.project:before {
+  li.project:before, li.activeproject:before, li.completeList:before {
     font-family: "Font Awesome 5 Free";
     content: "\f0a9";
     font-weight: 900;

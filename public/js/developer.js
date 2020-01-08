@@ -27,15 +27,15 @@ $(document).ready(function () {
         $.get("/pick/" + projId).then(function (project) {
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Title:</h3>
+                                <h3 class='col-sm-12 my-0 p-1'>{{title}}</h3>
                             </div>
                             <div class='project-description'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Description:</h3>
                                 <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Budget:</h3>
                                 <p>{{price}}</p>
                             </div>
                             <div class='form-group'>
@@ -63,16 +63,16 @@ $(document).ready(function () {
             }
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Title:</h3>
+                                <p class='col-sm-12 my-0 p-1'>{{title}}</p>
                             </div>
                             <div class='project-description'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Description:</h3>
                                 <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
-                                <p>{{price}}</p>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Budget:</h3>
+                                <p class='col-sm-12 my-0 p-1'>{{price}}</p>
                             </div>
                             <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
             var template = Handlebars.compile(source);
@@ -90,16 +90,16 @@ $(document).ready(function () {
         $.get("/pick/" + projId).then(function (project) {
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Title:</h3>
+                                <p class='col-sm-12 my-0 p-1'>{{title}}</p>
                             </div>
                             <div class='project-description'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Description:</h3>
                                 <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
-                                <p>{{price}}</p>
+                                <h3 class='col-sm-12 my-0 p-1'>Project Budget:</h3>
+                                <p class='col-sm-12 my-0 p-1>{{price}}</p>
                             </div>
                             <button type='submit' class='btn-grad' data-id='{{id}}'>Done!!!</button>`;
             var template = Handlebars.compile(source);
@@ -159,11 +159,12 @@ $(document).ready(function () {
                 }
                 var source = `<div class="row">
                                 <div class="col profile" id="profileView">
-                                    <div class="name">
-                                        <h1>Hello, {{developer_name}}</h1>
-                                    </div>
-                                    <p>User Email: {{developer_email}}</p>
-                                    <p>Bio: {{developer_intro}}</p>
+                                <div class="name">
+                                <h1>Hello.</h1>
+                            <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{developer_name}}</p>
+                                </div>
+                                <p><i class="fas fa-at icon"></i>{{developer_email}}</p>
+                                <p>{{developer_intro}}</p>
                                 </div>
                             </div>
                             <div class="row" id="startupWindows">
@@ -204,7 +205,7 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             
-                                <div class="p-0 col-sm-9" id="project-display-section">
+                                <div class="p-2 col-sm-9" id="project-display-section">
                                 </div>
                             </div>
                         </div>
