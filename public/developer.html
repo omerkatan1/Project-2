@@ -7,46 +7,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Quicksand&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="stylesheet" href="css/developer.css">
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Permanent+Marker|Quicksand&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Sqwash</title>
 </head>
 
 <body>
+
     <!-- Navigation -->
-    <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
         <div class="container navcont">
-            <a class="navbar-brand p-0" href="index.html" id="logo">
+            <a class="navbar-brand p-0" href="/" id="logo">
                 SQWASH
             </a>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item pr-4">
-                        <a class="nav-link" href="member.html">Logout</a>
+                        <a class="nav-link" href="/user-logout">
+                            Logout
+                        </a></a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav> -->
+    </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid start">
+
         <div class="row">
-            <div class="col profile">
-                <div class="name">
-                    <h1>Hello.</h1>
-                    <p>{name}</p>
+            <div class="col-sm-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col profile">
+                                <h1>Hello.</h1>
+                                <p class="p-0 m-0"><i class="fas fa-user icon"></i>Lily Chon</p>
+                            <p><i class="fas fa-at icon"></i>chon.lily@gmail.com</p>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <p>{email}</p>
             </div>
         </div>
 
-        <!-- <div class="container-fluid title"> -->
-        <!-- <h1 class="ml16">Available Jobs</h1> -->
         <div class="row">
-            <!-- cj's working section -->
-            <!-- contained the info so navbar could be added -->
             <div class="col-sm-3">
 
                 <div class="container-fluid projDisp">
@@ -55,76 +61,61 @@
                         <button type="button" class="btn-proj btn-secondary" id="active">Active</button>
                         <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
                     </div>
+
+                    <div class="register-switch row col-sm-10">
+                        <input type="radio" name="user" value="dev" id="find" class="register-switch-input" checked>
+                        <label for="user-dev" class="register-switch-labels">Find</label>
+
+                        <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                        <label for="user-start" class="register-switch-labels">Active</label>
+
+                        <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                        <label for="user-start" class="register-switch-labels">Complete</label>
+                    </div>
+
+
                     <div class="col-sm-12" id="projView">
-                        <ul>
-                            <li>
-                                <hi> Project Title </hi>
-                                <p> Requires Javascript </p>
-                                <button type="button" class="btn-proj view">View</button>
-                            </li>
-                            <li>
-                                <hi> Project Title </hi>
-                                <p> Requires: Html, CSS </p>
-                                <button type="button" class="btn-proj view">View</button>
-                            </li>
-                        </ul>
+
+                        <div class='sticky-top' style='background: white;'>
+                            <h6 class='col-sm-12 my-0 p-1' style='color: black;'>Project: Bootstrap</h6>
+                            <h6 class='col-sm-12 my-0 p-1' style='color: black;'>Start-up: UW</h6>
+                            <button type='submit' class='btn-grad'>Bid it!!!</button>
+                        </div>
+                        <div class='project-content mt-3'>
+                            <div class='project-title'>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
+                            </div>
+                            <div class='project-description'>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <p class='col-sm-12 my-0 p-1'>{{description}}</p>
+                            </div>
+                            <div class='project-price'>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
+                                <p>{{price}}</p>
+                            </div>
+                            <div class='form-group'>
+                                <label for='exampleInputEmail1'>why you are fit:</label>
+                                <textarea type='text' class='form-control' id='user-bid-input'
+                                    placeholder='why you are the right candidate?'></textarea>
+                            </div>
+                        </div>
+
+                        <button type='submit' class='btn-grad'>Bid it!!!</button>
+
                     </div>
 
                 </div>
-
             </div>
             <div class="p-0 col-sm-9 box" id="project-display-section">
-                <div class="sticky-top" style="background: white;">
-                    <h6 class="ml16 col-sm-12 my-0 p-1" style="color: black;">Project: Bootstrap</h6>
-                    <h6 class="ml16 col-sm-12 my-0 p-1" style="color: black;">Start-up: UW</h6>
-                    <button type="submit" class="btn-grad">Bid it!!!</button>
-                </div>
-                <div class="project-content mt-3">
-                    <div class="project-title">
-                        <h6 class="ml16 col-sm-12 my-0 p-1">Project Title:</h6>
-                        <h6 class="ml16 col-sm-12 my-0 p-1">Bootstrap</h6>
-                    </div>
-                    <div class="project-description">
-                        <h6 class="ml16 col-sm-12 my-0 p-1">Project Description:</h6>
-                        <p class="ml16 col-sm-12 my-0 p-1">red violet (NASDAQ: RDVT) is a software and services company
-                            specializing in big data analysis, providing cloud-based, mission critical analytics and
-                            information solutions to enterprises in a variety of industries. We believe that time is
-                            your most valuable asset. Through powerful analytics, we transform data into intelligence,
-                            in a fast and efficient manner, so that our clients can spend their time on what matters
-                            most – running their organizations with confidence. Our corporate headquarters is located in
-                            Boca Raton, Florida and our brands include IDI and FOREWARN, www.redviolet.com.</p>
-                    </div>
-                    <div class="project-price">
-                        <h6 class="ml16 col-sm-12 my-0 p-1">Project Budget:</h6>
-                        <p>$100</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">why you are fit:</label>
-                        <textarea type="text" class="form-control" id="user-bid-input"
-                            placeholder="why you are the right candidate?"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-grad">Bid it!!!</button>
-
-                </div>
-
-
 
             </div>
         </div>
-        <!-- </div> -->
-
     </div>
+    <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
 
-
-    <!-- <div class="row" id="footer">
-        <p>Copyright ©</p>
-    </div> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- <script src="js/index.js"></script> -->
+    <script src="js/index.js"></script>
+    <script src="js/developer.js"></script>
 
 </body>
 
