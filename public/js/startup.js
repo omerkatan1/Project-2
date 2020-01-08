@@ -82,15 +82,15 @@ $(document).ready(function () {
             console.log(project);
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Title:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>{{title}}</h6>
                             </div>
                             <div class='project-description'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                                <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Description:</h6>
+                                <p class='col-sm-12 my-0 p-1'>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
+                                <h6 class='col-sm-12 my-0 p-1'>Project Budget:</h6>
                                 <p>{{price}}</p>
                             </div>
                             <div>
@@ -289,19 +289,19 @@ $(document).ready(function () {
                 var source = `<div class="row">
                                 <div class="col profile" id="profileView">
                                     <div class="name">
-                                        <h1>Hello, {{startup_name}}</h1>
+                                    <h1>Hello.</h1>
+                                <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{startup_name}}</p>
                                     </div>
-                                    <p>User Email: {{startup_email}}</p>
-                                    <p>Company Bio: {{startup_intro}}</p>
-                                    <button type="button" class="btn-proj btn-secondary" id="requestProject"
-                                        data-toggle= "modal" data-target= "#reqProj" >Request</button>
+                                    <p><i class="fas fa-at icon"></i>{{startup_email}}</p>
+                                    <p>{{startup_intro}}</p>
+                                    <button type="button" class="btn-grad mb-3" id="requestProject"
+                                        data-toggle= "modal" data-target= "#reqProj">Post Project</button>
                                 </div>
                             </div>
                                 <div class="row" id="startupWindows">
                                     <div class="col-sm-3" id="projDisp">
-                                        <div class="container-fluid projDisp">
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn-proj btn-secondary" id="find">Active</button>
+                                                <button type="button" class="btn-proj" id="find"><i class="fas fa-file-alt icon"></i></button>
                                                 <button type="button" class="btn-proj btn-secondary" id="active">Proccess</button>
                                                 <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
                                             </div>
@@ -331,7 +331,6 @@ $(document).ready(function () {
                                                     {{/each}}
                                                 </ul>
                                             </div>
-                                        </div>
                                     </div>
                                     <div class="col-sm-9" id="project-display-section">
                                     </div>

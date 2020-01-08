@@ -174,34 +174,29 @@ body {
 #profileView {
     margin: 10% 10% 5% 10%;
     text-align: center;
-    border: outset 1px rgb(182, 171, 171);
+    border: outset 0px rgb(182, 171, 171);
 }
 
 #projDisp {
     /* margin-left: 40%; */
-    text-align: center;
-    border: outset 1px rgb(182, 171, 171);
-    
+    /* text-align: center; */
+    border: outset 0px rgb(182, 171, 171);
+    background: rgba(0,0,0,0.6);
 }
 
 #project-display-section {
     text-align: center;
     height: 400px;
-    padding: 75px;
-    border: outset 1px rgb(182, 171, 171);
+    padding: 20px;
+    border: outset 0px rgb(182, 171, 171);
+    background: rgba(0,0,0,0.6);
+
 }
 
 .btn-proj {
-    color: white;
-    margin: auto;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: 0.5s;
-    background-size: 200% auto;
-    border: 1px solid black;
-    display: block;
-    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    background: transparent;
+    padding: 10px;
+    border: 0 solid black;
 }
 
 #startupContainerMain {
@@ -212,10 +207,10 @@ body {
     width: 200px;
 } */
 
-#startupWindows {
+/* #startupWindows {
     margin: 0 10% 10% 10%;
     text-align: center;
-}
+} */
 
 .developer {
     background-color: transparent;
@@ -223,7 +218,7 @@ body {
 }
 
 .startupFooter {
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;
