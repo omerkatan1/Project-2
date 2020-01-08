@@ -6,22 +6,21 @@
         <div class="row">
           <div class="col profile">
             <div class="name">
-              <h1>Hello.</h1>
-              <p>{{developer_name}}
-              </p>
+              <h1>Hello, {{developer_name}}</h1>
             </div>
             <br>
-            <p>{{developer_email}}</p>
+            <p>User Email: {{devloper_email}}</p>
           </div>
-          <a class="navbar-brand" href="/user-logout">
-            Logout
-          </a>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- <div class="container-fluid title"> -->
+  <!-- <h1 class="ml16">Available Jobs</h1> -->
   <div class="row">
+    <!-- cj's working section -->
+    <!-- contained the info so navbar could be added -->
     <div class="col-sm-3">
 
       <div class="container-fluid projDisp">
@@ -31,13 +30,37 @@
           <button type="button" class="btn-proj btn-secondary" id="complete">Complete</button>
         </div>
         <div class="col-sm-12" id="projView">
-
+          <ul id="findList">
+            {{#each project}}
+            <li class="project" data-id="{{id}}">
+              <hi> {{title}} </hi>
+              <p> $ {{price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+          <ul id="activeList" style="display: none">
+            {{#each activeProject}}
+            <li class="project" data-id="{{id}}">
+              <hi> {{title}} </hi>
+              <p> {{price}} </p>
+            </li>
+            {{/each}}
+          </ul>
+          <ul id="completeList" style="display: none">
+            {{#each completeProject}}
+            <li class="project" data-id="{{id}}">
+              <hi> {{title}} </hi>
+              <p> {{price}} </p>
+            </li>
+            {{/each}}
+          </ul>
         </div>
 
       </div>
     </div>
-    <div class="p-0 col-sm-9 box" id="project-display-section">
+    <div class="p-0 col-sm-9 box" id="developer-display-section">
 
+      </script>
     </div>
   </div>
 </div>
