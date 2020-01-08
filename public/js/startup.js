@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $(document).on("click", "#active", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#requestProject").hide();
         $("#findList").hide();
         $("#completeList").hide();
@@ -8,6 +9,7 @@ $(document).ready(function () {
     })
     $(document).on("click", "#find", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#requestProject").show();
         $("#findList").show();
         $("#completeList").hide();
@@ -15,6 +17,7 @@ $(document).ready(function () {
     })
     $(document).on("click", "#complete", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#requestProject").hide();
         $("#findList").hide();
         $("#completeList").show();

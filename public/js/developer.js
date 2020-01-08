@@ -1,18 +1,21 @@
 $(document).ready(function () {
     $(document).on("click", "#active", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#findList").hide();
         $("#completeList").hide();
         $("#activeList").show();
     })
     $(document).on("click", "#find", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#findList").show();
         $("#completeList").hide();
         $("#activeList").hide();
     })
     $(document).on("click", "#complete", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#findList").hide();
         $("#completeList").show();
         $("#activeList").hide();
@@ -63,10 +66,9 @@ $(document).ready(function () {
         projView.empty();
 
         $.get("/pick/" + projId).then(function (project) {
-            if (project.status==="Hiring"){
+            if (project.status === "Hiring") {
                 project.start = true;
-            }
-            var source = `<div class='sticky-top' style='background: white;'>
+                var source = `<div class='sticky-top' style='background: white;'>
                             <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
                             <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
                             <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>
@@ -85,8 +87,32 @@ $(document).ready(function () {
                                 <p>{{price}}</p>
                             </div>
                             <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
-            var template = Handlebars.compile(source);
-            projView.html(template(project));
+                var template = Handlebars.compile(source);
+                projView.html(template(project));
+            } else {
+                project.start = false;
+                var source = `<div class='sticky-top' style='background: white;'>
+                <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
+                <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>
+            </div>
+            <div class='project-content mt-3'>
+                <div class='project-title'>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                </div>
+                <div class='project-description'>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
+                    <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                </div>
+                <div class='project-price'>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
+                    <p>{{price}}</p>
+                </div>
+                
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
+
+            }
         });
     });
 

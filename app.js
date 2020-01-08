@@ -2,6 +2,13 @@ var express = require("express");
 var session = require("express-session");
 var exphbs = require("express-handlebars");
 var path = require("path");
+var IO = require("socket.io");
+var server = require('http').Server(app);
+
+var socketIO = IO(server);
+var roomInfo = [];
+var history = [];
+
 
 var userPassport = require("./config/user-passport");
 
