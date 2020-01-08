@@ -1,20 +1,36 @@
-<div class="container-fluid">
-
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col profile">
-            <div class="name">
-              <h1>Hello, {{developer_name}}</h1>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
+        <div class="container navcont">
+            <a class="navbar-brand p-0" href="/" id="logo">
+                SQWASH
+            </a>
+            <div class="collapse navbar-collapse" id="navbarStartup">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item pr-4">
+                        <a class="nav-link" href="/org-logout">Logout</a>
+                    </li>
+                </ul>
             </div>
-            <br>
-            <p>User Email: {{devloper_email}}</p>
-          </div>
         </div>
-      </div>
+    </nav>
+
+<div class="container-fluid" id="developerContainerMain">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col profile">
+                        <div class="name">
+                            <h1>Hello, {{developer_name}}</h1>
+                        </div>
+                        <p>User Email: {{developer_email}}</p>
+                    <a class="navbar-brand" href="/org-logout">
+                        Logout
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
   <!-- <div class="container-fluid title"> -->
   <!-- <h1 class="ml16">Available Jobs</h1> -->
