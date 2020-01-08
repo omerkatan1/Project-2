@@ -133,9 +133,9 @@ $(document).ready(function () {
             completeProject: [],
         };
         $.get("/api/user_data").then(function (data) {
-            $(".user-name").text(data.first_name + " " + data.last_name === null ? "" : data.last_name);
-            $(".user-email").text(data.email);
-            $(".user-bio").text(data.intro);
+            // $(".user-name").text(data.first_name + " " + data.last_name === null ? "" : data.last_name);
+            // $(".user-email").text(data.email);
+            // $(".user-bio").text(data.intro);
             bigData.developer_name = data.first_name;
             bigData.developer_email = data.email;
             currStatus = data.status;
