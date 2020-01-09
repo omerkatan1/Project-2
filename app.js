@@ -45,7 +45,7 @@ socketIO.on('connection', function (socket) {
   socket.on('join', function (devId, projectId, userName) {
     userId = devId;
     projId = projectId;
-    roomID = `${projId}|${userId}`;
+    roomID = projId;
     userNameG = userName;
 
     if (!roomInfo.includes(roomID)) {
@@ -79,7 +79,7 @@ require("./routes/users-route")(router);
 require("./routes/orgs-route")(router);
 require("./routes/projects-route")(router);
 
-db.sequelize.sync({force:true}).then(function () {
+db.sequelize.sync().then(function () {
   server.listen(PORT, function () {
     //server.listen(PORT);
     console.log("App listening on PORT " + PORT);

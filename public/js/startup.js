@@ -122,7 +122,7 @@ $(document).ready(function () {
                             var currList = `<li class="developer list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}"> ${obj.id}. ${obj.first_name} 
                 <button class="pickFinalUser" data-id="${obj.id}" data-proj="${obj.projId}">Pick!!!</button>
                 </li>`;
-                $("#candidateList").append(currList);
+                            $("#candidateList").append(currList);
                         }
                     }
                 }
@@ -147,7 +147,7 @@ $(document).ready(function () {
                 //     method: "PUT",
                 //     url: `/recovers/${projId}/${userId}`
                 // }).then(function () {
-                    
+
                 // })
             })
         })
@@ -189,12 +189,76 @@ $(document).ready(function () {
                                 <textarea type='text' class='form-control' id='startup-comment'
                                     placeholder='How do you think about this developer's work on this project?'></textarea>
                             </div>
+                            <div class="row">
+                            <div id="msglog">
+                            </div>
+                            <textarea name="message" id="messageInput"></textarea>
+                            <br />
+                            Press Enter to Send!
+                            </div>
                             <button type='submit' class='finishProject' data-id='{{id}}' data-uid="{{final_developer}}">Finish!!!</button>
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
+            loadSocket(projId);
         });
     });
+
+    function loadSocket(projId) {
+        var socket = io();
+        // join
+        socket.on('connect', function () {
+            socket.emit('join', start_up_id, projId, start_up_name);
+        });
+        // send
+        socket.on('msg', function (userName, msg, time) {
+            var message = '' +
+                '<div class="message">' +
+                '  <span class="user">' + userName + ': </span>' +
+                '  <span class="msg">' + msg + '</span>' +
+                '</div>' +
+                '<div class="sysMsg">' + time + '</div>';
+            $('#msglog').append(message);
+            $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+        });
+
+        //load previous history
+
+        socket.on('history', function (history) {
+            console.log(history);
+            for (var i = 0; i < history.length; i++) {
+                var message = '' +
+                    '<div class="message">' +
+                    '  <span class="user">' + history[i].userName + ': </span>' +
+                    '  <span class="msg">' + history[i].message + '</span>' +
+                    '</div>' +
+                    '<div class="sysMsg">' + history[i].time + '</div>';
+                $('#msglog').append(message);
+                $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+            }
+        })
+
+        // listen
+        socket.on('sys', function (sysMsg) {
+            var message = '<div class="sysMsg">' + sysMsg + '</div>';
+            $('#msglog').append(message);
+
+        });
+
+        // message
+        $('#messageInput').keydown(function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var msg = $(this).val();
+                $(this).val('');
+
+                socket.send(msg);
+            }
+        });
+    }
+
+
+
 
     $(document).on("click", ".viewFinalCandidate", function (event) {
         event.preventDefault();
@@ -261,6 +325,8 @@ $(document).ready(function () {
     });
 
     loadStartupNProject();
+    var start_up_name;
+    var start_up_id;
     function loadStartupNProject() {
         var bigData = {
             startup_name: "",
@@ -271,6 +337,8 @@ $(document).ready(function () {
             completeProject: [],
         };
         $.get("/api/org_data").then(function (data) {
+            start_up_name = data.name;
+            start_up_id = data.id;
             bigData.startup_name = data.name;
             bigData.startup_email = data.email;
             bigData.startup_intro = data.intro;
