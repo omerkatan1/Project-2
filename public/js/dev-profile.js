@@ -34,8 +34,8 @@ function getUserInfo() {
                                 <img src="img/sqwashAvater.jpg" alt="profile-image" id="avatar">
                             </div>
                         </div>
-                        <div class="row justify-content-around">
-                            <div class="col-sm-6 box" id="user-view">
+                        <div class="row justify-content-around" id="user-view">
+                            <div class="col-sm-6 box">
                                 <p>User Name: {{developer_name}}</p>
                                 <p>Available for hire? {{developer_status}}</p>
                                 <p>User Rating</p>
