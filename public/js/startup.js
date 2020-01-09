@@ -101,6 +101,27 @@ $(document).ready(function () {
                             <ul class="list-group" id="candidateList">
                             </ul>
                             </div>
+                            <!--Modal-->
+                            <div class="modal fade" id="appliedDevModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal_developer_name"></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Developer's Qualifications:</h3>
+                                    <p id="modal_bid_content"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button href="#" type="button" class="btn btn-primary">Profile Page</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
@@ -119,7 +140,7 @@ $(document).ready(function () {
                         if (devList.includes(data[i].id.toString()) && !data[i].status) {
                             var obj = data[i];
                             obj.projId = projectId;
-                            var currList = `<li class="developer list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}"> ${obj.id}. ${obj.first_name} 
+                            var currList = `<li class="applieddeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}" data-proj="${obj.projId}" data-name="${obj.first_name}"> ${obj.id}. ${obj.first_name} 
                 <button class="pickFinalUser" data-id="${obj.id}" data-proj="${obj.projId}">Pick!!!</button>
                 </li>`;
                             $("#candidateList").append(currList);
@@ -130,7 +151,18 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click",".applieddeveloper",function (event){
+        event.preventDefault();
+        var developer_name = $(this).data("name");
+        var userId = $(this).data("id");
+        var projId = $(this).data("proj");
+        $("#modal_developer_name").html(developer_name);
+        
+        $("#appliedDevModal").modal('show');
+    })
+
     $(document).on("click", ".pickFinalUser", function (event) {
+        event.stopPropagation();
         event.preventDefault();
         var userId = $(this).data("id");
         var projId = $(this).data("proj");
@@ -267,7 +299,7 @@ $(document).ready(function () {
         var developerId = $(this).data("uid");
         $.get(`/pick/user/${developerId}`).then(function (data) {
             var currList =
-                `<li class="developer list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
+                `<li class="finaldeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
             $(".finalCandidateList").append(currList);
         });
     });

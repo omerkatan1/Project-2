@@ -58,4 +58,7 @@ module.exports = function(app) {
     //res.sendFile(path.join(__dirname, "../public/org-account.html"));
   });
 
+  app.get("/dev-profile", isAuthenticated, function(req, res) {
+    res.render("dev-profile");
+  })
 };
