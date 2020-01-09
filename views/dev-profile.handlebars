@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,29 +17,12 @@
     <title>Sqwash</title>
 </head>
 
-<body>
+<body> --}}
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top mx-auto">
         <div class="container navcont">
             <a class="navbar-brand p-0" href="/" id="logo">
                 SQWASH
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item pr-4">
-                        <a class="nav-link" href="{{!-- needs profile link --}}">Profile</a>
-                    </li>
-                    <li class="nav-item pr-4">
-                        <a href="{{!-- needs dashboard link --}}" class="nav-link">Dashboard</a>
-                    </li>
-                    <li class="nav-item pr-4">
-                        <a href="/org-logout" class="nav-link ">Logout</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
     <div class="container-fluid" id="profile-main">
@@ -52,12 +35,13 @@
             <div class="col-sm-6 box" id="user-view">
                 <p>User Name: {{developer_name}}</p>
                 <p>User Email: {{developer_email}}</p>
-                <p>Available for hire? {{developer_status}}</p>
+                <p>Available for hire? {{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
+                    Hire{{/if}}</p>
                 <p>User Rating</p>
                 <p>User Bio: {{developer_intro}}</p>
                 <p>User Tech:</p>
                 <ul>
-                    {{#each developer_technique}}
+                    {{#each developer_techniques}}
                     <li>
                         <p>{{this}}</p>
                     </li>
@@ -67,19 +51,40 @@
             <div class="col-sm-6 box" id="completed-view">
                 <p>
                     <ul id="completeList">
-                        {{#each completeProject}}
-                        <li class="completeproject" data-id="{{id}}">
+                        {{#each completeProjects}}
+                        <li class="completeproject" data-id="{{id}}" data-toggle="modal" data-target="#completeprojectinfo">
                             <hi> {{title}} </hi>
                             <p> {{price}} </p>
                         </li>
                         {{/each}}
                     </ul>
                 </p>
+                <!-- Modal -->
+                <div class="modal fade" id="completeprojectinfo" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
-    <script src="/js/dev-profile.js"></script>
-</body>
+    {{!-- <script src="/js/dev-profile.js"></script> --}}
+{{!-- </body>
 
-</html>
+</html> --}}

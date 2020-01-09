@@ -151,13 +151,13 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click",".applieddeveloper",function (event){
+    $(document).on("click", ".applieddeveloper", function (event) {
         event.preventDefault();
         var developer_name = $(this).data("name");
         var userId = $(this).data("id");
         var projId = $(this).data("proj");
         $("#modal_developer_name").html(developer_name);
-        $.get(`/api/userbid/${userId}/${projId}`,function(data){
+        $.get(`/api/userbid/${userId}/${projId}`, function (data) {
             $("#modal_bid_content").html(data.bid_content);
             $("#appliedDevModal").modal();  //modal is not functionning here!!!!
         });
@@ -306,6 +306,13 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", ".finaldeveloper", function (event) {
+        event.preventDefault();
+        console.log("here");
+        var userId = $(this).data("id");
+        loadDevProfile(userId);
+    });
+
 
     $(document).on("click", ".finishProject", function (event) {
         event.preventDefault();
@@ -451,5 +458,38 @@ $(document).ready(function () {
     }
 
 
-
+    function loadDevProfile(userId) {
+        console.log("test");
+        var bigData = {
+            developer_name: "",
+            developer_email: "",
+            developer_staus: "",
+            developer_intro: "",
+            developer_techniques: [],
+            completeProjects: [],
+        };
+        $.get(`/pick/user/${userId}`)
+            .then(function (user) {
+                bigData.developer_name = user.first_name;
+                bigData.developer_email = user.email;
+                bigData.developer_staus = user.status;
+                bigData.developer_intro = user.intro;
+                var techString = user.techniques;
+                var techArray = techString.split(";");
+                bigData.developer_techniques = techArray;
+                $.get("/api/project").then(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].status === "Finished" && data[i].final_developer == userId) {
+                            bigData.completeProjects.push(data[i]);
+                        }
+                    }
+                    console.log(bigData);
+                    $.post('/dev-profile',bigData).then(function(){
+                        $.get('/dev-profile-page').then(function(){
+                            window.open('/dev-profile-page','_blank');
+                        })
+                    })
+                });
+            });
+    }
 });
