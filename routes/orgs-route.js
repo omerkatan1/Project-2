@@ -6,9 +6,6 @@ module.exports = function (app) {
         res.json(req.user);
     });
 
-    // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-    // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-    // otherwise send back an error
     app.post("/api/org-signup", function (req, res) {
         db.Org.create({
             name: req.body.name,
@@ -19,7 +16,6 @@ module.exports = function (app) {
         })
             .then(function () {
                 res.status(200).end();
-                //res.redirect(307, "/api/org-login");
             })
             .catch(function (err) {
                 res.status(401).json(err);
@@ -35,12 +31,21 @@ module.exports = function (app) {
     // Route for getting some data about our user to be used client side
     app.get("/api/org_data", function (req, res) {
         if (!req.user) {
-            // The user is not logged in, send back an empty object
             res.json({});
         } else {
-            // Otherwise send back the user's email and id
-            // Sending back a password, even a hashed password, isn't a good idea
             res.json(req.user);
         }
+    });
+
+
+    app.get("/api/userbid/:uid/:pid", function (req, res) {
+        db.UserBid.findOne({
+            where: {
+                project_id: req.params.pid,
+                UserId: req.params.uid
+            }
+        }).then(function (data) {
+            res.json(data);
+        });
     });
 }

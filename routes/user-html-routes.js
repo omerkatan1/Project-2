@@ -44,9 +44,9 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  app.get("/allusers-signup", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/register.html"));
-  });
+  // app.get("/allusers-signup", function(req, res) {
+  //   res.sendFile(path.join(__dirname, "../public/register.html"));
+  // });
 
   app.get("/developer-account", isAuthenticated, function(req, res) {
     res.render("developer");
@@ -58,9 +58,17 @@ module.exports = function(app) {
     //res.sendFile(path.join(__dirname, "../public/org-account.html"));
   });
 
-  app.get("/dev-profile", isAuthenticated, function(req, res) {
-    res.render("dev-profile");
-  })
+  var bigData;
+  app.post("/dev-profile", isAuthenticated, function(req, res) {
+    console.log(req.body);
+    bigData = req.body;
+    res.status(200).end();
+  });
+
+  app.get('/dev-profile-page',function(req,res){
+    res.render("dev-profile",bigData);
+  });
+
 
   app.get("/startup-profile", isAuthenticated, function(req, res) {
     res.render("startup-profile");

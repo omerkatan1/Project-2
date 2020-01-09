@@ -1,7 +1,6 @@
 $(document).ready(function () {
-// get user info object
-//  1. build empty object for values needed to populate user info box
-function getUserInfo() {
+    // get user info object
+    //  1. build empty object for values needed to populate user info box
     var bigData = {
         developer_name: "",
         developer_email: "",
@@ -12,10 +11,10 @@ function getUserInfo() {
     };
     //  2. get user id. api call to /spi/org-data
     $.get("/api/org_data").then(function (data) {
-        bigData.developer_name= data.first_name + ' ' + data.last_name;
-        bigData.developer_email= data.email;
-        bigData.developer_staus= data.status;
-        bigData.developer_intro= data.intro;
+        bigData.developer_name = data.first_name;
+        bigData.developer_email = data.email;
+        bigData.developer_staus = data.status;
+        bigData.developer_intro = data.intro;
         var techString = data.techniques;
         var techArray = techString.split(";");
         bigData.developer_techniques = techArray;
@@ -68,11 +67,9 @@ function getUserInfo() {
             $("#profile-main").html(template(bigData));
         })
     }
-};
-getUserInfo();
-//  4. pass object to template literal (html model) defined as var source
-//  5. handlebars.compile(source) defined as var template
-//  6. element.html(template(pass data object here))
-// get completed project list
-// 
+    //  4. pass object to template literal (html model) defined as var source
+    //  5. handlebars.compile(source) defined as var template
+    //  6. element.html(template(pass data object here))
+    // get completed project list
+    // 
 });

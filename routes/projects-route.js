@@ -136,7 +136,8 @@ module.exports = function (app) {
         .then(function(){
             res.status(200).end();
         })
-    })
+    });
+
 
 
 };
