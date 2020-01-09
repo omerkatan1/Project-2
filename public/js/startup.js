@@ -97,7 +97,8 @@ $(document).ready(function () {
                                 <p>$ {{price}}</p>
                             </div>
                             <div class='d-flex justify-content-center'>
-                                <button data-id='{{id}}' class="btn-grad m-1 justify-content-center">Load Candidates</button>
+                                <button data-id='{{id}}' class="btn-grad m-1 justify-content-center pickCandidate">Load Candidates</button>
+                                <br>
                                 <ul class="list-group" id="candidateList">
                                 </ul>
                             </div>
@@ -141,7 +142,7 @@ $(document).ready(function () {
                             var obj = data[i];
                             obj.projId = projectId;
                             var currList = `<li class="applieddeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}" data-proj="${obj.projId}" data-name="${obj.first_name}"> ${obj.id}. ${obj.first_name} 
-                <button class="pickFinalUser" data-id="${obj.id}" data-proj="${obj.projId}">Pick!!!</button>
+                <button class="pickFinalUser btn-grad" data-id="${obj.id}" data-proj="${obj.projId}">Pick!!!</button>
                 </li>`;
                             $("#candidateList").append(currList);
                         }
