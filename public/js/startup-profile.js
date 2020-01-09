@@ -38,7 +38,7 @@ $(document).ready(function () {
                                 </div>
                             <div class="col-sm-6 box" id="completed-view">
                                 <ul id="completeList">
-                                    {{#each completeProject}}
+                                    {{#each Projects}}
                                     <li class="completeprojects" data-id="{{id}}">
                                         <hi> {{title}} </hi>
                                         <p> {{price}} </p>

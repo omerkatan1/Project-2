@@ -79,9 +79,8 @@ require("./routes/users-route")(router);
 require("./routes/orgs-route")(router);
 require("./routes/projects-route")(router);
 
-db.sequelize.sync().then(function () {
-  server.listen(PORT, function () {
-    //server.listen(PORT);
+db.sequelize.sync().then(function() {
+  server.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
