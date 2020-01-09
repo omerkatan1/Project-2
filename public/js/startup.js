@@ -157,9 +157,11 @@ $(document).ready(function () {
         var userId = $(this).data("id");
         var projId = $(this).data("proj");
         $("#modal_developer_name").html(developer_name);
-        
-        $("#appliedDevModal").modal('show');
-    })
+        $.get(`/api/userbid/${userId}/${projId}`,function(data){
+            $("#modal_bid_content").html(data.bid_content);
+            $("#appliedDevModal").modal();  //modal is not functionning here!!!!
+        });
+    });
 
     $(document).on("click", ".pickFinalUser", function (event) {
         event.stopPropagation();
