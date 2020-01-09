@@ -60,23 +60,23 @@
     </div>
 </div>
 <div class="container-fluid" id="developerContainerMain">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col profile">
-                        <div class="name">
-                            <h1>Hello, {{developer_name}}</h1>
-                        </div>
-                        <p>User Email: {{developer_email}}</p>
-                    <a class="navbar-brand" href="/org-logout">
-                        Logout
-                    </a>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col profile">
+            <div class="name">
+              <h1>Hello, {{developer_name}}</h1>
             </div>
+            <p>User Email: {{developer_email}}</p>
+            <a class="navbar-brand" href="/org-logout">
+              Logout
+            </a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
   <!-- <div class="container-fluid title"> -->
   <!-- <h1 class="ml16">Available Jobs</h1> -->
@@ -127,4 +127,5 @@
   </div>
 </div>
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="/js/developer.js"></script>
