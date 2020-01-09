@@ -63,6 +63,7 @@ body {
 
 .about {
     margin-top: 20.3%;
+    background-color: black;
 }
 
 
@@ -105,6 +106,9 @@ body {
 
 /* Buttons */
 .btn-grad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     margin: auto;
     padding: 10px 50px;
@@ -172,36 +176,31 @@ body {
 
 /* startup dashboard style */
 #profileView {
-    margin: 10% 10% 5% 10%;
+    margin: 5% 10% 2% 10%;
     text-align: center;
-    border: outset 1px rgb(182, 171, 171);
+    border: outset 0px rgb(182, 171, 171);
 }
 
 #projDisp {
     /* margin-left: 40%; */
-    text-align: center;
-    border: outset 1px rgb(182, 171, 171);
-    
+    /* text-align: center; */
+    border-right: 3px dashed #F09819;
+    background: rgba(0,0,0,0.6);
 }
 
 #project-display-section {
     text-align: center;
     height: 400px;
-    padding: 75px;
-    border: outset 1px rgb(182, 171, 171);
+    padding: 20px;
+    border: outset 0px rgb(182, 171, 171);
+    background: rgba(0,0,0,0.6);
+
 }
 
 .btn-proj {
-    color: white;
-    margin: auto;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: 0.5s;
-    background-size: 200% auto;
-    border: 1px solid black;
-    display: block;
-    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    background: transparent;
+    padding: 10px;
+    border: 0 solid black;
 }
 
 #startupContainerMain {
@@ -212,10 +211,10 @@ body {
     width: 200px;
 } */
 
-#startupWindows {
+/* #startupWindows {
     margin: 0 10% 10% 10%;
     text-align: center;
-}
+} */
 
 .developer {
     background-color: transparent;
@@ -223,12 +222,12 @@ body {
 }
 
 .startupFooter {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    /* position: fixed; */
+    /* left: 0;
+    bottom: 0; */
     width: 100%;
     height: 50px;
-    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    background-color: #747474;
     color: white;
     text-align: center;
     padding: 10px;
@@ -390,8 +389,16 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 .icon { 
     padding: 12px; 
     color: #ffbb00; 
-    min-width: 50px; 
+    /* min-width: 50px;  */
     text-align: left; 
+} 
+
+.iconB { 
+    padding: 12px; 
+    font-size: 20px;
+    color: #ffbb00; 
+    /* min-width: 50px;  */
+    text-align: center; 
 } 
   
 .input-field { 
@@ -473,9 +480,9 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     /* width: auto; */
 }
 
-.col-form-label {
+/* .col-form-label {
     text-align: center !important;
-}
+} */
 
 .start {
     margin-top: 5%;
@@ -483,4 +490,35 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 
 .profile {
     text-align: center;
+}
+
+li.project, li.activeproject, li.completeList {
+    list-style-type: none;
+    position: relative;
+    padding-left: 15px;
+}
+  
+li.project:before, li.activeproject:before, li.completeList:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0a9";
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    /* top: 50%; */
+    color: #ffbb00; 
+    left: -10px;
+}
+
+.bold {
+    color: #ffbb00;
+    font-weight: bold;
+    display: inline;
+}
+
+.info {
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+.cursive {
+    font-family: 'Pacifico', cursive;
 }
