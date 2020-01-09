@@ -1,9 +1,9 @@
 #user-image {
-    border-radius: 80%;
     text-align: center;
-    border: outset 1px rgb(160, 159, 159);
     margin-top: 5%;
     margin-bottom: 1%;
+    background-color: transparent;
+
 }
 
 #avatar {

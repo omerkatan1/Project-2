@@ -56,9 +56,9 @@
                 <p>User Bio: {{developer_intro}}</p>
                 <p>User Tech:</p>
                 <ul>
-                    {{#each technique}}
+                    {{#each developer_technique}}
                     <li>
-                        <p>{{title}}</p>
+                        <p>{{this}}</p>
                     </li>
                     {{/each}}
                 </ul>
@@ -77,6 +77,8 @@
             </div>
         </div>
     </div>
+    <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+    <script src="/js/dev-profile.js"></script>
 </body>
 
 </html>
