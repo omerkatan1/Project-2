@@ -1,41 +1,85 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
-  <div class="container navcont">
-    <a class="navbar-brand p-0" href="/" id="logo">
-      SQWASH
-    </a>
-    <div class="collapse navbar-collapse" id="navbarToggler">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item pr-4">
-          <a class="nav-link" href="/user-logout">
-            Logout
-          </a></a>
-        </li>
-      </ul>
-    </div>
-  </div>
+        <div class="container navcont">
+            <a class="navbar-brand p-0" href="/" id="logo">
+                SQWASH
+            </a>
+            <div class="collapse navbar-collapse" id="navbarStartup">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item pr-4">
+                        <a class="nav-link" href="/org-logout">Logout</a>
+                    </li>
+                   <li class="nav-item pr-4">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+                </li>
+                </ul>
+            </div>
+        </div>
 </nav>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form class="login">
 
-<div class="container-fluid">
+                    <div class="register-switch row col-sm-10">
+                        <input type="radio" name="user" value="dev" id="user-dev" class="register-switch-input" checked>
+                        <label for="user-dev" class="register-switch-label">Developer</label>
+                        <input type="radio" name="user" value="start" id="user-start" class="register-switch-input">
+                        <label for="user-start" class="register-switch-label">Start-up</label>
+                    </div>
 
-  <div class="container-fluid" id="developerContainerMain">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col profile">
-              <div class="name">
-                <h1>Hello, {{developer_name}}</h1>
-              </div>
-              <p>User Email: {{developer_email}}</p>
-              <a class="navbar-brand" href="/org-logout">
-                Logout
-              </a>
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-at icon"></i>
+                            <input type="user" class="form-control input-field validate" id="user-input"
+                                placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <div class="col-sm-10 input-icons p-0">
+                            <i class="fas fa-key icon"></i>
+                            <input type="password" class="form-control input-field validate" id="pass-input"
+                                placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn-grad">Login</button>
+                    </div>
+                </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+</div>
+<div class="container-fluid" id="developerContainerMain">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col profile">
+            <div class="name">
+              <h1>Hello, {{developer_name}}</h1>
+            </div>
+            <p>User Email: {{developer_email}}</p>
+            <a class="navbar-brand" href="/org-logout">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- <div class="container-fluid title"> -->
     <!-- <h1 class="ml16">Available Jobs</h1> -->
@@ -88,5 +132,12 @@
   <div class="startupFooter">
     © Sqwash 2020
   </div>
+<<<<<<< HEAD
   <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
   <script src="/js/developer.js"></script>
+=======
+</div>
+<script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/developer.js"></script>
+>>>>>>> cc19d3396ad7e78d854597b3eb14169b62a1156f

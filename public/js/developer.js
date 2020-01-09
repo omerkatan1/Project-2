@@ -1,18 +1,21 @@
 $(document).ready(function () {
     $(document).on("click", "#active", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#findList").hide();
         $("#completeList").hide();
         $("#activeList").show();
     })
     $(document).on("click", "#find", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#findList").show();
         $("#completeList").hide();
         $("#activeList").hide();
     })
     $(document).on("click", "#complete", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#findList").hide();
         $("#completeList").show();
         $("#activeList").hide();
@@ -58,10 +61,9 @@ $(document).ready(function () {
         projView.empty();
 
         $.get("/pick/" + projId).then(function (project) {
-            if (project.status==="Hiring"){
+            if (project.status === "Hiring") {
                 project.start = true;
-            }
-            var source = `
+                var source = `
                         <div class='project-content mt-3'>
                         <div class='project-title'>
                             <p class='bold'>TITLE</p>
@@ -76,10 +78,99 @@ $(document).ready(function () {
                             <p>$ {{price}}</p>
                         </div>
                         <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
-            var template = Handlebars.compile(source);
-            projView.html(template(project));
+                var template = Handlebars.compile(source);
+                projView.html(template(project));
+            } else {
+                project.start = false;
+                var source = `<div class='sticky-top' style='background: white;'>
+                <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
+                <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>
+            </div>
+            <div class='project-content mt-3'>
+                <div class='project-title'>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                </div>
+                <div class='project-description'>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
+                    <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                </div>
+                <div class='project-price'>
+                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
+                    <p>{{price}}</p>
+                </div>
+                <div class="row">
+                <div id="msglog">
+                </div>
+                <textarea name="message" id="messageInput"></textarea>
+                <br />
+                Press Enter to Send!
+                </div>
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
+                var template = Handlebars.compile(source);
+                projView.html(template(project));
+                loadSocket(projId);
+            }
         });
     });
+
+   
+    function loadSocket(projId) {
+        var socket = io();
+        //var socket = io();
+        // join
+        socket.on('connect', function () {
+            socket.emit('join', currId, projId, currDevName);
+        });
+        // send
+        socket.on('msg', function (userName, msg, time) {
+            var message = '' +
+                '<div class="message">' +
+                '  <span class="user">' + userName + ': </span>' +
+                '  <span class="msg">' + msg + '</span>' +
+                '</div>' +
+                '<div class="sysMsg">' + time + '</div>';
+            $('#msglog').append(message);
+            $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+        });
+
+        //load previous history
+
+        socket.on('history', function (history) {
+            console.log(history);
+            for (var i = 0; i < history.length; i++) {
+                var message = '' +
+                    '<div class="message">' +
+                    '  <span class="user">' + history[i].userName + ': </span>' +
+                    '  <span class="msg">' + history[i].message + '</span>' +
+                    '</div>' +
+                    '<div class="sysMsg">' + history[i].time + '</div>';
+                $('#msglog').append(message);
+                $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+            }
+        })
+
+        // listen
+        socket.on('sys', function (sysMsg) {
+            var message = '<div class="sysMsg">' + sysMsg + '</div>';
+            $('#msglog').append(message);
+
+        });
+
+        // message
+        $('#messageInput').keydown(function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var msg = $(this).val();
+                $(this).val('');
+
+                socket.send(msg);
+            }
+        });
+    }
+
+
 
 
     $(document).on("click", ".completeproject", function (event) {
@@ -112,6 +203,7 @@ $(document).ready(function () {
     loadUserNProject();
     var currStatus;
     var currId;
+    var currDevName;
     function loadUserNProject() {
         var bigData = {
             developer_name: "",
@@ -124,6 +216,7 @@ $(document).ready(function () {
             // $(".user-name").text(data.first_name + " " + data.last_name === null ? "" : data.last_name);
             // $(".user-email").text(data.email);
             // $(".user-bio").text(data.intro);
+            currDevName = data.first_name;
             bigData.developer_name = data.first_name;
             bigData.developer_email = data.email;
             currStatus = data.status;
