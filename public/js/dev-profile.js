@@ -4,6 +4,7 @@ $(document).ready(function () {
 function getUserInfo() {
     var bigData = {
         developer_name: "",
+        developer_email: "",
         developer_staus: "",
         developer_intro: "",
         developer_techniques: [],
@@ -12,6 +13,7 @@ function getUserInfo() {
     //  2. get user id. api call to /spi/org-data
     $.get("/api/org_data").then(function (data) {
         bigData.developer_name= data.first_name + ' ' + data.last_name;
+        bigData.developer_email= data.email;
         bigData.developer_staus= data.status;
         bigData.developer_intro= data.intro;
         var techString = data.techniques;
@@ -37,6 +39,7 @@ function getUserInfo() {
                         <div class="row justify-content-around" id="user-view">
                             <div class="col-sm-6 box">
                                 <p>User Name: {{developer_name}}</p>
+                                <p>User Email: {{developer_email}}</p>
                                 <p>Available for hire? {{developer_status}}</p>
                                 <p>User Rating</p>
                                 <p>User Bio: {{developer_intro}}</p>

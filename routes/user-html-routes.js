@@ -61,4 +61,8 @@ module.exports = function(app) {
   app.get("/dev-profile", isAuthenticated, function(req, res) {
     res.render("dev-profile");
   })
+
+  app.get("/startup-profile", isAuthenticated, function(req, res) {
+    res.render("startup-profile");
+  })
 };
