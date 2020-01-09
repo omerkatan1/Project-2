@@ -1,21 +1,28 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top mx-auto">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top mx-auto">
         <div class="container navcont">
             <a class="navbar-brand p-0" href="/" id="logo">
                 SQWASH
             </a>
-            <div class="collapse navbar-collapse" id="navbarStartup">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item pr-4">
-                        <a class="nav-link" href="/org-logout">Logout</a>
+                        <a class="nav-link" href="/dev-profile-page">Profile</a>
                     </li>
-                   <li class="nav-item pr-4">
-                    <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
-                </li>
+                    <li class="nav-item pr-4">
+                        <a href="/developer-account" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item pr-4">
+                        <a href="/org-logout" class="nav-link ">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>
-</nav>
+    </nav>
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">

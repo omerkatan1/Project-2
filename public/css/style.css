@@ -206,7 +206,19 @@ body {
 #startupContainerMain {
     margin-bottom: -50px;
 }
+/* LILY these are the styles for the candidate list */
+#candidateList {
+    color: white;
+    background-color: transparent;
+}
 
+.applieddeveloper {
+    background-color: transparent;
+}
+
+.pickFinalUser {
+    margin-left: 40px;
+}
 /* .input-mysize {
     width: 200px;
 } */
