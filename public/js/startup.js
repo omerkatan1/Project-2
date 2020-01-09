@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $(document).on("click", "#active", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#requestProject").hide();
         $("#findList").hide();
         $("#completeList").hide();
@@ -8,6 +9,7 @@ $(document).ready(function () {
     })
     $(document).on("click", "#find", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#requestProject").show();
         $("#findList").show();
         $("#completeList").hide();
@@ -15,6 +17,7 @@ $(document).ready(function () {
     })
     $(document).on("click", "#complete", function (event) {
         event.preventDefault();
+        $("#project-display-section").html("");
         $("#requestProject").hide();
         $("#findList").hide();
         $("#completeList").show();
@@ -98,6 +101,27 @@ $(document).ready(function () {
                             <ul class="list-group" id="candidateList">
                             </ul>
                             </div>
+                            <!--Modal-->
+                            <div class="modal fade" id="appliedDevModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal_developer_name"></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Developer's Qualifications:</h3>
+                                    <p id="modal_bid_content"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button href="#" type="button" class="btn btn-primary">Profile Page</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
@@ -116,10 +140,10 @@ $(document).ready(function () {
                         if (devList.includes(data[i].id.toString()) && !data[i].status) {
                             var obj = data[i];
                             obj.projId = projectId;
-                            var currList = `<li class="developer list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}"> ${obj.id}. ${obj.first_name} 
+                            var currList = `<li class="applieddeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}" data-proj="${obj.projId}" data-name="${obj.first_name}"> ${obj.id}. ${obj.first_name} 
                 <button class="pickFinalUser" data-id="${obj.id}" data-proj="${obj.projId}">Pick!!!</button>
                 </li>`;
-                $("#candidateList").append(currList);
+                            $("#candidateList").append(currList);
                         }
                     }
                 }
@@ -127,7 +151,18 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click",".applieddeveloper",function (event){
+        event.preventDefault();
+        var developer_name = $(this).data("name");
+        var userId = $(this).data("id");
+        var projId = $(this).data("proj");
+        $("#modal_developer_name").html(developer_name);
+        
+        $("#appliedDevModal").modal('show');
+    })
+
     $(document).on("click", ".pickFinalUser", function (event) {
+        event.stopPropagation();
         event.preventDefault();
         var userId = $(this).data("id");
         var projId = $(this).data("proj");
@@ -144,7 +179,7 @@ $(document).ready(function () {
                 //     method: "PUT",
                 //     url: `/recovers/${projId}/${userId}`
                 // }).then(function () {
-                    
+
                 // })
             })
         })
@@ -186,12 +221,76 @@ $(document).ready(function () {
                                 <textarea type='text' class='form-control' id='startup-comment'
                                     placeholder='How do you think about this developer's work on this project?'></textarea>
                             </div>
+                            <div class="row">
+                            <div id="msglog">
+                            </div>
+                            <textarea name="message" id="messageInput"></textarea>
+                            <br />
+                            Press Enter to Send!
+                            </div>
                             <button type='submit' class='finishProject' data-id='{{id}}' data-uid="{{final_developer}}">Finish!!!</button>
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
+            loadSocket(projId);
         });
     });
+
+    function loadSocket(projId) {
+        var socket = io();
+        // join
+        socket.on('connect', function () {
+            socket.emit('join', start_up_id, projId, start_up_name);
+        });
+        // send
+        socket.on('msg', function (userName, msg, time) {
+            var message = '' +
+                '<div class="message">' +
+                '  <span class="user">' + userName + ': </span>' +
+                '  <span class="msg">' + msg + '</span>' +
+                '</div>' +
+                '<div class="sysMsg">' + time + '</div>';
+            $('#msglog').append(message);
+            $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+        });
+
+        //load previous history
+
+        socket.on('history', function (history) {
+            console.log(history);
+            for (var i = 0; i < history.length; i++) {
+                var message = '' +
+                    '<div class="message">' +
+                    '  <span class="user">' + history[i].userName + ': </span>' +
+                    '  <span class="msg">' + history[i].message + '</span>' +
+                    '</div>' +
+                    '<div class="sysMsg">' + history[i].time + '</div>';
+                $('#msglog').append(message);
+                $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
+            }
+        })
+
+        // listen
+        socket.on('sys', function (sysMsg) {
+            var message = '<div class="sysMsg">' + sysMsg + '</div>';
+            $('#msglog').append(message);
+
+        });
+
+        // message
+        $('#messageInput').keydown(function (e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                var msg = $(this).val();
+                $(this).val('');
+
+                socket.send(msg);
+            }
+        });
+    }
+
+
+
 
     $(document).on("click", ".viewFinalCandidate", function (event) {
         event.preventDefault();
@@ -200,7 +299,7 @@ $(document).ready(function () {
         var developerId = $(this).data("uid");
         $.get(`/pick/user/${developerId}`).then(function (data) {
             var currList =
-                `<li class="developer list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
+                `<li class="finaldeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
             $(".finalCandidateList").append(currList);
         });
     });
@@ -258,6 +357,8 @@ $(document).ready(function () {
     });
 
     loadStartupNProject();
+    var start_up_name;
+    var start_up_id;
     function loadStartupNProject() {
         var bigData = {
             startup_name: "",
@@ -268,6 +369,8 @@ $(document).ready(function () {
             completeProject: [],
         };
         $.get("/api/org_data").then(function (data) {
+            start_up_name = data.name;
+            start_up_id = data.id;
             bigData.startup_name = data.name;
             bigData.startup_email = data.email;
             bigData.startup_intro = data.intro;
