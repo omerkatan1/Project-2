@@ -9,3 +9,8 @@
 #avatar {
     height: 400px;
 }
+
+#user-view {
+    overflow: scroll;
+    height: 600px;
+}

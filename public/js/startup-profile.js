@@ -1,0 +1,74 @@
+$(document).ready(function () {
+    // get user info object
+    //  1. build empty object for values needed to populate user info box
+    function getUserInfo() {
+        var bigData = {
+            startup_name: "",
+            startup_intro: "",
+            startup_techniques: [],
+            Projects: [],
+        };
+        //  2. get user id. api call to /spi/org-data
+        $.get("/api/org_data").then(function (data) {
+            bigData.startup_name= data.first_name + ' ' + data.last_name;
+            bigData.startup_staus= data.status;
+            bigData.start_intro= data.intro;
+            var techString = data.techniques;
+            var techArray = techString.split(";");
+            bigData.developer_techniques = techArray;
+            console.log(bigData.developer_techniques);
+            loadCompleteProjects();
+        });
+        function loadCompleteProjects() {
+            $.get("/api/project").then(function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].status === "Finish") {
+                        completeProjects.push(data[i]);
+                    }
+                }
+                console.log(bigData);
+                var source = `<div class="row justify-content-center">
+                                <div class="col-sm-4 box" id="user-image">
+                                    <img src="img/sqwashAvater.jpg" alt="profile-image" id="avatar">
+                                </div>
+                            </div>
+                            <div class="row justify-content-around">
+                                <div class="col-sm-6 box" id="user-view">
+                                    <p>User Name: {{developer_name}}</p>
+                                    <p>Available for hire? {{developer_status}}</p>
+                                    <p>User Rating</p>
+                                    <p>User Bio: {{developer_intro}}</p>
+                                    <p>User Tech:</p>
+                                    <ul>
+                                        {{#each developer_technique}}
+                                        <li>
+                                            <p>{{this}}</p>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6 box" id="completed-view">
+                                    <ul id="completeList">
+                                        {{#each completeProject}}
+                                        <li class="completeproject" data-id="{{id}}">
+                                            <hi> {{title}} </hi>
+                                            <p> {{price}} </p>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>`;
+    
+                var template = Handlebars.compile(source);
+                $("#profile-main").html(template(bigData));
+            })
+        }
+    };
+    getUserInfo();
+    //  4. pass object to template literal (html model) defined as var source
+    //  5. handlebars.compile(source) defined as var template
+    //  6. element.html(template(pass data object here))
+    // get completed project list
+    // 
+    });

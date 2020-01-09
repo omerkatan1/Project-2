@@ -22,9 +22,10 @@ function getUserInfo() {
     });
     function loadCompleteProjects() {
         $.get("/api/project").then(function (data) {
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
-                if (data[i].status === "Finish") {
-                    completeProjects.push(data[i]);
+                if (data[i].status === "Finished") {
+                    bigData.completeProjects.push(data[i]);
                 }
             }
             console.log(bigData);
@@ -41,7 +42,7 @@ function getUserInfo() {
                                 <p>User Bio: {{developer_intro}}</p>
                                 <p>User Tech:</p>
                                 <ul>
-                                    {{#each developer_technique}}
+                                    {{#each developer_techniques}}
                                     <li>
                                         <p>{{this}}</p>
                                     </li>
@@ -50,7 +51,7 @@ function getUserInfo() {
                             </div>
                             <div class="col-sm-6 box" id="completed-view">
                                 <ul id="completeList">
-                                    {{#each completeProject}}
+                                    {{#each completeProjects}}
                                     <li class="completeproject" data-id="{{id}}">
                                         <hi> {{title}} </hi>
                                         <p> {{price}} </p>
