@@ -1,0 +1,16 @@
+#user-image {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    background-color: transparent;
+
+}
+
+#avatar {
+    height: 400px;
+}
+
+#user-view {
+    overflow: scroll;
+    height: 600px;
+}
