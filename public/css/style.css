@@ -63,6 +63,7 @@ body {
 
 .about {
     margin-top: 20.3%;
+    background-color: black;
 }
 
 
@@ -105,6 +106,9 @@ body {
 
 /* Buttons */
 .btn-grad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     margin: auto;
     padding: 10px 50px;
@@ -172,7 +176,7 @@ body {
 
 /* startup dashboard style */
 #profileView {
-    margin: 10% 10% 5% 10%;
+    margin: 5% 10% 2% 10%;
     text-align: center;
     border: outset 0px rgb(182, 171, 171);
 }
@@ -185,7 +189,7 @@ body {
 }
 
 #project-display-section {
-    /* text-align: center; */
+    text-align: center;
     height: 400px;
     padding: 20px;
     border: outset 0px rgb(182, 171, 171);
@@ -219,11 +223,11 @@ body {
 
 .startupFooter {
     /* position: fixed; */
-    left: 0;
-    bottom: 0;
+    /* left: 0;
+    bottom: 0; */
     width: 100%;
     height: 50px;
-    background-image: linear-gradient(to right, #F09819 0%, #EDDE5D 51%, #F09819 100%);
+    background-color: #747474;
     color: white;
     text-align: center;
     padding: 10px;
@@ -492,9 +496,9 @@ li.project, li.activeproject, li.completeList {
     list-style-type: none;
     position: relative;
     padding-left: 15px;
-  }
+}
   
-  li.project:before, li.activeproject:before, li.completeList:before {
+li.project:before, li.activeproject:before, li.completeList:before {
     font-family: "Font Awesome 5 Free";
     content: "\f0a9";
     font-weight: 900;
@@ -503,4 +507,18 @@ li.project, li.activeproject, li.completeList {
     /* top: 50%; */
     color: #ffbb00; 
     left: -10px;
-  }
+}
+
+.bold {
+    color: #ffbb00;
+    font-weight: bold;
+    display: inline;
+}
+
+.info {
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+.cursive {
+    font-family: 'Pacifico', cursive;
+}

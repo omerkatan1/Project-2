@@ -81,21 +81,22 @@ $(document).ready(function () {
             console.log(project);
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h3 class='col-sm-12 my-0 p-1'>Project Title:</h3>
-                                <p class='col-sm-12 my-0 p-1'>{{title}}</p>
+                            <h3 class='info mb-3'>Project Information</h3>
+                                <p class='bold'>TITLE</p>
+                                <p>{{title}}</p>
                             </div>
                             <div class='project-description'>
-                                <h3 class='col-sm-12 my-0 p-1'>Project Description:</h3>
-                                <p class='col-sm-12 my-0 p-1'>{{description}}</p>
+                                <p class='bold'>DESCRIPTION</p>
+                                <p>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h3 class='col-sm-12 my-0 p-1'>Project Budget:</h3>
-                                <p class='col-sm-12 my-0 p-1'>$ {{price}}</p>
+                                <p class='bold'>BUDGET</p>
+                                <p>$ {{price}}</p>
                             </div>
-                            <div>
-                            <button data-id='{{id}}' class="btn-grad m-1 justify-content-left">Load Candidates</button>
-                            <ul class="list-group" id="candidateList">
-                            </ul>
+                            <div class='d-flex justify-content-center'>
+                                <button data-id='{{id}}' class="btn-grad m-1 justify-content-center">Load Candidates</button>
+                                <ul class="list-group" id="candidateList">
+                                </ul>
                             </div>
                         </div>`;
             var template = Handlebars.compile(source);
@@ -288,11 +289,11 @@ $(document).ready(function () {
                 var source = `<div class="row">
                                 <div class="col profile" id="profileView">
                                     <div class="name">
-                                    <h1>Hello.</h1>
+                                    <h1 class="cursive">Hello.</h1>
                                 <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{startup_name}}</p>
                                     </div>
-                                    <p><i class="fas fa-at icon"></i>{{startup_email}}</p>
-                                    <p>{{startup_intro}}</p>
+                                    <p class="p-0 m-0"><i class="fas fa-at icon"></i>{{startup_email}}</p>
+                                    <p class="p-0 m-0"><i class="fas fa-quote-left icon"></i> {{startup_intro}} <i class="fas fa-quote-right icon"></i></p>
                                     
                                 </div>
                             </div>
@@ -303,7 +304,7 @@ $(document).ready(function () {
                                                 <button type="button" class="btn-proj" id="active" data-toggle="tooltip" data-placement="top" title="Projects in Progress"><i class="fas fa-spinner iconB"></i></button>
                                                 <button type="button" class="btn-proj" id="complete" data-toggle="tooltip" data-placement="top" title="Completed Projects"><i class="fas fa-check iconB"></i></button>
                                             </div>
-                                            <div class="col-sm-12" id="projView">
+                                            <div class="col-sm-12 overflow-auto" id="projView">
                                                 <ul id="findList">
                                                     {{#each project}}
                                                     <li class="project" data-id="{{id}}">
@@ -334,9 +335,7 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="startupFooter">
-                                <p>© Sqwash 2020</p>
-                            </div>`;
+                            `;
                 var template = Handlebars.compile(source);
                 $(".container-fluid").html(template(bigData));
             });
