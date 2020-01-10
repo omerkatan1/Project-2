@@ -58,7 +58,7 @@ $(document).ready(function () {
         var title = $("#title-input").val().trim();
         var description = $("#description-input").val().trim();
         var price = $("#price-input").val().trim();
-        var OrgId = $(this).data("id");
+        var OrgId = start_up_id;
         var newProject = {
             title: title,
             description: description,
@@ -338,24 +338,7 @@ $(document).ready(function () {
     });
 
 
-    $(document).on("click", ".finishProject", function (event) {
-        event.preventDefault();
-        var projId = $(this).data("id");
-        var userId = $(this).data("uid");
-        $.ajax({
-            method: "PUT",
-            url: `/finishedproject/${projId}`,
-        }).then(function () {
-            if (userId !== -1) {
-                $.ajax({
-                    method: "PUT",
-                    url: `/update/user/${userId}/1`,
-                }).then(function () {
-                    location.reload();
-                })
-            } else location.reload();
-        })
-    });
+    
 
 
     $(document).on("click", ".completeproject", function (event) {
@@ -414,11 +397,11 @@ $(document).ready(function () {
         function loadAllProj() {
             $.get("/api/project").then(function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].status === "Hiring") {
+                    if (data[i].status === "Hiring" && data[i].OrgId === start_up_id) {
                         bigData.project.push(data[i]);
-                    } else if (data[i].status === "Proccessing") {
+                    } else if (data[i].status === "Proccessing" && data[i].OrgId === start_up_id) {
                         bigData.activeProject.push(data[i]);
-                    } else {
+                    } else if (data[i].status === "Finished" && data[i].OrgId === start_up_id){
                         bigData.completeProject.push(data[i]);
                     }
                 }
