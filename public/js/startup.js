@@ -239,7 +239,7 @@ $(document).ready(function () {
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title bold" id="modal_developer_name"></h5>
+                                    <h5 class="modal-title bold" id="modal_developer_name">Rating & Comment</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
