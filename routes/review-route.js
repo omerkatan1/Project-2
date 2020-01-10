@@ -10,7 +10,7 @@ module.exports = function (app) {
 
     app.post("/api/rating", function (req, res) {
         db.reviews.create({
-            avgRating: req.body.newRating
+            rating: req.body.newRating
         }).then(function() {
             console.log('test');
         })
