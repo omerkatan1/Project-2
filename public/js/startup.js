@@ -98,10 +98,11 @@ $(document).ready(function () {
                             </div>
                             <div class='d-flex justify-content-center'>
                                 <button data-id='{{id}}' class="btn-grad m-1 justify-content-center pickCandidate">Load Candidates</button>
-                                <br>
-                                <ul class="list-group" id="candidateList">
-                                </ul>
                             </div>
+                            <div>
+                            <ul class="list-group" id="candidateList">
+                                </ul>
+                                </div>
                             <!--Modal-->
                             <div class="modal fade" id="appliedDevModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,7 +143,7 @@ $(document).ready(function () {
                             var obj = data[i];
                             obj.projId = projectId;
                             var currList = `<li class="applieddeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}" data-proj="${obj.projId}" data-name="${obj.first_name}"> ${obj.id}. ${obj.first_name} 
-                <button class="pickFinalUser btn-grad" data-id="${obj.id}" data-proj="${obj.projId}">Pick!!!</button>
+                <button class="pickFinalUser btn-grad" data-id="${obj.id}" data-proj="${obj.projId}">Choose Candidate</button>
                 </li>`;
                             $("#candidateList").append(currList);
                         }
@@ -195,43 +196,42 @@ $(document).ready(function () {
         projView.empty();
 
         $.get("/pick/" + projId).then(function (project) {
-            var source = `<div class='sticky-top' style='background: white;'>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
-                            <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
-                            <button type='submit' class='finishProject' data-id='{{id}}' data-uid="{{final_developer}}">Finish!!!</button>
-                        </div>
+            var source = `
                         <div class='project-content mt-3'>
-                            <div class='project-title'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
-                            </div>
-                            <div class='project-description'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                                <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
-                            </div>
-                            <div class='project-price'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
-                                <p>{{price}}</p>
+                        <div class='project-title'>
+                        <h3 class='info mb-3'>Project Information</h3>
+                            <p class='bold'>TITLE</p>
+                            <p>{{title}}</p>
+                        </div>
+                        <div class='project-description'>
+                            <p class='bold'>DESCRIPTION</p>
+                            <p>{{description}}</p>
+                        </div>
+                        <div class='project-price'>
+                            <p class='bold'>BUDGET</p>
+                            <p>$ {{price}}</p>
+                        </div>
                             </div>
                             <div>
-                            <button data-id='{{id}}' data-uid="{{final_developer}}" class="viewFinalCandidate"> View Final Candidate</button>
+                            <button data-id='{{id}}' data-uid="{{final_developer}}" class="btn-grad viewFinalCandidate"> View Final Candidate</button>
                             <ul class="list-group finalCandidateList">
 
                             </ul>
                             </div>
-                            <div class='form-group'>
-                                <label for='exampleInputEmail1'>Coment:</label>
+                            <div class='form-group mt-3'>
+                                <label for='exampleInputEmail1' class='bold'>Comment</label>
                                 <textarea type='text' class='form-control' id='startup-comment'
-                                    placeholder='How do you think about this developer's work on this project?'></textarea>
+                                    placeholder='What do you think about this developer's work on this project?'></textarea>
                             </div>
                             <div class="row">
-                            <div id="msglog">
+                                <div class ="col-sm-3 m-1" id="msglog">
+                                </div>
+                                <textarea name="message" class="p-1 col-sm-7" id="messageInput"></textarea>
                             </div>
-                            <textarea name="message" id="messageInput"></textarea>
-                            <br />
-                            Press Enter to Send!
+                            <div>
+                                Press Enter to Send!
                             </div>
-                            <button type='submit' class='finishProject' data-id='{{id}}' data-uid="{{final_developer}}">Finish!!!</button>
+                            <button type='submit' class='finishProject btn-grad' data-id='{{id}}' data-uid="{{final_developer}}">Finish</button>
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
@@ -302,7 +302,7 @@ $(document).ready(function () {
         var developerId = $(this).data("uid");
         $.get(`/pick/user/${developerId}`).then(function (data) {
             var currList =
-                `<li class="finaldeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
+                `<li class="finaldeveloper" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
             $(".finalCandidateList").append(currList);
         });
     });
@@ -344,19 +344,20 @@ $(document).ready(function () {
         $.get("/pick/" + projId).then(function (project) {
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
+                            <h3 class='info mb-3'>Project Information</h3>
+                                <p class='bold'>TITLE</p>
+                                <p>{{title}}</p>
                             </div>
                             <div class='project-description'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                                <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
+                                <p class='bold'>DESCRIPTION</p>
+                                <p>{{description}}</p>
                             </div>
                             <div class='project-price'>
-                                <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
-                                <p>{{price}}</p>
+                                <p class='bold'>BUDGET</p>
+                                <p>$ {{price}}</p>
                             </div>
                             <div>
-                            <button data-id='{{id}}' data-uid="{{final_developer}}" class="viewFinalCandidate"> View Final Candidate</button>
+                            <button data-id='{{id}}' data-uid="{{final_developer}}" class="btn-grad viewFinalCandidate"> View Final Candidate</button>
                             <ul class="list-group finalCandidateList">
                             </ul>
                             </div>`;
@@ -402,7 +403,7 @@ $(document).ready(function () {
                 var source = `<div class="row">
                                 <div class="col profile" id="profileView">
                                     <div class="name">
-                                    <h1 class="cursive">Hello.</h1>
+                                    <h1 class="cursive mt-2">Hello.</h1>
                                 <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{startup_name}}</p>
                                     </div>
                                     <p class="p-0 m-0"><i class="fas fa-at icon"></i>{{startup_email}}</p>

@@ -32,14 +32,15 @@
                         bigData.completeProjects.push(data[i]);
                     }
                 }
-                console.log(bigData);
-                var source = `<div class="row justify-content-center">
-                            <div class="col-sm-4 box" id="user-image">
+            
+            console.log(bigData);
+            var source = `<div class="row justify-content-center">
+                            <div class="col-sm-4" id="user-image">
                                 <img src="img/sqwashAvater.jpg" alt="profile-image" id="avatar">
                             </div>
                         </div>
                         <div class="row justify-content-around" id="user-view">
-                            <div class="col-sm-6 box">
+                            <div class="col-sm-6">
                                 <p>User Name: {{developer_name}}</p>
                                 <p>User Email: {{developer_email}}</p>
                                 <p>Available for hire? {{developer_status}}</p>
@@ -54,7 +55,7 @@
                                     {{/each}}
                                 </ul>
                             </div>
-                            <div class="col-sm-6 box" id="completed-view">
+                            <div class="col-sm-6" id="completed-view">
                                 <ul id="completeList">
                                     {{#each completeProjects}}
                                     <li class="completeproject" data-id="{{id}}">

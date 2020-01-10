@@ -3,10 +3,10 @@ html, body {
 }
 
 body {
-    background-image: url("../img/background.jpg");
+    background-image: url("../img/background.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     background-blend-mode: multiply;
     color: white;
     font-family: 'Quicksand', sans-serif;
@@ -504,13 +504,13 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     text-align: center;
 }
 
-li.project, li.activeproject, li.completeList {
+li.project, li.activeproject, li.completeproject, li.applieddeveloper, li.finaldeveloper {
     list-style-type: none;
     position: relative;
     padding-left: 15px;
 }
   
-li.project:before, li.activeproject:before, li.completeList:before {
+li.project:before, li.activeproject:before, li.completeproject:before, li.applieddeveloper:before, li.finaldeveloper:before {
     font-family: "Font Awesome 5 Free";
     content: "\f0a9";
     font-weight: 900;
@@ -533,4 +533,16 @@ li.project:before, li.activeproject:before, li.completeList:before {
 
 .cursive {
     font-family: 'Pacifico', cursive;
+}
+
+.logo {
+    height: 50px;
+}
+
+#avatar {
+    height: 200px;
+}
+
+.list-group {
+    flex-direction: none;
 }
