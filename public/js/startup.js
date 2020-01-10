@@ -225,13 +225,14 @@ $(document).ready(function () {
 
                             </ul>
                             </div>
-                            <div class="row">
-                                <div class ="col-sm-3 m-1" id="msglog">
+                            <h3 class="bold">CHAT NOW</h3>
+                <div class="container-fluid justify-content-center">
+                                <div class ="chatBox col" id="msglog">
                                 </div>
-                                <textarea name="message" class="p-1 col-sm-7" id="messageInput"></textarea>
-                            </div>
+                                <textarea name="message" class="col p-1" id="messageInput" placeholder="Enter chat content here"></textarea>
                             <div>
                                 Press Enter to Send!
+                            </div>
                             </div>
                             <button type='submit' class='finishingProject btn-grad' data-id='{{id}}' data-uid="{{final_developer}}" data-toggle="modal" data-target="#ratingModal">Finish</button>
                             <!--Modal-->
@@ -272,11 +273,10 @@ $(document).ready(function () {
         // send
         socket.on('msg', function (userName, msg, time) {
             var message = '' +
-                '<div class="message">' +
-                '  <span class="user">' + userName + ': </span>' +
-                '  <span class="msg">' + msg + '</span>' +
-                '</div>' +
-                '<div class="sysMsg">' + time + '</div>';
+            '<div class="message">' +
+            '  <span class="user bold">' + userName + ' </span>' + '<span class="sysMsg">' + time + '</span>' + '<br>' +
+            '<span class="msg">' + msg + '</span>' +
+            '</div>';
             $('#msglog').append(message);
             $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
         });
@@ -468,7 +468,7 @@ $(document).ready(function () {
                                                 </ul>
                                             </div>
                                     </div>
-                                    <div class="col-sm-9" id="project-display-section">
+                                    <div class="p-2 col-sm-9 overflow-auto" id="project-display-section">
                                     </div>
                                 </div>
                             </div>
