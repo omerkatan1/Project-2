@@ -256,7 +256,7 @@ $(document).ready(function () {
                             <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{developer_name}}</p>
                                 </div>
                                 <p class="p-0 m-0"><i class="fas fa-at icon"></i>{{developer_email}}</p>
-                                <p class="p-0 m-0"><i class="fas fa-quote-left icon"></i> {{developer_intro}} <i class="fas fa-quote-right icon"></i></p>
+                                <p class="p-0 m-0"><i class="fas fa-quote-left icon"></i>{{developer_intro}} <i class="fas fa-quote-right icon"></i></p>
                                 </div>
                             </div>
                             <div class="row" id="startupWindows">
