@@ -118,7 +118,7 @@ $(document).ready(function () {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button href="#" type="button" class="btn btn-primary">Profile Page</button>
+                                    <button href="#" type="button" class="btn btn-primary" id = "modalProfileBtn">Profile Page</button>
                                 </div>
                                 </div>
                             </div>
@@ -160,8 +160,15 @@ $(document).ready(function () {
         $("#modal_developer_name").html(developer_name);
         $.get(`/api/userbid/${userId}/${projId}`, function (data) {
             $("#modal_bid_content").html(data.bid_content);
+            $("#modalProfileBtn").attr("data-id",userId);
             $("#appliedDevModal").modal();  //modal is not functionning here!!!!
         });
+    });
+
+    $(document).on("click", "#modalProfileBtn", function (event) {
+        event.preventDefault();
+        var userId = $(this).data("id");
+        loadDevProfile(userId);
     });
 
     $(document).on("click", ".pickFinalUser", function (event) {
@@ -309,7 +316,6 @@ $(document).ready(function () {
 
     $(document).on("click", ".finaldeveloper", function (event) {
         event.preventDefault();
-        console.log("here");
         var userId = $(this).data("id");
         loadDevProfile(userId);
     });
