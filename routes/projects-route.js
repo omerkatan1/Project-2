@@ -78,14 +78,16 @@ module.exports = function (app) {
             }
         }).then(function (data) {
             var currList = data.developers_list;
-            var newList= currList;
-            if (currList.length>1){
+            var newList = currList;
+            if (currList.length > 1) {
                 var currArray = currList.split(";");
-                if (!currArray.includes(userId)) {currArray.push(userId);
-                newList = currArray.join(";");}
-            }else if (currList.length===1){
-                if (currList!==userId) newList+=`;${userId}`;
-            }else newList+=`${userId}`;
+                if (!currArray.includes(userId)) {
+                    currArray.push(userId);
+                    newList = currArray.join(";");
+                }
+            } else if (currList.length === 1) {
+                if (currList !== userId) newList += `;${userId}`;
+            } else newList += `${userId}`;
             db.Project.update({
                 developers_list: newList
             }, {
@@ -108,13 +110,13 @@ module.exports = function (app) {
             }
         }).then(function (data) {
             var currList = data.developers_list;
-            var newList= currList;
-            if (currList.length>1){
+            var newList = currList;
+            if (currList.length > 1) {
                 var currArray = currList.split(";");
                 var index = currArray.indexOf(userId);
-                currArray.splice(index,1);
+                currArray.splice(index, 1);
                 newList = currArray.join(";");
-            }else{
+            } else {
                 newList = "";
             }
             console.log(newList);
@@ -131,11 +133,31 @@ module.exports = function (app) {
     });
 
 
-    app.post("/bid/application", function(req,res){
-        db.UserBid.create(req.body)
-        .then(function(){
-            res.status(200).end();
-        })
+    app.post("/bid/application", function (req, res) {
+        db.UserBid.findOne({
+            where: {
+                project_id: req.body.project_id,
+                UserId: req.body.UserId
+            }
+        }).then(function (data) {
+            if (data) {
+                db.UserBid.update({
+                    bid_content: req.body.bid_content
+                }, {
+                    where: {
+                        project_id: req.body.project_id,
+                        UserId: req.body.UserId
+                    }
+                }).then(function () {
+                    res.status(200).end();
+                });
+            } else {
+                db.UserBid.create(req.body)
+                    .then(function () {
+                        res.status(200).end();
+                    });
+            }
+        });
     });
 
 
