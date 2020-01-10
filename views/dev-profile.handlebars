@@ -30,9 +30,6 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item pr-4">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
-                <li class="nav-item pr-4">
                     <a href="/developer-account" class="nav-link">Dashboard</a>
                 </li>
                 <li class="nav-item pr-4">
@@ -50,28 +47,45 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-6 box" id="user-view">
-            <p>User Name: {{developer_name}}</p>
-            <p>User Email: {{developer_email}}</p>
-            <p>Available for hire? {{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
+            <div class="header bold">
+                <h1>Developer Information</h1>
+            </div>
+            <br>
+            <br>
+            <h5 class="bold">User Name:</h5>
+                <p>{{developer_name}}</p>
+            <h5 class="bold">User Email:</h5>
+                <p>{{developer_email}}</p>
+            <h5 class="bold">Available for hire?</h5>
+                <p>{{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
                 Hire{{/if}}</p>
-            <p>User Rating</p>
-            <p>User Bio: {{developer_intro}}</p>
-            <p>User Tech:</p>
-            <ul>
-                {{#each developer_techniques}}
-                <li>
-                    <p>{{this}}</p>
-                </li>
-                {{/each}}
-            </ul>
+            <h5 class="bold">User Rating:</h5>
+                <p>Rating Goes Here</p>
+            <h5 class="bold">User Bio:</h5>
+                <p>{{developer_intro}}</p>
+            <h5 class="bold">User Tech:</h5>
+                <ol class="row comma-list" >
+                    {{#each developer_techniques}}
+                    <li class="techList">
+                       {{this}}
+                    </li>
+                    {{/each}}
+                </ol>
         </div>
-        <div class="col-sm-6" id="completed-view">
+        <div class="col-sm-6 box" id="completed-view">
+            <div class="header bold" id="infoHeader">
+                <h1>Completed Projects</h1>
+            </div>
+            <br>
+            <br>
             <p>
                 <ul id="completeList">
                     {{#each completeProjects}}
                     <li class="completeproject" data-id="{{id}}">
-                        <hi> {{title}} </hi>
-                        <p> {{price}} </p>
+                        <h5 class="bold"> Project Title:</h5>
+                            <p>{{title}}</p>
+                        <h5 class="bold"> Price: </h5>
+                            <p>{{price}}</p>
                     </li>
                     {{/each}}
                 </ul>
@@ -80,21 +94,21 @@
             <div class="modal fade" id="completeprojectinfo" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content text-center">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalProjectTitle"></h5>
+                            <h5 class="modal-title bold" id="modalProjectTitle"></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h5>Project Description:</h5>
+                            <h5 class="bold">Project Description:</h5>
                             <p id="modalProjectDescription"></p>
-                            <h5>Price:</h5>
+                            <h5 class="bold">Price:</h5>
                             <p id="modalProjectPrice"></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn-grad" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
