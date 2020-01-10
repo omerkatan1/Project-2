@@ -205,6 +205,7 @@ $(document).ready(function () {
         var bigData = {
             developer_name: "",
             developer_email: "",
+            developer_intro: "",
             project: [],
             activeProject: [],
             completeProject: [],
@@ -216,6 +217,7 @@ $(document).ready(function () {
             currDevName = data.first_name;
             bigData.developer_name = data.first_name;
             bigData.developer_email = data.email;
+            bigData.developer_intro = data.intro;
             currStatus = data.status;
             currId = data.id;
             currBid = data.biddedProject;
