@@ -108,17 +108,17 @@ $(document).ready(function () {
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modal_developer_name"></h5>
+                                    <h5 class="modal-title bold" id="modal_developer_name"></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h3>Developer's Qualifications:</h3>
+                                    <h3 class="bold">Developer's Qualifications</h3>
                                     <p id="modal_bid_content"></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn-grad" data-dismiss="modal">Close</button>
                                     <button href="#" type="button" class="btn btn-primary" id = "modalProfileBtn">Profile Page</button>
                                 </div>
                                 </div>
@@ -142,7 +142,7 @@ $(document).ready(function () {
                         if (devList.includes(data[i].id.toString()) && !data[i].status) {
                             var obj = data[i];
                             obj.projId = projectId;
-                            var currList = `<li class="applieddeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}" data-proj="${obj.projId}" data-name="${obj.first_name}"> ${obj.id}. ${obj.first_name} 
+                            var currList = `<li class="applieddeveloper list-group-item d-flex justify-content-between align-items-center" data-id="${obj.id}" data-proj="${obj.projId}" data-name="${obj.first_name}"> ${obj.first_name} 
                 <button class="pickFinalUser btn-grad" data-id="${obj.id}" data-proj="${obj.projId}">Choose Candidate</button>
                 </li>`;
                             $("#candidateList").append(currList);
@@ -309,7 +309,7 @@ $(document).ready(function () {
         var developerId = $(this).data("uid");
         $.get(`/pick/user/${developerId}`).then(function (data) {
             var currList =
-                `<li class="finaldeveloper" data-id="${data.id}">${data.id}. ${data.first_name}</li>`;
+                `<li class="finaldeveloper" data-id="${data.id}">${data.first_name}</li>`;
             $(".finalCandidateList").append(currList);
         });
     });
