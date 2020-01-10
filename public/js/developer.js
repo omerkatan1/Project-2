@@ -82,32 +82,29 @@ $(document).ready(function () {
                 projView.html(template(project));
             } else {
                 project.start = false;
-                var source = `<div class='sticky-top' style='background: white;'>
-                <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
-                <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
-                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit{{else}}Ongoing{{/if}}</button>
-            </div>
+                var source = `
             <div class='project-content mt-3'>
-                <div class='project-title'>
-                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Title:</h6>
-                    <h6 class='ml16 col-sm-12 my-0 p-1'>{{title}}</h6>
-                </div>
-                <div class='project-description'>
-                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Description:</h6>
-                    <p class='ml16 col-sm-12 my-0 p-1'>{{description}}</p>
-                </div>
-                <div class='project-price'>
-                    <h6 class='ml16 col-sm-12 my-0 p-1'>Project Budget:</h6>
-                    <p>{{price}}</p>
-                </div>
+            <div class='project-title'>
+            <p class='bold'>TITLE</p>
+            <p>{{title}}</p>
+        </div>
+        <div class='project-description'>
+            <p class='bold'>DESCRIPTION</p>
+            <p>{{description}}</p>  
+        </div>
+        <div class='project-price'>
+            <p class='bold'>BUDGET</p>
+            <p>$ {{price}}</p>
+        </div>
                 <div class="row">
-                <div id="msglog">
-                </div>
-                <textarea name="message" id="messageInput"></textarea>
-                <br />
-                Press Enter to Send!
-                </div>
-                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
+                                <div class ="col-sm-3 m-1" id="msglog">
+                                </div>
+                                <textarea name="message" class="p-1 col-sm-7" id="messageInput"></textarea>
+                            </div>
+                            <div>
+                                Press Enter to Send!
+                            </div>
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It{{else}}Ongoing{{/if}}</button>`;
                 var template = Handlebars.compile(source);
                 projView.html(template(project));
                 loadSocket(projId);
@@ -194,7 +191,7 @@ $(document).ready(function () {
                             <p class='bold'>BUDGET</p>
                             <p>$ {{price}}</p>
                         </div>
-                            <button type='submit' class='btn-grad' data-id='{{id}}'>Done!!!</button>`;
+                            <button type='submit' class='btn-grad' data-id='{{id}}'>Done</button>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
         });
