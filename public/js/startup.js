@@ -119,7 +119,7 @@ $(document).ready(function () {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn-grad" data-dismiss="modal">Close</button>
-                                    <button href="#" type="button" class="btn btn-primary" id = "modalProfileBtn">Profile Page</button>
+                                    <button href="#" type="button" class="btn-grad" id = "modalProfileBtn">Profile Page</button>
                                 </div>
                                 </div>
                             </div>
