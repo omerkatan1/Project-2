@@ -546,3 +546,31 @@ li.project:before, li.activeproject:before, li.completeproject:before, li.applie
 .list-group {
     flex-direction: none;
 }
+
+/* Chatbox */
+
+.chatBox {
+    height: 200px;
+    background: white;
+    overflow: auto;
+    color: black;
+    text-align: left;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 2px solid #ffbb00;
+
+}
+
+#messageInput {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 2px solid #ffbb00;
+}
+
+.message {
+    /* background: #7F7F7F;
+    color: white;
+    border-radius: 40px; */
+    margin-top: 10px;
+    /* padding-left: 20px; */
+}
