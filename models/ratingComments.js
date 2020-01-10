@@ -1,6 +1,6 @@
 module.exports = function (sequalize, DataTypes) {
     var reviews = sequalize.define("reviews", {
-        avgRating: {
+        rating: {
             type: DataTypes.STRING,
             allowNull: false
         },
