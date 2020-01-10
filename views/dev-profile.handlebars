@@ -44,11 +44,11 @@
     </nav>
     <div class="container-fluid" id="profile-main">
         <div class="row justify-content-center">
-            <div class="col-sm-4 box" id="user-image">
+            <div class="col-sm-4 mt-5" id="user-image">
                 <img src="img/sqwashAvater.jpg" alt="profile-image" id="avatar">
             </div>
         </div>
-        <div class="row justify-content-around">
+        <div class="row justify-content-center">
             <div class="col-sm-6 box" id="user-view">
                 <p>User Name: {{developer_name}}</p>
                 <p>User Email: {{developer_email}}</p>
@@ -65,7 +65,7 @@
                     {{/each}}
                 </ul>
             </div>
-            <div class="col-sm-6 box" id="completed-view">
+            <div class="col-sm-6" id="completed-view">
                 <p>
                     <ul id="completeList">
                         {{#each completeProjects}}
