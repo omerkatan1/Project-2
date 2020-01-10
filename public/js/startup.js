@@ -225,11 +225,6 @@ $(document).ready(function () {
 
                             </ul>
                             </div>
-                            <div class='form-group mt-3'>
-                                <label for='exampleInputEmail1' class='bold'>Comment</label>
-                                <textarea type='text' class='form-control' id='startup-comment'
-                                    placeholder='What do you think about this developer's work on this project?'></textarea>
-                            </div>
                             <div class="row">
                                 <div class ="col-sm-3 m-1" id="msglog">
                                 </div>
@@ -238,7 +233,29 @@ $(document).ready(function () {
                             <div>
                                 Press Enter to Send!
                             </div>
-                            <button type='submit' class='finishProject btn-grad' data-id='{{id}}' data-uid="{{final_developer}}">Finish</button>
+                            <button type='submit' class='finishingProject btn-grad' data-id='{{id}}' data-uid="{{final_developer}}" data-toggle="modal" data-target="#ratingModal">Finish</button>
+                            <!--Modal-->
+                            <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title bold" id="modal_developer_name">Rating & Comment</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="bold">Developer's Qualifications</h3>
+                                    <p id="modal_bid_content"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-grad" data-dismiss="modal">Close</button>
+                                    <button href="#" type="button" class="btn-grad" id = "modalProfileBtn">Profile Page</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
@@ -323,7 +340,6 @@ $(document).ready(function () {
 
     $(document).on("click", ".finishProject", function (event) {
         event.preventDefault();
-        var comment = $("#startup-comment").val().trim();
         var projId = $(this).data("id");
         var userId = $(this).data("uid");
         $.ajax({
