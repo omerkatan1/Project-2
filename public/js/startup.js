@@ -397,11 +397,11 @@ $(document).ready(function () {
         function loadAllProj() {
             $.get("/api/project").then(function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].status === "Hiring") {
+                    if (data[i].status === "Hiring" && data[i].OrgId === start_up_id) {
                         bigData.project.push(data[i]);
-                    } else if (data[i].status === "Proccessing") {
+                    } else if (data[i].status === "Proccessing" && data[i].OrgId === start_up_id) {
                         bigData.activeProject.push(data[i]);
-                    } else {
+                    } else if (data[i].status === "Finished" && data[i].OrgId === start_up_id){
                         bigData.completeProject.push(data[i]);
                     }
                 }
