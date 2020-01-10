@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false,
             validate: {
-                len:[100,1000]
+                len:[0,1000]
             }
         },
         // bid_price: {
