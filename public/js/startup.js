@@ -162,7 +162,7 @@ $(document).ready(function () {
         $.get(`/api/userbid/${userId}/${projId}`, function (data) {
             $("#modal_bid_content").html(data.bid_content);
             $("#modalProfileBtn").attr("data-id",userId);
-            $("#appliedDevModal").modal();  //modal is not functionning here!!!!
+            $("#appliedDevModal").modal();  
         });
     });
 
