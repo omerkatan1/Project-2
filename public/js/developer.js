@@ -44,11 +44,11 @@ $(document).ready(function () {
                             <div class='form-group'>
                                 <label for='exampleInputEmail1'>Why are you qualified?:</label>
                                 <textarea type='text' class='form-control' id='user-bid-input'
-                                    placeholder='why you are the right candidate?'></textarea>
+                                    placeholder='Why are you the right candidate?'></textarea>
                             </div>
                         </div>
 
-                        <button type='submit' class='bidProject btn-grad' data-id='{{id}}'>Bid it!!!</button>`;
+                        <button type='submit' class='bidProject btn-grad' data-id='{{id}}'>Apply</button>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
         });
@@ -77,7 +77,7 @@ $(document).ready(function () {
                             <p class='bold'>BUDGET</p>
                             <p>$ {{price}}</p>
                         </div>
-                        <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>`;
+                        <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit{{else}}Ongoing{{/if}}</button>`;
                 var template = Handlebars.compile(source);
                 projView.html(template(project));
             } else {
@@ -85,7 +85,7 @@ $(document).ready(function () {
                 var source = `<div class='sticky-top' style='background: white;'>
                 <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Project: {{title}}</h6>
                 <h6 class='ml16 col-sm-12 my-0 p-1' style='color: black;'>Price: {{price}}</h6>
-                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It!!!{{else}}Ongoing!!!{{/if}}</button>
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit{{else}}Ongoing{{/if}}</button>
             </div>
             <div class='project-content mt-3'>
                 <div class='project-title'>
@@ -255,7 +255,7 @@ $(document).ready(function () {
                 var source = `<div class="row">
                                 <div class="col profile" id="profileView">
                                 <div class="name">
-                                <h1 class="cursive">Hello.</h1>
+                                <h1 class="cursive mt-2">Hello.</h1>
                             <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{developer_name}}</p>
                                 </div>
                                 <p class="p-0 m-0"><i class="fas fa-at icon"></i>{{developer_email}}</p>
