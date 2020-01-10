@@ -96,13 +96,14 @@ $(document).ready(function () {
             <p class='bold'>BUDGET</p>
             <p>$ {{price}}</p>
         </div>
-                <div class="row">
-                                <div class ="col-sm-3 m-1" id="msglog">
+                <h3 class="bold">CHAT NOW</h3>
+                <div class="container-fluid justify-content-center">
+                                <div class ="chatBox col" id="msglog">
                                 </div>
-                                <textarea name="message" class="p-1 col-sm-7" id="messageInput"></textarea>
-                            </div>
+                                <textarea name="message" class="col p-1" id="messageInput" placeholder="Enter chat content here"></textarea>
                             <div>
                                 Press Enter to Send!
+                            </div>
                             </div>
                 <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It{{else}}Ongoing{{/if}}</button>`;
                 var template = Handlebars.compile(source);
@@ -124,10 +125,9 @@ $(document).ready(function () {
         socket.on('msg', function (userName, msg, time) {
             var message = '' +
                 '<div class="message">' +
-                '  <span class="user">' + userName + ': </span>' +
-                '  <span class="msg">' + msg + '</span>' +
-                '</div>' +
-                '<div class="sysMsg">' + time + '</div>';
+                '  <span class="user bold">' + userName + ' </span>' + '<span class="sysMsg">' + time + '</span>' + '<br>' +
+                '<span class="msg">' + msg + '</span>' +
+                '</div>';
             $('#msglog').append(message);
             $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
         });
