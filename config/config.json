@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "newuser",
+    "username": "root",
     "password": "password",
     "database": "sqwash",
     "host": "127.0.0.1",
