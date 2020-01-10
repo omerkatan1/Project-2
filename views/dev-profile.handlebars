@@ -50,28 +50,45 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-6 box" id="user-view">
-            <p>User Name: {{developer_name}}</p>
-            <p>User Email: {{developer_email}}</p>
-            <p>Available for hire? {{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
+            <div class="header bold">
+                <h1>Developer Information</h1>
+            </div>
+            <br>
+            <br>
+            <h5 class="bold">User Name:</h5>
+                <p>{{developer_name}}</p>
+            <h5 class="bold">User Email:</h5>
+                <p>{{developer_email}}</p>
+            <h5 class="bold">Available for hire?</h5>
+                <p>{{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
                 Hire{{/if}}</p>
-            <p>User Rating</p>
-            <p>User Bio: {{developer_intro}}</p>
-            <p>User Tech:</p>
-            <ul>
-                {{#each developer_techniques}}
-                <li>
-                    <p>{{this}}</p>
-                </li>
-                {{/each}}
-            </ul>
+            <h5 class="bold">User Rating:</h5>
+                <p>Rating Goes Here</p>
+            <h5 class="bold">User Bio:</h5>
+                <p>{{developer_intro}}</p>
+            <h5 class="bold">User Tech:</h5>
+                <ol class="row comma-list" >
+                    {{#each developer_techniques}}
+                    <li class="techList">
+                       {{this}}
+                    </li>
+                    {{/each}}
+                </ol>
         </div>
-        <div class="col-sm-6" id="completed-view">
+        <div class="col-sm-6 box" id="completed-view">
+            <div class="header bold" id="infoHeader">
+                <h1>Completed Projects</h1>
+            </div>
+            <br>
+            <br>
             <p>
                 <ul id="completeList">
                     {{#each completeProjects}}
                     <li class="completeproject" data-id="{{id}}">
-                        <hi> {{title}} </hi>
-                        <p> {{price}} </p>
+                        <h5 class="bold"> Project Title:</h5>
+                            <p>{{title}}</p>
+                        <h5 class="bold"> Price: </h5>
+                            <p>{{price}}</p>
                     </li>
                     {{/each}}
                 </ul>
