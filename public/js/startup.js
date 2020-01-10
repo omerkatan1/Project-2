@@ -388,6 +388,7 @@ $(document).ready(function () {
         $.get("/api/org_data").then(function (data) {
             start_up_name = data.name;
             start_up_id = data.id;
+            $("#registerProjectBtn").attr("data-id",start_up_id);
             bigData.startup_name = data.name;
             bigData.startup_email = data.email;
             bigData.startup_intro = data.intro;
