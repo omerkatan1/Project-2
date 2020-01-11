@@ -100,7 +100,7 @@ $(document).ready(function () {
                                 <button data-id='{{id}}' class="btn-grad m-1 justify-content-center pickCandidate">Load Candidates</button>
                             </div>
                             <div>
-                            <ul class="list-group" id="candidateList">
+                            <ul class="list-group pl-3" id="candidateList">
                                 </ul>
                                 </div>
                             <!--Modal-->

@@ -61,7 +61,7 @@ $(document).ready(function () {
                     name: nameInput.val().trim(),
                     email: emailInput.val().trim(),
                     password: passwordInput.val().trim(),
-                    intro: introInput.val().trim(),
+                    intro: introInput.val().trim()
                 };
 
                 if (!userData.email || !userData.password) {

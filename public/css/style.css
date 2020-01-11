@@ -139,7 +139,7 @@ body {
 }
 
 
-.card {
+.cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
@@ -150,19 +150,19 @@ body {
     border: 0 solid black;
 }
 
-.card h3 {
+.cards h3 {
     margin-bottom: 2rem;
 }
 
-.card img {
+.cards img {
     height: 400px;
 }
 
-.card>div {
+.cards>div {
     padding: 2rem;
 }
 
-.card:nth-child(even) img {
+.cards:nth-child(even) img {
     order: 2;
 }
 
@@ -504,13 +504,13 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     text-align: center;
 }
 
-li.project, li.activeproject, li.completeproject, li.applieddeveloper, li.finaldeveloper {
+li.project, li.activeproject, li.completeproject, li.applieddeveloper, li.finaldeveloper, li.techList {
     list-style-type: none;
     position: relative;
     padding-left: 15px;
 }
   
-li.project:before, li.activeproject:before, li.completeproject:before, li.applieddeveloper:before, li.finaldeveloper:before {
+li.project:before, li.activeproject:before, li.completeproject:before, li.applieddeveloper:before, li.finaldeveloper:before, li.techList:before {
     font-family: "Font Awesome 5 Free";
     content: "\f0a9";
     font-weight: 900;
@@ -573,4 +573,18 @@ li.project:before, li.activeproject:before, li.completeproject:before, li.applie
     border-radius: 40px; */
     margin-top: 10px;
     /* padding-left: 20px; */
+}
+
+#user-bid-input, #comment {
+    width: 70%;
+    margin: auto;
+}
+
+li.techList {
+    text-align: left;
+}
+
+.centers {
+    text-align: center;
+    list-style-position: inside;
 }
