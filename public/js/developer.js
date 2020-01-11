@@ -42,7 +42,7 @@ $(document).ready(function () {
                                 <p>$ {{price}}</p>
                             </div>
                             <div class='form-group'>
-                                <label for='exampleInputEmail1'>Why are you qualified?(You can write up to 1000 characters):</label>
+                                <label for='exampleInputEmail1'>Why are you qualified? (You can write up to 1000 characters):</label>
                                 <textarea type='text' class='form-control' id='user-bid-input'
                                     placeholder='Why are you the right candidate?'></textarea>
                             </div>
