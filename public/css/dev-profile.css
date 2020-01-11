@@ -6,12 +6,7 @@
 
 }
 
-#avatar {
-    height: 400px;
-}
-
 #user-view {
-    overflow: scroll;
     height: 600px;
     border-right: 3px dashed #F09819;
     text-align: center;
@@ -20,24 +15,6 @@
 .fixed {
     position: absolute;
     width: inherit;
-}
-
-li{
-    list-style-type: none;
-    margin: 0px 5px 0px 5px;
-}
-
-li.techList:after {
-    content: ',';
-}
-
-li.techList:last-of-type:after {
-    content: '';
-}
-
-.comma-list {
-    text-align: center;
-    margin-left: 40px;
 }
 
 h1 {
