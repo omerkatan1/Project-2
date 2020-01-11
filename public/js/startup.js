@@ -366,11 +366,11 @@ $(document).ready(function () {
                                 <p>$ {{price}}</p>
                             </div>
                             <div class='project-comment'>
-                                <p class='bold'>COMMENT ON DEVELOPER</p>
+                                <p class='bold'>REVIEW DEVELOPER</p>
                                 <p>{{comments}}</p>
                             </div>
                             <div class='project-rating'>
-                                <p class='bold'>RATING ON DEVELOPER</p>
+                                <p class='bold'>RATE DEVELOPER</p>
                                 <P>
                                     {{#each ratingArr}}
                                     <span class="fa fa-star checked"></span>
