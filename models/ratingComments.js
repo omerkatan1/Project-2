@@ -1,12 +1,14 @@
 module.exports = function (sequalize, DataTypes) {
     var reviews = sequalize.define("reviews", {
         rating: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         },
-        comments: {
-            type: DataTypes.STRING,
-            allowNull: true
+        ratingNum: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         }
     });
     reviews.associate = function (models) {
