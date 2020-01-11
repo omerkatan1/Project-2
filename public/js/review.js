@@ -36,8 +36,5 @@ $(document).ready(function () {
                 })
             });
         })
-
-
-
     });
 });
