@@ -59,7 +59,14 @@
                 <p>{{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
                 Hire{{/if}}</p>
             <h5 class="bold">RATING</h5>
-                <p>Rating Goes Here</p>
+                <p>
+                    {{#each developer_ratingArr}}
+                        <span class="fa fa-star checked"></span>
+                    {{/each}}
+                    {{#each developer_notRatingArr}}
+                        <span class="fa fa-star"></span>
+                    {{/each}}
+                </p>
             <h5 class="bold">INFO</h5>
                 <p>{{developer_intro}}</p>
             <h5 class="bold">TECHNOLOGIES</h5>
@@ -106,9 +113,9 @@
                             <h5 class="bold">PRICE</h5>
                             <p id="modalProjectPrice"></p>
                             <h5 class="bold">Comments:</h5>
-                            <p id="modalProjectDescription"></p>
+                            <p id="modalProjectComments"></p>
                             <h5 class="bold">Rating:</h5>
-                            <div id="rater"></div>
+                            <div id="modalProjectRating"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn-grad" data-dismiss="modal">Close</button>

@@ -6,8 +6,6 @@ $(document).ready(function () {
         var currRate = $("#rater").data("rating");
         var comment = $("#comment").val().trim();
 
-        console.log(currRate);
-        console.log(comment);
         var obj = {
             rating: currRate,
         };

@@ -1,12 +1,25 @@
 $(document).ready(function () {
     $(document).on("click", ".completeproject", function (event) {
         event.preventDefault();
+        $("#modalProjectRating").html("");
         var projId = $(this).data("id");
         $.get(`/pick/${projId}`).then(function (data) {
-            $("#modalProjectTitle").html(data.title);
-            $("#modalProjectDescription").html(data.description);
-            $("#modalProjectPrice").html(data.price);
-            $("#completeprojectinfo").modal();
+            $.get(`pick/rating/${projId}`).then(function (projectRating) {
+                $("#modalProjectTitle").html(data.title);
+                $("#modalProjectDescription").html(data.description);
+                $("#modalProjectPrice").html(data.price);
+                $("#modalProjectComments").html(projectRating.comments);
+                var currRating = Math.floor(projectRating.rating);
+                var checkedStar = `<span class="fa fa-star checked"></span>`;
+                var star = `<span class="fa fa-star"></span>`;
+                for (var i = 1; i<=currRating; i++){
+                    $("#modalProjectRating").append(checkedStar);
+                }
+                for (var i = 1; i<=5-currRating; i++){
+                    $("#modalProjectRating").append(star);
+                }
+                $("#completeprojectinfo").modal();
+            });
         });
     });
 
