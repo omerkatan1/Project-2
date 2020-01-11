@@ -40,51 +40,50 @@
     </div>
 </nav>
 <div class="container-fluid" id="profile-main">
-    <div class="row justify-content-center">
-        <div class="col-sm-4 mt-5" id="user-image">
-            <img src="img/sqwashAvater.jpg" alt="profile-image" id="avatar">
+    <div class="row">
+        <div class="col mt-5 justify-content-center" id="user-image">
+            <img src="img/sqwashAvater.png" alt="profile-image" id="avatar">
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-sm-6 box" id="user-view">
+    <div class="row">
+        <div class="col-sm-6 box text-left pl-4" id="user-view">
             <div class="header bold">
                 <h1>Developer Information</h1>
             </div>
-            <br>
-            <br>
-            <h5 class="bold">User Name:</h5>
+
+            <h5 class="bold">NAME</h5>
                 <p>{{developer_name}}</p>
-            <h5 class="bold">User Email:</h5>
+            <h5 class="bold">EMAIL</h5>
                 <p>{{developer_email}}</p>
-            <h5 class="bold">Available for hire?</h5>
+            <h5 class="bold">STATUS</h5>
                 <p>{{#if developer_status}}Currently Working on Project{{else}}Currently Looking for
                 Hire{{/if}}</p>
-            <h5 class="bold">User Rating:</h5>
+            <h5 class="bold">RATING</h5>
                 <p>Rating Goes Here</p>
-            <h5 class="bold">User Bio:</h5>
+            <h5 class="bold">INFO</h5>
                 <p>{{developer_intro}}</p>
-            <h5 class="bold">User Tech:</h5>
-                <ol class="row comma-list" >
+            <h5 class="bold">TECHNOLOGIES</h5>
+            <div class="row">
+                <ol class="centers">
                     {{#each developer_techniques}}
                     <li class="techList">
                        {{this}}
                     </li>
                     {{/each}}
                 </ol>
+                </div>
         </div>
         <div class="col-sm-6 box" id="completed-view">
             <div class="header bold" id="infoHeader">
                 <h1>Completed Projects</h1>
             </div>
-            <br>
-            <br>
             <p>
                 <ul id="completeList">
                     {{#each completeProjects}}
                     <li class="completeproject" data-id="{{id}}">
-                        <h5 class="bold"> Project Title:</h5>
+                        <h5 class="bold"> PROJECT INFO</h5>
                             <p>{{title}}</p>
-                        <h5 class="bold"> Price: </h5>
+                        <h5 class="bold"> PRICE </h5>
                             <p>{{price}}</p>
                     </li>
                     {{/each}}
@@ -102,9 +101,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h5 class="bold">Project Description:</h5>
+                            <h5 class="bold">PROJECT INFO</h5>
                             <p id="modalProjectDescription"></p>
-                            <h5 class="bold">Price:</h5>
+                            <h5 class="bold">PRICE</h5>
                             <p id="modalProjectPrice"></p>
                             <h5 class="bold">Comments:</h5>
                             <p id="modalProjectDescription"></p>
@@ -124,6 +123,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+<script src="/js/index.js"></script>
 <script src="/js/dev-profile.js"></script>
 
 {{!-- </body>
