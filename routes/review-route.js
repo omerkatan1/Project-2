@@ -47,8 +47,8 @@ module.exports = function (app) {
             }
         }).then(function (currReview) {
             if (currReview) {
-                var updateNum = currReview.ratingNum++;
-                var updateRating = currReview.rating + req.body.rating;
+                var updateNum = currReview.ratingNum+1;
+                var updateRating = parseInt(currReview.rating) + parseInt(req.body.rating);
                 db.reviews.update({
                     rating: updateRating,
                     ratingNum: updateNum
