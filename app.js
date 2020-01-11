@@ -78,6 +78,8 @@ require("./routes/user-html-routes")(router);
 require("./routes/users-route")(router);
 require("./routes/orgs-route")(router);
 require("./routes/projects-route")(router);
+require("./routes/review-route")(router);
+
 
 db.sequelize.sync().then(function() {
   server.listen(PORT, function() {

@@ -234,34 +234,36 @@ $(document).ready(function () {
                                 Press Enter to Send!
                             </div>
                             </div>
-                            <button type='submit' class='finishingProject btn-grad' data-id='{{id}}' data-uid="{{final_developer}}" data-toggle="modal" data-target="#ratingModal">Finish</button>
-                            <!--Modal-->
-                            <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title bold" id="modal_developer_name">Rating & Comment</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h3 class="bold">Developer's Qualifications</h3>
-                                    <p id="modal_bid_content"></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn-grad" data-dismiss="modal">Close</button>
-                                    <button href="#" type="button" class="btn-grad" id = "modalProfileBtn">Profile Page</button>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-
+                            <button type='submit' class='finishingProject btn-grad' data-id='{{id}}' data-uid="{{final_developer}}">Finish</button>
                         </div>`;
             var template = Handlebars.compile(source);
             projView.html(template(project));
             loadSocket(projId);
         });
+    });
+
+    $(document).on("click",".finishingProject",function(event){
+        event.preventDefault();
+        var projectId = $(this).data("id");
+        var devId = $(this).data("uid");
+        var obj = {
+            projId: projectId,
+            userId: devId
+        };
+        var source = `<div id="rater"></div>
+        <div class='form-group'>
+            <label for='exampleInputEmail1'>Have something to say about this User?</label>
+            <textarea type='text' class='form-control' id='comment' placeholder='Type your thoughts here'></textarea>
+        </div>
+    
+        <button class="finishProject" data-uid="{{userId}}" data-pid="{{projId}}">Submit</button>`;
+        var template = Handlebars.compile(source);
+        $("#rater").html(template(obj));
+        $.post("/user-review-page",obj).then(function(){
+            $.get("/user-review").then(function(){
+                window.open('/user-review','_blank');
+            })
+        })
     });
 
     function loadSocket(projId) {

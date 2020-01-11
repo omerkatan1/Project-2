@@ -3,9 +3,14 @@ var path = require("path");
 
 
 module.exports = function (app) {
+    var bigData;
+    app.post("/user-review-page",function(req,res){
+        bigData = req.body;
+        res.status(200).end();
+    });
 
     app.get("/user-review", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/rating.html"));
+        res.render("review",bigData);
     });
 
     app.post("/api/rating", function (req, res) {
@@ -14,7 +19,5 @@ module.exports = function (app) {
         }).then(function() {
             console.log('test');
         })
-
-
     });
 }
