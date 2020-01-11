@@ -420,7 +420,7 @@ $(document).ready(function () {
                                 </div>
                             </div>
                                 <div class="row" id="startupWindows">
-                                    <div class="col-sm-3" id="projDisp">
+                                    <div class="col-sm-3 overflow-auto" id="projDisp">
                                             <div class="btn-group justify-content-center" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn-proj" id="find" data-toggle="tooltip" data-placement="top" title="Available Projects"><i class="fas fa-file-alt iconB"></i></button>
                                                 <button type="button" class="btn-proj" id="active" data-toggle="tooltip" data-placement="top" title="Projects in Progress"><i class="fas fa-spinner iconB"></i></button>
