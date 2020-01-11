@@ -20,19 +20,19 @@ $(document).ready(function () {
         };
 
         $.post(`/api/projectReviews`, objP).then(function () {
-            $.post(`/api/rating/${userId}`, obj).then(function () {
+            $.post(`/api/rating/${UserId}`, obj).then(function () {
                 $.ajax({
                     method: "PUT",
-                    url: `/finishedproject/${projId}`,
+                    url: `/finishedproject/${ProjId}`,
                 }).then(function () {
-                    if (userId !== -1) {
+                    if (UserId !== -1) {
                         $.ajax({
                             method: "PUT",
-                            url: `/update/user/${userId}/1`,
+                            url: `/update/user/${UserId}/1`,
                         }).then(function () {
-                            location.reload();
+                            window.close();
                         })
-                    } else location.reload();
+                    } else window.close();
                 })
             });
         })
