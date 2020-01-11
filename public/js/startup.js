@@ -161,8 +161,8 @@ $(document).ready(function () {
         $("#modal_developer_name").html(developer_name);
         $.get(`/api/userbid/${userId}/${projId}`, function (data) {
             $("#modal_bid_content").html(data.bid_content);
-            $("#modalProfileBtn").attr("data-id",userId);
-            $("#appliedDevModal").modal();  
+            $("#modalProfileBtn").attr("data-id", userId);
+            $("#appliedDevModal").modal();
         });
     });
 
@@ -242,7 +242,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click",".finishingProject",function(event){
+    $(document).on("click", ".finishingProject", function (event) {
         event.preventDefault();
         var projectId = $(this).data("id");
         var devId = $(this).data("uid");
@@ -250,9 +250,9 @@ $(document).ready(function () {
             projId: projectId,
             userId: devId
         };
-        $.post("/user-review-page",obj).then(function(){
-            $.get("/user-review").then(function(){
-                window.open('/user-review','_blank');
+        $.post("/user-review-page", obj).then(function () {
+            $.get("/user-review").then(function () {
+                window.open('/user-review', '_blank');
             })
         })
     });
@@ -266,10 +266,10 @@ $(document).ready(function () {
         // send
         socket.on('msg', function (userName, msg, time) {
             var message = '' +
-            '<div class="message">' +
-            '  <span class="user bold">' + userName + ' </span>' + '<span class="sysMsg">' + time + '</span>' + '<br>' +
-            '<span class="msg">' + msg + '</span>' +
-            '</div>';
+                '<div class="message">' +
+                '  <span class="user bold">' + userName + ' </span>' + '<span class="sysMsg">' + time + '</span>' + '<br>' +
+                '<span class="msg">' + msg + '</span>' +
+                '</div>';
             $('#msglog').append(message);
             $('#msglog').scrollTop($('#msglog')[0].scrollHeight);
         });
@@ -331,7 +331,7 @@ $(document).ready(function () {
     });
 
 
-    
+
 
 
     $(document).on("click", ".completeproject", function (event) {
@@ -340,7 +340,18 @@ $(document).ready(function () {
         var projView = $("#project-display-section");
         projView.empty();
         $.get("/pick/" + projId).then(function (project) {
-            var source = `<div class='project-content mt-3'>
+            $.get(`/pick/rating/${projId}`).then(function (projRating) {
+                var currrating = Math.floor(projRating.rating);
+                var ratingArray = [];
+                var notRatingArray = [];
+                for (var i = 1; i <= currrating; i++) ratingArray.push(0);
+                for (var i = 1; i <= (5 - currrating); i++) notRatingArray.push(0);
+                var addObj = {
+                    ratingArr: ratingArray,
+                    notRatingArr: notRatingArray
+                };
+                var bigProject = { ...project, ...projRating, ...addObj };
+                var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
                             <h3 class='info mb-3'>Project Information</h3>
                                 <p class='bold'>TITLE</p>
@@ -354,14 +365,30 @@ $(document).ready(function () {
                                 <p class='bold'>BUDGET</p>
                                 <p>$ {{price}}</p>
                             </div>
+                            <div class='project-comment'>
+                                <p class='bold'>COMMENT ON DEVELOPER</p>
+                                <p>{{comments}}</p>
+                            </div>
+                            <div class='project-rating'>
+                                <p class='bold'>RATING ON DEVELOPER</p>
+                                <P>
+                                    {{#each ratingArr}}
+                                    <span class="fa fa-star checked"></span>
+                                    {{/each}}
+                                    {{#each notRatingArr}}
+                                    <span class="fa fa-star"></span>
+                                    {{/each}}
+                                </p>
+                            </div>
                             <div>
                             <button data-id='{{id}}' data-uid="{{final_developer}}" class="btn-grad viewFinalCandidate"> View Final Candidate</button>
                             <ul class="list-group finalCandidateList">
                             </ul>
                             </div>`;
 
-            var template = Handlebars.compile(source);
-            projView.html(template(project));
+                var template = Handlebars.compile(source);
+                projView.html(template(bigProject));
+            });
         });
     });
 
@@ -380,7 +407,7 @@ $(document).ready(function () {
         $.get("/api/org_data").then(function (data) {
             start_up_name = data.name;
             start_up_id = data.id;
-            $("#registerProjectBtn").attr("data-id",start_up_id);
+            $("#registerProjectBtn").attr("data-id", start_up_id);
             bigData.startup_name = data.name;
             bigData.startup_email = data.email;
             bigData.startup_intro = data.intro;
@@ -394,7 +421,7 @@ $(document).ready(function () {
                         bigData.project.push(data[i]);
                     } else if (data[i].status === "Proccessing" && data[i].OrgId === start_up_id) {
                         bigData.activeProject.push(data[i]);
-                    } else if (data[i].status === "Finished" && data[i].OrgId === start_up_id){
+                    } else if (data[i].status === "Finished" && data[i].OrgId === start_up_id) {
                         bigData.completeProject.push(data[i]);
                     }
                 }
@@ -463,11 +490,17 @@ $(document).ready(function () {
             developer_email: "",
             developer_staus: "",
             developer_intro: "",
+            developer_rating: 0,
+            developer_ratingArr: [],
+            developer_notRatingArr: [],
             developer_techniques: [],
             completeProjects: [],
         };
-        $.get(`/pick/user/${userId}`)
-            .then(function (user) {
+        $.get(`/pick/user/${userId}`).then(function (user) {
+            $.get(`/pick/devRating/${userId}`).then(function (devRating) {
+                if (devRating) bigData.developer_rating = Math.floor(devRating.rating / devRating.ratingNum);
+                for (var i = 1; i <= bigData.developer_rating; i++) bigData.developer_ratingArr.push(0);
+                for (var i = 1; i <= 5 - bigData.developer_rating; i++) bigData.developer_notRatingArr.push(0);
                 bigData.developer_name = user.first_name;
                 bigData.developer_email = user.email;
                 bigData.developer_staus = user.status;
@@ -482,12 +515,13 @@ $(document).ready(function () {
                         }
                     }
                     console.log(bigData);
-                    $.post('/dev-profile',bigData).then(function(){
-                        $.get('/dev-profile-page').then(function(){
-                            window.open('/dev-profile-page','_blank');
+                    $.post('/dev-profile', bigData).then(function () {
+                        $.get('/dev-profile-page').then(function () {
+                            window.open('/dev-profile-page', '_blank');
                         })
                     })
                 });
-            });
+            })
+        });
     }
 });
