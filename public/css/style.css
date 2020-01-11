@@ -186,6 +186,7 @@ body {
     /* text-align: center; */
     border-right: 3px dashed #F09819;
     background: rgba(0,0,0,0.6);
+    height: 400px;
 }
 
 #project-display-section {
@@ -587,4 +588,21 @@ li.techList {
 .centers {
     text-align: center;
     list-style-position: inside;
+}
+
+.rate {
+    margin: auto;
+    margin-top: 10%;
+    line-height: 3em;
+    padding: 2% 2%;
+    background: rgba(0,0,0,0.7);
+    border-radius: 0.3rem;
+}
+
+#ratingPage {
+    margin-top: 5%;
+}
+
+.big {
+    font-size: 30px;
 }

@@ -30,6 +30,7 @@ $(document).ready(function () {
         $.get("/pick/" + projId).then(function (project) {
             var source = `<div class='project-content mt-3'>
                             <div class='project-title'>
+                            <h3 class='info mb-3'>Project Information</h3>
                                 <p class='bold'>TITLE</p>
                                 <p>{{title}}</p>
                             </div>
@@ -66,6 +67,7 @@ $(document).ready(function () {
                 var source = `
                         <div class='project-content mt-3'>
                         <div class='project-title'>
+                        <h3 class='info mb-3'>Project Information</h3>
                             <p class='bold'>TITLE</p>
                             <p>{{title}}</p>
                         </div>
@@ -84,6 +86,7 @@ $(document).ready(function () {
                 project.start = false;
                 var source = `
             <div class='project-content mt-3'>
+            <h3 class='info mb-3'>Project Information</h3>
             <div class='project-title'>
             <p class='bold'>TITLE</p>
             <p>{{title}}</p>
@@ -92,7 +95,7 @@ $(document).ready(function () {
             <p class='bold'>DESCRIPTION</p>
             <p>{{description}}</p>  
         </div>
-        <div class='project-price'>
+        <div class='project-price mb-3'>
             <p class='bold'>BUDGET</p>
             <p>$ {{price}}</p>
         </div>
@@ -105,7 +108,7 @@ $(document).ready(function () {
                                 Press Enter to Send!
                             </div>
                             </div>
-                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit It{{else}}Ongoing{{/if}}</button>`;
+                <button type='submit' class='{{#if start}}quitProject{{/if}} btn-grad' data-id='{{id}}'>{{#if start}}Quit Project{{else}}Ongoing Project{{/if}}</button>`;
                 var template = Handlebars.compile(source);
                 projView.html(template(project));
                 loadSocket(projId);
@@ -203,11 +206,11 @@ $(document).ready(function () {
                             <p>$ {{price}}</p>
                         </div>
                         <div class='project-comment'>
-                            <p class='bold'>Start-up's Comment</p>
+                            <p class='bold'>REVIEW FROM STARTUP</p>
                             <p>{{comments}}</p>
                         </div>
                         <div class='project-rating'>
-                            <p class='bold'>Start-up's Rating</p>
+                            <p class='bold'>RATING FROM STARTUP</p>
                             <p>
                             {{#each ratingArr}}
                             <span class="fa fa-star checked"></span>
@@ -289,7 +292,7 @@ $(document).ready(function () {
                                 </div>
                             </div>
                             <div class="row" id="startupWindows">
-                                <div class="col-sm-3" id="projDisp">
+                                <div class="col-sm-3 overflow-auto" id="projDisp">
                                     <div class="container-fluid projDisp">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn-proj" id="find" data-toggle="tooltip" data-placement="top" title="Available Projects"><i class="fas fa-file-alt iconB"></i></button>
