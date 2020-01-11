@@ -19,6 +19,18 @@ module.exports = function (app) {
         })
     });
 
+    app.get("/pick/rating/:pid", function(req, res) {
+        var pid = req.params.pid;
+
+        db.projectReviews.findOne({
+            where: {
+                projId: pid
+            }
+        }).then(function(data) {
+            res.json(data);
+        });
+    })
+
     app.post("/api/rating/:uid", function (req, res) {
         var userId = req.params.uid;
         db.reviews.findOne({
