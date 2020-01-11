@@ -95,7 +95,7 @@ $(document).ready(function () {
             <p class='bold'>DESCRIPTION</p>
             <p>{{description}}</p>  
         </div>
-        <div class='project-price'>
+        <div class='project-price mb-3'>
             <p class='bold'>BUDGET</p>
             <p>$ {{price}}</p>
         </div>

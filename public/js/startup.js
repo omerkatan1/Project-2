@@ -220,7 +220,7 @@ $(document).ready(function () {
                         </div>
                             </div>
                             <div>
-                            <button data-id='{{id}}' data-uid="{{final_developer}}" class="btn-grad viewFinalCandidate"> View Final Candidate</button>
+                            <button data-id='{{id}}' data-uid="{{final_developer}}" class="btn-grad viewFinalCandidate mb-3"> View Final Candidate</button>
                             <ul class="list-group finalCandidateList">
 
                             </ul>
