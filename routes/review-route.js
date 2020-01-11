@@ -1,7 +1,4 @@
 var db = require("../models");
-var path = require("path");
-
-
 module.exports = function (app) {
     var bigData;
     app.post("/user-review-page", function (req, res) {
@@ -64,7 +61,4 @@ module.exports = function (app) {
 
     });
 
-    app.get("/api/rating", function (req, res) {
-        console.log("works");
-    })
 }

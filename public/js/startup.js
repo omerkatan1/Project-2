@@ -250,15 +250,6 @@ $(document).ready(function () {
             projId: projectId,
             userId: devId
         };
-        var source = `<div id="rater"></div>
-        <div class='form-group'>
-            <label for='exampleInputEmail1'>Have something to say about this User?</label>
-            <textarea type='text' class='form-control' id='comment' placeholder='Type your thoughts here'></textarea>
-        </div>
-    
-        <button class="finishProject" data-uid="{{userId}}" data-pid="{{projId}}">Submit</button>`;
-        var template = Handlebars.compile(source);
-        $("#rater").html(template(obj));
         $.post("/user-review-page",obj).then(function(){
             $.get("/user-review").then(function(){
                 window.open('/user-review','_blank');
