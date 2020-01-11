@@ -3,13 +3,10 @@ $(document).ready(function () {
         event.preventDefault();
         var projId = $(this).data("id");
         $.get(`/pick/${projId}`).then(function (data) {
-            $.get(`/pick/rating/${projId}`).then(function (rateData) {
-                console.log(rateData);
-                $("#modalProjectTitle").html(data.title);
-                $("#modalProjectDescription").html(data.description);
-                $("#modalProjectPrice").html(data.price);
-                $("#completeprojectinfo").modal();
-            })
+            $("#modalProjectTitle").html(data.title);
+            $("#modalProjectDescription").html(data.description);
+            $("#modalProjectPrice").html(data.price);
+            $("#completeprojectinfo").modal();
         });
     });
 
