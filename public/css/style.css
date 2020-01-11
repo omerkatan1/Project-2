@@ -575,7 +575,7 @@ li.project:before, li.activeproject:before, li.completeproject:before, li.applie
     /* padding-left: 20px; */
 }
 
-#user-bid-input {
+#user-bid-input, #comment {
     width: 70%;
     margin: auto;
 }

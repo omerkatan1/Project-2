@@ -1,13 +1,15 @@
-<h1>Rate This User</h1>
-<div id="ratingPage">
-    <div id="rater"></div>
+<div class="container-fluid justify-content-center m-3 p-3 col">
+    <h1 class="bold">Rate The Developer</h1>
+    <div id="ratingPage">
+        <div id="rater"></div>
 
-    <div class='form-group'>
-        <label for='exampleInputEmail1'>Have something to say about this User?</label>
-        <textarea type='text' class='form-control' id='comment' placeholder='Type your thoughts here'></textarea>
+        <div class='form-group'>
+            <label for='exampleInputEmail1' class="bold">Please leave a review for the developer</label>
+            <textarea type='text' class='form-control' id='comment' placeholder='Type your thoughts here'></textarea>
+        </div>
+
+        <button class="finishProject btn-grad" data-uid="{{userId}}" data-pid="{{projId}}">Submit</button>
     </div>
-
-    <button class="finishProject" data-uid="{{userId}}" data-pid="{{projId}}">Submit</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
