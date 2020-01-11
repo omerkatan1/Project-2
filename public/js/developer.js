@@ -113,7 +113,7 @@ $(document).ready(function () {
         });
     });
 
-   
+
     function loadSocket(projId) {
         var socket = io();
         //var socket = io();
@@ -177,7 +177,18 @@ $(document).ready(function () {
         projView.empty();
 
         $.get("/pick/" + projId).then(function (project) {
-            var source = `
+            $.get(`/pick/rating/${projId}`).then(function (projRating) {
+                var currrating = Math.floor(projRating.rating);
+                var ratingArray =[];
+                var notRatingArray = [];
+                for (var i = 1; i<=currrating; i++) ratingArray.push(0);
+                for (var i = 1; i<=(5-currrating); i++) notRatingArray.push(0);
+                var addObj = {
+                    ratingArr: ratingArray,
+                    notRatingArr: notRatingArray
+                };
+                var bigProject = {...project,...projRating,...addObj};
+                var source = `
                         <div class='project-content mt-3'>
                         <div class='project-title'>
                             <p class='bold'>TITLE</p>
@@ -191,9 +202,25 @@ $(document).ready(function () {
                             <p class='bold'>BUDGET</p>
                             <p>$ {{price}}</p>
                         </div>
+                        <div class='project-comment'>
+                            <p class='bold'>Start-up's Comment</p>
+                            <p>{{comments}}</p>
+                        </div>
+                        <div class='project-rating'>
+                            <p class='bold'>Start-up's Rating</p>
+                            <p>
+                            {{#each ratingArr}}
+                            <span class="fa fa-star checked"></span>
+                            {{/each}}
+                            {{#each notRatingArr}}
+                            <span class="fa fa-star"></span>
+                            {{/each}}
+                            </p>
+                        </div>
                             <button type='submit' class='btn-grad' data-id='{{id}}'>Done</button>`;
-            var template = Handlebars.compile(source);
-            projView.html(template(project));
+                var template = Handlebars.compile(source);
+                projView.html(template(bigProject));
+            });
         });
     });
 
@@ -350,7 +377,7 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on("click","#loadDevProfile",function(event){
+    $(document).on("click", "#loadDevProfile", function (event) {
         event.preventDefault();
         loadDevProfile(currId);
     });
@@ -361,11 +388,17 @@ $(document).ready(function () {
             developer_email: "",
             developer_staus: "",
             developer_intro: "",
+            developer_rating: 0,
+            developer_ratingArr: [],
+            developer_notRatingArr: [],
             developer_techniques: [],
             completeProjects: [],
         };
-        $.get(`/pick/user/${userId}`)
-            .then(function (user) {
+        $.get(`/pick/user/${userId}`).then(function (user) {
+            $.get(`/pick/devRating/${userId}`).then(function (devRating) {
+                if (devRating) bigData.developer_rating = Math.floor(devRating.rating / devRating.ratingNum);
+                for (var i = 1; i <= bigData.developer_rating; i++) bigData.developer_ratingArr.push(0);
+                for (var i = 1; i <= 5 - bigData.developer_rating; i++) bigData.developer_notRatingArr.push(0);
                 bigData.developer_name = user.first_name;
                 bigData.developer_email = user.email;
                 bigData.developer_staus = user.status;
@@ -380,13 +413,14 @@ $(document).ready(function () {
                         }
                     }
                     console.log(bigData);
-                    $.post('/dev-profile',bigData).then(function(){
-                        $.get('/dev-profile-page').then(function(){
-                            window.open('/dev-profile-page','_blank');
+                    $.post('/dev-profile', bigData).then(function () {
+                        $.get('/dev-profile-page').then(function () {
+                            window.open('/dev-profile-page', '_blank');
                         })
                     })
                 });
-            });
+            })
+        });
     }
 
 

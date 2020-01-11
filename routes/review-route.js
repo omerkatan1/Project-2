@@ -28,6 +28,17 @@ module.exports = function (app) {
         });
     })
 
+    app.get("/pick/devRating/:uid",function(req,res){
+        var uid = req.params.uid;
+        db.reviews.findOne({
+            where:{
+                UserId: uid
+            }
+        }).then(function(data){
+            res.json(data);
+        });
+    });
+
     app.post("/api/rating/:uid", function (req, res) {
         var userId = req.params.uid;
         db.reviews.findOne({
