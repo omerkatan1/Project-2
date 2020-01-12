@@ -58,14 +58,16 @@ module.exports = function(app) {
     //res.sendFile(path.join(__dirname, "../public/org-account.html"));
   });
 
-  var bigData;
+  var bigData = {};
   app.post("/dev-profile", isAuthenticated, function(req, res) {
     console.log(req.body);
+    bigData = {};
     bigData = req.body;
     res.status(200).end();
   });
 
   app.get('/dev-profile-page',function(req,res){
+    console.log(bigData);
     res.render("dev-profile",bigData);
   });
 
