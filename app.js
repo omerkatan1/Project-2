@@ -1,4 +1,5 @@
 var express = require("express");
+var compression = require('compression');
 var session = require("express-session");
 var exphbs = require("express-handlebars");
 var path = require("path");
@@ -15,7 +16,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 var db = require("./models");
-
+app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
