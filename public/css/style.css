@@ -3,10 +3,7 @@ html, body {
 }
 
 body {
-    background-image: url("../img/background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgb(26, 25, 25);
     background-blend-mode: multiply;
     color: white;
     font-family: 'Quicksand', sans-serif;
@@ -39,6 +36,10 @@ body {
 .navbar.scrolled {
     background-color: #7F7F7F !important;
     transition: background-color 200ms linear;
+}
+
+h3 {
+    font-weight: bold;
 }
 
 .box {
@@ -176,7 +177,7 @@ body {
 
 /* startup dashboard style */
 #profileView {
-    margin: 5% 10% 2% 10%;
+    margin: 5% 5% 2% 5%;
     text-align: center;
     border: outset 0px rgb(182, 171, 171);
 }
@@ -184,18 +185,24 @@ body {
 #projDisp {
     /* margin-left: 40%; */
     /* text-align: center; */
-    border-right: 3px dashed #F09819;
-    background: rgba(0,0,0,0.6);
-    height: 400px;
+    margin-right: 1%;
+    border: outset 0px rgb(182, 171, 171);
+    background: rgba(0,0,0,0.3);
+    height: 500px;
+    box-shadow: 0px 2px 10px black;
+}
+
+#startupWindows {
+    margin: 0 3% 2% 3%;
 }
 
 #project-display-section {
     text-align: center;
-    height: 400px;
+    height: 500px;
     padding: 20px;
     border: outset 0px rgb(182, 171, 171);
-    background: rgba(0,0,0,0.6);
-
+    background: rgba(0,0,0,0.3);
+    box-shadow: 0px 2px 10px black;
 }
 
 .btn-proj {
@@ -505,7 +512,7 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
     text-align: center;
 }
 
-li.project, li.activeproject, li.completeproject, li.applieddeveloper, li.finaldeveloper, li.techList {
+/* li.project, li.activeproject, li.completeproject, li.applieddeveloper, li.finaldeveloper, li.techList {
     list-style-type: none;
     position: relative;
     padding-left: 15px;
@@ -517,10 +524,9 @@ li.project:before, li.activeproject:before, li.completeproject:before, li.applie
     font-weight: 900;
     font-size: 20px;
     position: absolute;
-    /* top: 50%; */
     color: #ffbb00; 
     left: -10px;
-}
+} */
 
 .bold {
     color: #ffbb00;
@@ -583,6 +589,14 @@ li.project:before, li.activeproject:before, li.completeproject:before, li.applie
 
 li.techList {
     text-align: left;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding-inline-start: 0;
 }
 
 .centers {

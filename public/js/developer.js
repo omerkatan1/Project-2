@@ -283,17 +283,14 @@ $(document).ready(function () {
                 }
                 var source = `<div class="row">
                                 <div class="col profile" id="profileView">
-                                <div class="name">
-                                <h1 class="cursive mt-2">Hello.</h1>
-                            <p class="p-0 m-0"><i class="fas fa-user icon"></i>{{developer_name}}</p>
-                                </div>
-                                <p class="p-0 m-0"><i class="fas fa-at icon"></i>{{developer_email}}</p>
-                                <p class="p-0 m-0"><i class="fas fa-quote-left icon"></i>{{developer_intro}} <i class="fas fa-quote-right icon"></i></p>
+                                    <div class="name text-left">
+                                    <p>Welcome Back <b>{{developer_name}}</b> <i class="fas fa-at icon"></i>{{developer_email}}</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" id="startupWindows">
-                                <div class="col-sm-3 overflow-auto" id="projDisp">
-                                    <div class="container-fluid projDisp">
+                                <div class="p-2 col-sm-3 overflow-auto" id="projDisp">
+                                    <div class="container-fluid">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn-proj" id="find" data-toggle="tooltip" data-placement="top" title="Available Projects"><i class="fas fa-file-alt iconB"></i></button>
                                         <button type="button" class="btn-proj" id="active" data-toggle="tooltip" data-placement="top" title="Projects in Progress"><i class="fas fa-spinner iconB"></i></button>
@@ -303,7 +300,7 @@ $(document).ready(function () {
                                             <ul id="findList">
                                                 {{#each project}}
                                                 <li class="project" data-id="{{id}}">
-                                                    <hi> {{title}} </hi>
+                                                    <h3> {{title}} </h3>
                                                     <p> $ {{price}} </p>
                                                 </li>
                                                 {{/each}}
@@ -311,15 +308,15 @@ $(document).ready(function () {
                                             <ul id="activeList" style="display: none">
                                                 {{#each activeProject}}
                                                 <li class="activeproject" data-id="{{id}}">
-                                                    <hi> {{title}} </hi>
-                                                    <p> {{price}} </p>
+                                                    <h3> {{title}} </h3>
+                                                    <p>$ {{price}} </p>
                                                 </li>
                                                 {{/each}}
                                             </ul>
                                             <ul id="completeList" style="display: none">
                                                 {{#each completeProject}}
                                                 <li class="completeproject" data-id="{{id}}">
-                                                    <hi> {{title}} </hi>
+                                                    <h3> {{title}} </h3>
                                                     <p> {{price}} </p>
                                                 </li>
                                                 {{/each}}
@@ -329,7 +326,7 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             
-                                <div class="p-2 col-sm-9 overflow-auto" id="project-display-section">
+                                <div class="p-2 col-sm-8 overflow-auto" id="project-display-section">
                                 </div>
                             </div>
                         </div>
